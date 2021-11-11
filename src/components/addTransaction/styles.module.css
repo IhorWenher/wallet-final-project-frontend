@@ -1,0 +1,18 @@
+.container {
+  margin-top: 60px;
+  background-color: pink;
+  padding: 20px;
+  max-width: 720px;
+}
+
+.typeContainer {
+  border: 2px solid black;
+}
+
+.formField {
+  display: block;
+}
+
+.formButton {
+  display: block;
+}
