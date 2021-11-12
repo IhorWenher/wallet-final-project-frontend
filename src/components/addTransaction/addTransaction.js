@@ -1,7 +1,5 @@
 import { useState } from 'react';
-// import Datetime from 'react-datetime';
 // import { Link, useLocation } from 'react-router-dom';
-// import fetch from '../../service';
 import Datetime from 'react-datetime';
 import 'moment/locale/ru'
 
@@ -25,6 +23,7 @@ function AddTransaction() {
         setListActive(!listActive)
     }
 
+    // разметка для выпадающего списка
     const dropDownJSX = (
         <div>
             <div className={styles.dropDownContainer} onClick={listOpen}>
@@ -42,6 +41,7 @@ function AddTransaction() {
                 <li onClick={categoryClickHandler} className={styles.dropDownItem}>Остальные</li>
             </ul>}
         </div>
+    // разметка для выпадающего списка
     )
  
 
@@ -57,13 +57,13 @@ function AddTransaction() {
 
                 {/* рендер списка по условию */}
                 {transactionType === 'income' && dropDownJSX}
+                {/* рендер списка по условию */}
 
                 <input className={styles.formField} type="number" placeholder="0.00"/>
                 
                 <Datetime initialValue={new Date()} closeOnSelect={true} timeFormat={false}  />
                 
                 <textarea className={styles.formField} type="text" placeholder="ekekeke" />
-                
                 <button type="submit" className={styles.formButton}>Добавить</button>
                 <button className={styles.formButton}>Отмена</button>
             </form>
