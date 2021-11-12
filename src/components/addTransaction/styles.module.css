@@ -18,19 +18,25 @@
 }
 
 .dropDownContainer {
+  color: black;
+}
+
+.dropDownField {
   max-width: 280px;
   height: 30px;
   background-color: ghostwhite;
 }
 
 .dropDownList {
-  padding: 0;
+  position: absolute;
+  z-index: 1;
   margin: 0;
   max-height: 352px;
-  max-width: 280px;
+  width: 280px;
   overflow: scroll;
 
-  background-color: gainsboro;
+  backdrop-filter: blur(6px);
+  background-color: rgba(255, 255, 255, 0.6);
 }
 
 .dropDownList::-webkit-scrollbar {
@@ -40,6 +46,7 @@
 
 .dropDownItem {
   list-style: none;
+  padding: 5px;
 }
 
 .selectedCategory {

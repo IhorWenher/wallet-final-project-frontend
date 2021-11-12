@@ -25,8 +25,8 @@ function AddTransaction() {
 
     // разметка для выпадающего списка
     const dropDownJSX = (
-        <div>
-            <div className={styles.dropDownContainer} onClick={listOpen}>
+        <div className={styles.dropDownContainer}>
+            <div className={styles.dropDownField} onClick={listOpen}>
                 <span className={styles.selectedCategory}>{category}(можно нажать)</span>
             </div>
 
