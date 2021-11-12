@@ -16,3 +16,38 @@
 .formButton {
   display: block;
 }
+
+.dropDownContainer {
+  max-width: 280px;
+  height: 30px;
+  background-color: ghostwhite;
+}
+
+.dropDownList {
+  padding: 0;
+  margin: 0;
+  max-height: 352px;
+  max-width: 280px;
+  overflow: scroll;
+
+  background-color: gainsboro;
+}
+
+.dropDownList::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.dropDownItem {
+  list-style: none;
+}
+
+.selectedCategory {
+  vertical-align: middle;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
