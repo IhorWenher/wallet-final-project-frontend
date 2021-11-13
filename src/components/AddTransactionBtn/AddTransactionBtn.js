@@ -6,6 +6,6 @@ export default function OpenTransactionBtn() {
   }
   
   return (
-    <button type='button' className={styles.btn} onClick={onOpenTransactions}><svg><use></use></svg></button>
+    <button type='button' className={styles.btn} onClick={onOpenTransactions}><svg><use href='../../images/plus-icon.svg'></use></svg></button>
   )
 }
