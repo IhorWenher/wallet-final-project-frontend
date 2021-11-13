@@ -9,6 +9,7 @@ function AddTransaction() {
     const [transactionType, setTransactionType] = useState("income");
     const [category, setCategory] = useState("Выберите категорию");
     const [listActive, setListActive] = useState(false)
+    const [summ, setSumm] = useState('')
 
     function radioClickHandler(e) {
          setTransactionType(e.target.value)
@@ -23,10 +24,37 @@ function AddTransaction() {
         setListActive(!listActive)
     }
 
+    function summChange(e) {
+        const number = Number(e.target.value)
+        const integer = Number.isInteger(number)
+
+        if (!integer) {
+            const [int, float] = String(number).split('.')
+            setSumm(`${int}.${float.slice(0, 2)}`)
+            return
+        }
+        setSumm(e.target.value)
+      }
+
+
+    // задача данной функции, повесить дополнительный класс по условию.
+    function classTrigger() {
+        if (category === 'Еда') {
+            const basic = styles.dropDownField
+            const active = styles.dropDownFieldActive
+            
+            return `${basic} ${active}`
+        }
+
+        return styles.dropDownField
+    }
+    // задача данной функции, повесить дополнительный класс по условию.
+
+
     // разметка для выпадающего списка
     const dropDownJSX = (
         <div className={styles.dropDownContainer}>
-            <div className={styles.dropDownField} onClick={listOpen}>
+            <div className={classTrigger()} onClick={listOpen}>
                 <span className={styles.selectedCategory}>{category}(можно нажать)</span>
             </div>
 
@@ -47,26 +75,29 @@ function AddTransaction() {
 
     return (
         <div className={styles.container}>
-            <h2>Добавить транзакцию</h2>
-            <form className={styles.typeContainer}>
-                <input defaultChecked onClick={radioClickHandler} name="transactionType" type="radio" id="income" value="income"/>
-                <label htmlFor="income">Доход</label>
-
-                <input onClick={radioClickHandler} name="transactionType" type="radio" id="spending" value="spending"/>
-                <label htmlFor="spending">Расход</label>
+            <h2 className={styles.title}>Добавить транзакцию</h2>
+            <form id="transaction" className={styles.form}>
+                <div className={styles.radioContainer}>
+                    <label htmlFor="income">Доход</label>
+                    <input defaultChecked onClick={radioClickHandler} name="transactionType" type="radio" id="income" value="income"/>
+                    <label htmlFor="spending">Расход</label>
+                    <input onClick={radioClickHandler} name="transactionType" type="radio" id="spending" value="spending"/>
+                </div>
 
                 {/* рендер списка по условию */}
                 {transactionType === 'income' && dropDownJSX}
                 {/* рендер списка по условию */}
-
-                <input className={styles.formField} type="number" placeholder="0.00"/>
+                <input className={styles.summField} onChange={summChange} type="number" placeholder="0.00" value={summ} />
+                <div className={styles.calendarContainer}>
+                    <Datetime initialValue={new Date()} closeOnSelect={true} timeFormat={false}  />
+                </div>
                 
-                <Datetime initialValue={new Date()} closeOnSelect={true} timeFormat={false}  />
-                
-                <textarea className={styles.formField} type="text" placeholder="ekekeke" />
-                <button type="submit" className={styles.formButton}>Добавить</button>
-                <button className={styles.formButton}>Отмена</button>
+                <textarea className={styles.commentField} placeholder="ekekeke" />
             </form>
+            <div className={styles.buttonsContainer}>
+                <button className={styles.submitButton} form="transaction" type="submit" >Добавить</button>
+                <button className={styles.cancelButton}>Отмена</button>
+            </div>
         </div>
     )
 };
