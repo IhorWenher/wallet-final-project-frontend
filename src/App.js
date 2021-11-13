@@ -1,12 +1,19 @@
 import Container from './components/Container';
-import AddTransaction from "./components/addTransaction";
+import { lazy, Suspense } from 'react';
+import { Routes, Route } from 'react-router-dom';
+
+const MainView = lazy(() => import('./views/MainView/MainView.js'));
 
 function App() {
   return (
     <Container>
-      <AddTransaction />
+      <Suspense fallback={<h2>Loading...</h2>}>
+        <Routes>
+          <Route path="/" exact element={<MainView />}></Route>
+        </Routes>
+      </Suspense>
     </Container>
-  )
+  );
 }
 
 export default App;
