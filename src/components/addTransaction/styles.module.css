@@ -2,7 +2,7 @@
   margin-top: 60px;
   margin-left: auto;
   margin-right: auto;
-  background-color: pink;
+  background-color: white;
   padding-bottom: 40px;
   /* padding: 20px; */
   max-width: 720px;
@@ -46,6 +46,7 @@
 .dropDownField {
   height: 34px;
   background-color: ghostwhite;
+  border: none;
 }
 
 .dropDownFieldActive {
@@ -92,6 +93,7 @@
   width: 100%;
   height: 34px;
   font-size: 16px;
+  border: none;
 }
 
 .summField::-webkit-outer-spin-button,
@@ -105,15 +107,19 @@
   width: 100%;
 }
 
+.calendarField {
+  width: 100%;
+}
+
 .commentField {
   display: block;
   width: 100%;
   height: 74px;
   resize: none;
   margin-top: 40px;
-  /* border: none;
-  background-color: transparent;
-  border-bottom: 1px solid black; */
+  /* border: none; */
+  /* background-color: transparent;
+  border-bottom: 1px solid black;  */
 }
 
 .buttonsContainer {

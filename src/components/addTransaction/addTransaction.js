@@ -89,7 +89,7 @@ function AddTransaction() {
                 {/* рендер списка по условию */}
                 <input className={styles.summField} onChange={summChange} type="number" placeholder="0.00" value={summ} />
                 <div className={styles.calendarContainer}>
-                    <Datetime initialValue={new Date()} closeOnSelect={true} timeFormat={false}  />
+                    <Datetime inputProps={{ className: styles.calenarField }} initialValue={new Date()} closeOnSelect={true} timeFormat={false}  />
                 </div>
                 
                 <textarea className={styles.commentField} placeholder="ekekeke" />
