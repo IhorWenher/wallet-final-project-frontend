@@ -1,8 +1,20 @@
+// import { useEffect } from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { fetchTransactions } from '../../redux/transactions/transactions-operations';
+// import { getTransactions } from '../../redux/transactions';
+
 import data from './data.json';
 import styles from './Dashboard.module.css';
 
 export default function Dashboard() {
   const dashboardData = data;
+
+  // const dashboardData = useSelector(getTransactions)
+  // const dispatch = useDispatch()
+
+  // useEffect(() => {
+  //   dispatch(fetchTransactions)
+  // }, [dispatch])
 
   return (
     <div className={styles.container}>
