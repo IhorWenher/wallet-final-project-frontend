@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Dashboard from '../../components/Dashboard';
 import AddTransactionBtn from '../../components/AddTransactionBtn';
 import AddTransaction from '../../components/addTransaction';
-import CurrencyRatesPanel from '../../components/CurrencyRatesPanel/CurrencyRatesPanel';
+import CurrencyRatesPanel from '../../components/CurrencyRatesPanel';
 
 import Styles from './MainView.module.css';
 

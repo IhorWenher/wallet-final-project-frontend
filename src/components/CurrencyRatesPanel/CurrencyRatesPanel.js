@@ -1,8 +1,9 @@
+import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCurrencies } from '../../redux/currency/currencyOperations';
 import currencySelector from "../../redux/currencySelectors";
-import Vector from './vector.svg';
+import Vector from '../../images/vector.svg';
 import styles from './CurrencyRatesPanel.module.css';
 
 function CurrencyRatesPanel() {
