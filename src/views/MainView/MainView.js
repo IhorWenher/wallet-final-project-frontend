@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import Dashboard from '../../components/Dashboard';
 import AddTransactionBtn from '../../components/AddTransactionBtn';
@@ -17,7 +17,7 @@ const MainView = () => {
     <div className={Styles.container}>
       <Dashboard />
       <AddTransactionBtn toggleModal={toggleModal} />
-      {showModal && (<AddTransaction />)}
+      {showModal && <AddTransaction />}
     </div>
   );
 };
