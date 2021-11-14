@@ -4,7 +4,6 @@
   margin-right: auto;
   background-color: white;
   padding-bottom: 40px;
-  /* padding: 20px; */
   max-width: 720px;
 }
 
@@ -16,53 +15,136 @@
 
 .form {
   padding: 0 20px;
-  border: 2px solid red;
 }
 
 .formField {
   display: block;
 }
 
-/* .formButton {
-  display: block;
-} */
-
-.radioContainer {
+.transTypeContainer {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 220px;
   height: 44px;
   margin-top: 40px;
   margin-right: auto;
   margin-left: auto;
-  border: 2px solid blue;
+}
+
+.transTypeText {
+  font-size: 16px;
+  font-weight: 600;
+  color: #bdbdbd;
+}
+
+.transTypeTextActive {
+  color: #24cca7;
+}
+
+.switchToggleContainer {
+  position: relative;
+  width: 80px;
+}
+
+.switchToggleBody {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 40px;
+  border-radius: 30px;
+  border: 1px solid #bdbdbd;
+}
+
+.switchToggleIncome {
+  position: absolute;
+  display: block;
+  top: -2px;
+  transform: translateX(-4px);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #24cca7;
+  pointer-events: none;
+
+  transition: transform 0.25s ease-in-out;
+}
+
+.switchToggleSpending {
+  position: absolute;
+  display: block;
+  top: -2px;
+  transform: translateX(40px);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #24cca7;
+  pointer-events: none;
+
+  transition: transform 0.25s ease-in-out;
+}
+
+.switchToggleInput {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  height: 0;
+  width: 0;
+  pointer-events: none;
 }
 
 /* Стили для выпадающего меню */
 .dropDownContainer {
+  position: relative;
   width: 100%;
   margin-top: 40px;
   color: black;
 }
 
+.dropDownContainer::after {
+  content: '';
+  position: absolute;
+  display: block;
+  bottom: 0;
+  height: 1px;
+  width: 100%;
+  background-color: #bdbdbd;
+}
+
 .dropDownField {
   height: 34px;
-  background-color: ghostwhite;
+  background-color: transparent;
+  color: #bdbdbd;
   border: none;
+  padding-left: 20px;
+
+  font-size: 18px;
 }
 
 .dropDownFieldActive {
-  color: red;
+  color: black;
+  font-size: 18px;
+  font-weight: 400;
 }
 
 .dropDownList {
   position: absolute;
+  padding: 0;
   z-index: 1;
   margin: 0;
-  max-height: 352px;
-  width: 280px;
+  top: calc(100% + 5px);
+  height: 352px;
+  width: 100%;
   overflow: scroll;
+  border-radius: 20px;
 
-  backdrop-filter: blur(6px);
-  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(50px);
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
 }
 
 .dropDownList::-webkit-scrollbar {
@@ -71,8 +153,15 @@
 }
 
 .dropDownItem {
+  display: flex;
+  align-items: center;
   list-style: none;
-  padding: 5px;
+  padding-left: 20px;
+  height: 44px;
+  vertical-align: middle;
+
+  font-size: 18px;
+  font-weight: 400;
 }
 
 .selectedCategory {
@@ -87,12 +176,29 @@
 
 /*стили для выпадающего меню закончены */
 
-.summField {
-  display: block;
+.summFieldContainer {
+  position: relative;
   margin-top: 40px;
   width: 100%;
+}
+
+.summFieldContainer::after {
+  content: '';
+  position: absolute;
+  display: block;
+  bottom: 0;
+  height: 1px;
+  width: 100%;
+  background-color: #bdbdbd;
+}
+
+.summField {
+  display: block;
+  width: 100%;
   height: 34px;
-  font-size: 16px;
+  padding-left: 20px;
+  font-size: 18px;
+  font-weight: 600;
   border: none;
 }
 
@@ -103,12 +209,43 @@
 }
 
 .calendarContainer {
+  position: relative;
   margin-top: 40px;
   width: 100%;
 }
 
+.calendarContainer::after {
+  content: '';
+  position: absolute;
+  display: block;
+  bottom: 0;
+  height: 1px;
+  width: 100%;
+  background-color: #bdbdbd;
+}
+
 .calendarField {
   width: 100%;
+  height: 34px;
+  border: 0;
+  padding-left: 20px;
+
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.commentFieldContainer {
+  position: relative;
+}
+
+.commentFieldContainer::after {
+  content: '';
+  position: absolute;
+  display: block;
+  bottom: 0;
+  height: 1px;
+  width: 100%;
+  background-color: #bdbdbd;
 }
 
 .commentField {
@@ -117,25 +254,28 @@
   height: 74px;
   resize: none;
   margin-top: 40px;
-  /* border: none; */
-  /* background-color: transparent;
-  border-bottom: 1px solid black;  */
+  padding-left: 20px;
+  border: none;
+  font-size: 18px;
+  font-weight: 400;
 }
 
 .buttonsContainer {
   margin-top: 40px;
-  /* background-color: red; */
+  padding: 0 10px;
 }
 
 .submitButton {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 300px;
+  width: 100%;
   height: 50px;
   border-radius: 20px;
   border: none;
 
+  font-size: 18px;
+  font-weight: 400;
   background-color: #24cca7;
   color: white;
 }
@@ -145,8 +285,13 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 20px;
-  width: 300px;
+  width: 100%;
   height: 50px;
+
+  font-size: 18px;
+  font-weight: 400;
   border-radius: 20px;
-  border: none;
+  border: 1px solid #4a56e2;
+  color: #4a56e2;
+  background-color: transparent;
 }

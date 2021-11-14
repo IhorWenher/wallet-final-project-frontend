@@ -10,9 +10,20 @@ function AddTransaction() {
     const [category, setCategory] = useState("Выберите категорию");
     const [listActive, setListActive] = useState(false)
     const [summ, setSumm] = useState('')
+    const [date, setDate] = useState(new Date())
 
-    function radioClickHandler(e) {
-         setTransactionType(e.target.value)
+// 
+    function submitHandler(e) {
+        e.preventDefault()
+        console.log(e)
+        console.log('calling redux action')
+    }
+    function switchClickHandler(e) {
+        if (!e.target.checked) {
+            setTransactionType('spending')
+            return
+        }
+         setTransactionType('income')
     }
 
     function categoryClickHandler(e) {
@@ -20,7 +31,11 @@ function AddTransaction() {
         setListActive(!listActive)
     }
 
-    function listOpen(e) {
+    function dateChange(e) {
+        setDate(e._d)
+    }
+
+    function listOpen() {
         setListActive(!listActive)
     }
 
@@ -37,9 +52,9 @@ function AddTransaction() {
       }
 
 
-    // задача данной функции, повесить дополнительный класс по условию.
-    function classTrigger() {
-        if (category === 'Еда') {
+    // задача данных функций, повесить дополнительный класс по условию.
+    function DropMenuActiveTrigger () {
+        if (category !== 'Выберите категорию') {
             const basic = styles.dropDownField
             const active = styles.dropDownFieldActive
             
@@ -48,14 +63,43 @@ function AddTransaction() {
 
         return styles.dropDownField
     }
-    // задача данной функции, повесить дополнительный класс по условию.
+
+    function incomeActiveTrigger() {
+        if (transactionType === 'income') {
+            const basic = styles.transTypeText
+            const active = styles.transTypeTextActive
+            return `${basic} ${active}`
+        }
+
+        return styles.transTypeText
+    }
+
+    function spendingActiveTrigger() {
+        if (transactionType === 'spending') {
+            const basic = styles.transTypeText
+            const active = styles.transTypeTextActive
+            return `${basic} ${active}`
+        }
+
+        return styles.transTypeText
+    }
+
+    function switchToggle() {
+        if (transactionType === 'income') {
+            return styles.switchToggleIncome
+        }
+
+        return styles.switchToggleSpending
+    }
+
+    // задача данных функции, повесить дополнительный класс по условию.
 
 
     // разметка для выпадающего списка
     const dropDownJSX = (
         <div className={styles.dropDownContainer}>
-            <div className={classTrigger()} onClick={listOpen}>
-                <span className={styles.selectedCategory}>{category}(можно нажать)</span>
+            <div className={DropMenuActiveTrigger()} onClick={listOpen}>
+                <span className={styles.selectedCategory}>{category}</span>
             </div>
 
             {listActive && <ul className={styles.dropDownList}>
@@ -71,28 +115,38 @@ function AddTransaction() {
         </div>
     // разметка для выпадающего списка
     )
- 
 
     return (
         <div className={styles.container}>
             <h2 className={styles.title}>Добавить транзакцию</h2>
-            <form id="transaction" className={styles.form}>
-                <div className={styles.radioContainer}>
-                    <label htmlFor="income">Доход</label>
-                    <input defaultChecked onClick={radioClickHandler} name="transactionType" type="radio" id="income" value="income"/>
-                    <label htmlFor="spending">Расход</label>
-                    <input onClick={radioClickHandler} name="transactionType" type="radio" id="spending" value="spending"/>
+            <form onSubmit={submitHandler} id="transaction" className={styles.form}>
+
+                <div className={styles.transTypeContainer}>
+                    <span className={incomeActiveTrigger()}>Доход</span>
+                    <div className={styles.switchToggleContainer}>
+                        <label className={styles.switchToggleBody} htmlFor="transType">
+                        </label>
+                        <span className={switchToggle()}></span>
+                    </div>
+                    <input className={styles.switchToggleInput} onChange={switchClickHandler} name="transactionType" type="checkbox" id="transType" defaultChecked />
+                    <span className={spendingActiveTrigger()}>Расход</span>
                 </div>
 
                 {/* рендер списка по условию */}
                 {transactionType === 'income' && dropDownJSX}
                 {/* рендер списка по условию */}
-                <input className={styles.summField} onChange={summChange} type="number" placeholder="0.00" value={summ} />
-                <div className={styles.calendarContainer}>
-                    <Datetime inputProps={{ className: styles.calenarField }} initialValue={new Date()} closeOnSelect={true} timeFormat={false}  />
+
+                <div className={styles.summFieldContainer}>
+                    <input className={styles.summField} onChange={summChange} type="number" placeholder="0.00" value={summ} />
                 </div>
-                
-                <textarea className={styles.commentField} placeholder="ekekeke" />
+
+                <div className={styles.calendarContainer}>
+                    <Datetime onChange={dateChange} inputProps={{ className: styles.calendarField }} initialValue={date} closeOnSelect={true} timeFormat={false}  />
+                </div>
+
+                <div className={styles.commentField}>
+                    <textarea className={styles.commentField} placeholder="место для вашей рекламы" />
+                </div>
             </form>
             <div className={styles.buttonsContainer}>
                 <button className={styles.submitButton} form="transaction" type="submit" >Добавить</button>
