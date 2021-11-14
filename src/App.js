@@ -11,8 +11,6 @@ function App() {
       <Suspense fallback={<h2>Loading...</h2>}>
         <Routes>
           <Route path="/" exact element={<MainView />}></Route>
-        </Routes>
-        <Routes>
           <Route path="/statistic" exact element={<StatisticView />}></Route>
         </Routes>
       </Suspense>
