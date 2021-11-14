@@ -1,29 +1,19 @@
 import { PieChart } from 'react-minimal-pie-chart';
 import React from 'react';
 import styled from 'styled-components';
-
-const getCathegoryColor = () => {
-  function randomInteger(min, max) {
-    let rand = min + Math.random() * (max + 1 - min);
-    return Math.floor(rand);
-  }
-  const r = randomInteger(0, 70);
-  const g = randomInteger(0, 50);
-  const b = randomInteger(0, 254);
-  return `rgb(${r}, ${g}, ${b})`;
-};
+import getCathegoryColor from './getCathegoryColor';
 
 const PieChartComponent = ({
   cathegories = [
-    { title: 'main', value: 13, color: '#FED057' },
-    { title: 'food', value: 36, color: '#FFD8D0' },
-    { title: 'car', value: 9, color: '#FD9498' },
-    { title: 'selfCare', value: 6, color: '#C5BAFF' },
-    { title: 'childrenCare', value: 6, color: '#6E78E8' },
-    { title: 'homeGoods', value: 1, color: '#4A56E2' },
-    { title: 'edacation', value: 14, color: '#81E1FF' },
-    { title: 'hobbies', value: 9, color: '#24CCA7' },
-    { title: 'other', value: 6, color: '#00AD84' },
+    { title: 'main', value: 13 },
+    { title: 'food', value: 36 },
+    { title: 'car', value: 9 },
+    { title: 'selfCare', value: 6 },
+    { title: 'childrenCare', value: 6 },
+    { title: 'homeGoods', value: 1 },
+    { title: 'edacation', value: 14 },
+    { title: 'hobbies', value: 9 },
+    { title: 'other', value: 6 },
   ],
   total = 24000,
 }) => (
@@ -33,7 +23,10 @@ const PieChartComponent = ({
       lineWidth={25}
       animate
       radius={50}
-      data={cathegories}
+      data={cathegories.map(cathegory => ({
+        ...cathegory,
+        color: getCathegoryColor(),
+      }))}
     />
     <Total>₴ {total}</Total>
   </PieChartWrapper>
