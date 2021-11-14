@@ -1,14 +1,27 @@
-import Styles from './MainView.module.css';
+import React, { useState } from 'react';
+
 import Dashboard from '../../components/Dashboard';
 import AddTransactionBtn from '../../components/AddTransactionBtn';
-import CurrencyRatesPanel from '../../components/CurrencyRatesPanel';
+import AddTransaction from '../../components/addTransaction';
+import CurrencyRatesPanel from '../../components/CurrencyRatesPanel/CurrencyRatesPanel';
+
+import Styles from './MainView.module.css';
 
 const MainView = () => {
-  return <div className={Styles.container}>
-    <CurrencyRatesPanel />
-    <Dashboard />
-    <AddTransactionBtn/>
-  </div>;
+  const [showModal, setShowModal] = useState(false);
+
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
+
+  return (
+    <div className={Styles.container}>
+      <CurrencyRatesPanel />
+      <Dashboard />
+      <AddTransactionBtn toggleModal={toggleModal} />
+      {showModal && <AddTransaction />}
+    </div>
+  );
 };
 
 export default MainView;

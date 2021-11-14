@@ -1,14 +1,47 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import currencyReducers from "./currency/currencyReducers";
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-const walletReducer = combineReducers({
-  currency: currencyReducers
-});
+import {transactionsReducer }from './transactions/index';
 
-const store = configureStore({
+import {categoriesReducer} from './categories/index'
+// import categoriesReducer from './categories'
+
+import { authReducer } from './auth';
+import currencyReducers from './currency/currencyReducers';
+
+const middleware = [
+  ...getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    },
+  }),
+];
+
+const authPersistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['token'],
+};
+
+export const store = configureStore({
   reducer: {
-    walletReducer
-  }
+    auth: persistReducer(authPersistConfig, authReducer),
+    transactions: transactionsReducer,
+    categories: categoriesReducer,
+    currency : currencyReducers
+  },
+  middleware,
+  devTools: process.env.NODE_ENV === 'development',
 });
 
-export default store;
+export const persistor = persistStore(store);
