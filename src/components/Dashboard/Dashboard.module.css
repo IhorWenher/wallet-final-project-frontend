@@ -1,11 +1,11 @@
 .container {
   font-family: 'Circe', sans-serif;
+  padding-top: 30px;
   font-style: normal;
   padding-right: 25px;
   padding-left: 25px;
   margin: 0 auto;
   min-width: 320px;
-  background-color: #e7eaf2;
   color: #000000;
 }
 
@@ -79,6 +79,9 @@
 }
 
 @media screen and (min-width: 768px) {
+  .container {
+    padding-top: 40px;
+  }
   .tableHead {
     background-color: #ffffff;
   }
@@ -105,6 +108,9 @@
   .tableElement {
     border-left: 0;
   }
+  .table td {
+    box-shadow: 0 1px 0 0 #ffffff;
+  }
 
   .table td:last-child {
     border-bottom: 1px solid #dcdcdf;
@@ -117,6 +123,7 @@
 
 @media screen and (min-width: 1280px) {
   .container {
+    padding-top: 46px;
     min-width: 1080px;
   }
 }

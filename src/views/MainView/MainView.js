@@ -1,9 +1,10 @@
 import { useState } from 'react';
 
-import Styles from './MainView.module.css';
 import Dashboard from '../../components/Dashboard';
 import AddTransactionBtn from '../../components/AddTransactionBtn';
 import AddTransaction from '../../components/addTransaction';
+
+import Styles from './MainView.module.css';
 
 const MainView = () => {
   const [showModal, setShowModal] = useState(false);
