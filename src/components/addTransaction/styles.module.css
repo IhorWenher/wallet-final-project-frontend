@@ -64,6 +64,7 @@
   transform: translateX(-4px);
   width: 44px;
   height: 44px;
+
   border-radius: 50%;
   background-color: #24cca7;
   pointer-events: none;
@@ -78,8 +79,9 @@
   transform: translateX(40px);
   width: 44px;
   height: 44px;
+
   border-radius: 50%;
-  background-color: #24cca7;
+  background-color: #ff6596;
   pointer-events: none;
 
   transition: transform 0.25s ease-in-out;
@@ -202,6 +204,10 @@
   border: none;
 }
 
+.summField:focus {
+  outline: none;
+}
+
 .summField::-webkit-outer-spin-button,
 .summField::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -234,6 +240,10 @@
   font-weight: 600;
 }
 
+.calendarField:focus {
+  outline: none;
+}
+
 .commentFieldContainer {
   position: relative;
 }
@@ -258,6 +268,10 @@
   border: none;
   font-size: 18px;
   font-weight: 400;
+}
+
+.commentField:focus {
+  outline: none;
 }
 
 .buttonsContainer {

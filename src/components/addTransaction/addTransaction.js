@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 // import { Link, useLocation } from 'react-router-dom';
 import Datetime from 'react-datetime';
-import 'moment/locale/ru'
+import 'moment/locale/ru';
 
-import styles from "./styles.module.css";
+import styles from './styles.module.css';
 
 function AddTransaction() {
     const [transactionType, setTransactionType] = useState("income");
@@ -154,7 +154,6 @@ function AddTransaction() {
             </div>
         </div>
     )
-};
-
+}
 
 export default AddTransaction;
