@@ -18,8 +18,7 @@ const PieChartComponent = ({
   total = 24000,
 }) => (
   <PieChartWrapper>
-    <PieChart
-      style={{ width: '320px', height: '320px' }}
+    <CustomPieChart
       lineWidth={25}
       animate
       radius={50}
@@ -49,4 +48,18 @@ const PieChartWrapper = styled.div`
 
   width: 320px;
   height: 320px;
+
+  @media screen and (max-width: 320px) {
+    width: 280px;
+    height: 280px;
+  }
+`;
+const CustomPieChart = styled(PieChart)`
+  width: 320px;
+  height: 320px;
+
+  @media screen and (max-width: 320px) {
+    width: 280px;
+    height: 280px;
+  }
 `;
