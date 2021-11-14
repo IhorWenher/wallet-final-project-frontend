@@ -17,6 +17,7 @@ import {categoriesReducer} from './categories/index'
 // import categoriesReducer from './categories'
 
 import { authReducer } from './auth';
+import { balanceReducer } from './balance';
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -37,6 +38,7 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     transactions: transactionsReducer,
     categories: categoriesReducer,
+    balance : balanceReducer
   },
   middleware,
   devTools: process.env.NODE_ENV === 'development',
