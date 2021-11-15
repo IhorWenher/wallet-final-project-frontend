@@ -39,7 +39,7 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     transactions: transactionsReducer,
     categories: categoriesReducer,
-    balance : balanceReducer
+    balance : balanceReducer,
     currency : currencyReducers
   },
   middleware,
