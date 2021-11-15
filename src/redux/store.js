@@ -11,9 +11,9 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import {transactionsReducer }from './transactions/index';
+import { transactionsReducer } from './transactions/index';
 
-import {categoriesReducer} from './categories/index'
+import { categoriesReducer } from './categories/index';
 // import categoriesReducer from './categories'
 
 import { authReducer } from './auth';
@@ -39,8 +39,9 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     transactions: transactionsReducer,
     categories: categoriesReducer,
-    balance : balanceReducer,
-    currency : currencyReducers
+    balance: balanceReducer,
+    currency: currencyReducers,
+
   },
   middleware,
   devTools: process.env.NODE_ENV === 'development',
