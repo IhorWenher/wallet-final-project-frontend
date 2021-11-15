@@ -1,0 +1,69 @@
+.header {
+  display: flex;
+  width: 1280px;
+  height: 80px;
+  left: 0px;
+  top: 0px;
+  border: 1px solid #ececec;
+  background: #ffffff;
+}
+
+.logo {
+  width: 121px;
+  height: 40px;
+  left: 145px;
+  top: 20px;
+  margin-right: 739px;
+  padding-top: 20px;
+
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 45px;
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+}
+
+.author {
+  display: flex;
+}
+
+.name {
+  width: 80px;
+  height: 24px;
+  left: 1005px;
+  top: 28px;
+
+  font-family: Circe;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: right;
+  color: #bdbdbd;
+}
+
+.button {
+  background-color: #ffffff;
+  border: none;
+}
+.output__svg {
+  background: #bdbdbd;
+}
+.output {
+  width: 51px;
+  height: 24px;
+  left: 1142.5px;
+  top: 28px;
+
+  font-family: Circe;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 27px;
+
+  color: #bdbdbd;
+}
