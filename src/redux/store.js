@@ -17,6 +17,7 @@ import {categoriesReducer} from './categories/index'
 // import categoriesReducer from './categories'
 
 import { authReducer } from './auth';
+import { balanceReducer } from './balance';
 import currencyReducers from './currency/currencyReducers';
 
 const middleware = [
@@ -38,6 +39,7 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     transactions: transactionsReducer,
     categories: categoriesReducer,
+    balance : balanceReducer
     currency : currencyReducers
   },
   middleware,
