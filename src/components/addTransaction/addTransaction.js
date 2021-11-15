@@ -6,7 +6,9 @@ import 'moment/locale/ru'
 import { ReactSVG } from 'react-svg'
 import svgPlus from '../../images/plus-icon.svg'
 import svgMinus from '../../images/minus-icon.svg'
-// import svgCalendar from '../../images/minus-icon.svg';
+import svgCalendar from '../../images/calendar-icon.svg';
+import svgListIcon from '../../images/categories-list-icon.svg';
+import svgClose from '../../images/modal-close-icon.svg'
 
 
 import styles from './styles.module.css';
@@ -63,6 +65,11 @@ function AddTransaction() {
         const field = document.querySelector(`.${styles.commentField}`)
         field.style.cssText = 'height:' + field.scrollHeight + 'px';
         setComment(e.target.value)
+    }
+
+    function closeComponent(e) {
+        console.log(e.currentTarget)
+        console.log('закрытие модалки')
     }
 
 
@@ -125,12 +132,17 @@ function AddTransaction() {
                 <li onClick={categoryClickHandler} className={styles.dropDownItem}>Образование</li>
                 <li onClick={categoryClickHandler} className={styles.dropDownItem}>Остальные</li>
             </ul>}
+
+            <ReactSVG className={styles.dropDownIcon} src={svgListIcon} />
         </div>
     // разметка для выпадающего списка
     )
 
     return (
-        <div className={styles.container}>
+        <div className={styles.addTransContainer}>
+            <div onClick={closeComponent} className={styles.closeBtnBox}>
+                <ReactSVG className={styles.closeIcon} src={svgClose} />
+            </div>
             <h2 className={styles.title}>Добавить транзакцию</h2>
             <form onSubmit={submitHandler} id="transaction" className={styles.form}>
 
@@ -158,6 +170,7 @@ function AddTransaction() {
 
                 <div className={styles.calendarContainer}>
                     <Datetime onChange={dateChange} inputProps={{ className: styles.calendarField }} initialValue={date} closeOnSelect={true} timeFormat={false} />
+                    <ReactSVG className={styles.calendarIcon} src={svgCalendar} />
                 </div>
 
                 <div className={styles.commentFieldContainer}>

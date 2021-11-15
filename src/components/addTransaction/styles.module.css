@@ -1,4 +1,5 @@
-.container {
+.addTransContainer {
+  position: relative;
   padding-top: 20px;
   margin-left: auto;
   margin-right: auto;
@@ -8,7 +9,7 @@
 }
 
 @media screen and (min-width: 768px) {
-  .container {
+  .addTransContainer {
     padding-top: 40px;
     padding-left: 65px;
     padding-right: 65px;
@@ -17,7 +18,38 @@
     border-radius: 20px;
   }
 }
+/* стили кнопки закрытия окна */
+.closeBtnBox {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  height: 0;
+  width: 0;
+  pointer-events: none;
+}
 
+@media screen and (min-width: 768px) {
+  .closeBtnBox {
+    padding: 11px;
+    opacity: 1;
+    pointer-events: all;
+    top: 10px;
+    right: 10px;
+    width: auto;
+    height: auto;
+  }
+}
+
+.closeIcon {
+  width: 18px;
+  height: 18px;
+}
+/* стили кнопки закрытия окна */
+
+/* заголовок и поле формы */
 .title {
   margin: 0;
   font-size: 24px;
@@ -41,6 +73,7 @@
     padding: 0;
   }
 }
+/* заголовок и поле формы */
 
 /* стили для переключателя расход\доход */
 .transTypeContainer {
@@ -92,6 +125,7 @@
   border-radius: 50%;
   background-color: #24cca7;
   pointer-events: none;
+  box-shadow: 0px 6px 15px rgba(36, 204, 167, 0.5);
 
   transition: transform 0.25s ease-in-out;
 }
@@ -108,6 +142,7 @@
 
   border-radius: 50%;
   background-color: #ff6596;
+  box-shadow: 0px 6px 15px rgba(255, 101, 150, 0.5);
   pointer-events: none;
 
   transition: transform 0.25s ease-in-out;
@@ -215,6 +250,15 @@
   user-select: none;
 }
 
+.dropDownIcon {
+  position: absolute;
+  pointer-events: none;
+  right: 20px;
+  top: 5px;
+  width: 18px;
+  height: 9px;
+}
+
 /*стили для выпадающего меню закончены */
 
 /* стили для суммы */
@@ -306,6 +350,15 @@
 
 .calendarField:focus {
   outline: none;
+}
+
+.calendarIcon {
+  position: absolute;
+  pointer-events: none;
+  right: 20px;
+  top: 5px;
+  width: 18px;
+  height: 20px;
 }
 /* стили для календаря */
 

@@ -6,7 +6,7 @@ import React from 'react';
 export default function OpenTransactionBtn({ toggleModal }) {
   return (
     <button type="button" className={styles.btn} onClick={toggleModal}>
-      <ReactSVG src={svgPlus} />
+      <ReactSVG className={styles.svgComponent} src={svgPlus} />
     </button>
   );
 }
