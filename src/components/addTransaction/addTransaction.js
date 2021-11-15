@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 // import { Link, useLocation } from 'react-router-dom';
-import Datetime from 'react-datetime';
-import 'moment/locale/ru';
+import Datetime from 'react-datetime'
+import 'moment/locale/ru'
+
+import { ReactSVG } from 'react-svg'
+import svgPlus from '../../images/plus-icon.svg'
+import svgMinus from '../../images/minus-icon.svg'
+// import svgCalendar from '../../images/minus-icon.svg';
+
 
 import styles from './styles.module.css';
 
 function AddTransaction() {
-    const [transactionType, setTransactionType] = useState("income");
-    const [category, setCategory] = useState("Выберите категорию");
+    const [transactionType, setTransactionType] = useState("income")
+    const [category, setCategory] = useState("Выберите категорию")
     const [listActive, setListActive] = useState(false)
     const [summ, setSumm] = useState('')
     const [date, setDate] = useState(new Date())
+    const [comment, setComment] = useState('')
 
 // 
     function submitHandler(e) {
@@ -48,8 +55,15 @@ function AddTransaction() {
             setSumm(`${int}.${float.slice(0, 2)}`)
             return
         }
+
         setSumm(e.target.value)
-      }
+    }
+    
+    function commentChange(e) {
+        const field = document.querySelector(`.${styles.commentField}`)
+        field.style.cssText = 'height:' + field.scrollHeight + 'px';
+        setComment(e.target.value)
+    }
 
 
     // задача данных функций, повесить дополнительный класс по условию.
@@ -91,7 +105,6 @@ function AddTransaction() {
 
         return styles.switchToggleSpending
     }
-
     // задача данных функции, повесить дополнительный класс по условию.
 
 
@@ -124,16 +137,19 @@ function AddTransaction() {
                 <div className={styles.transTypeContainer}>
                     <span className={incomeActiveTrigger()}>Доход</span>
                     <div className={styles.switchToggleContainer}>
-                        <label className={styles.switchToggleBody} htmlFor="transType">
-                        </label>
-                        <span className={switchToggle()}></span>
+                        <label className={styles.switchToggleBody} htmlFor="transType"></label>
+                        <span className={switchToggle()}>
+                            <ReactSVG
+                                className={styles.switchToggleSvg}
+                                src={transactionType === 'income' ? svgPlus : svgMinus} />
+                        </span>
                     </div>
                     <input className={styles.switchToggleInput} onChange={switchClickHandler} name="transactionType" type="checkbox" id="transType" defaultChecked />
                     <span className={spendingActiveTrigger()}>Расход</span>
                 </div>
 
                 {/* рендер списка по условию */}
-                {transactionType === 'income' && dropDownJSX}
+                {transactionType === 'spending' && dropDownJSX}
                 {/* рендер списка по условию */}
 
                 <div className={styles.summFieldContainer}>
@@ -141,11 +157,11 @@ function AddTransaction() {
                 </div>
 
                 <div className={styles.calendarContainer}>
-                    <Datetime onChange={dateChange} inputProps={{ className: styles.calendarField }} initialValue={date} closeOnSelect={true} timeFormat={false}  />
+                    <Datetime onChange={dateChange} inputProps={{ className: styles.calendarField }} initialValue={date} closeOnSelect={true} timeFormat={false} />
                 </div>
 
-                <div className={styles.commentField}>
-                    <textarea className={styles.commentField} placeholder="место для вашей рекламы" />
+                <div className={styles.commentFieldContainer}>
+                    <textarea onChange={commentChange} className={styles.commentField} value={comment} placeholder="место для вашей рекламы" />
                 </div>
             </form>
             <div className={styles.buttonsContainer}>

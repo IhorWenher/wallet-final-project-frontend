@@ -1,5 +1,5 @@
 .container {
-  margin-top: 60px;
+  padding-top: 20px;
   margin-left: auto;
   margin-right: auto;
   background-color: white;
@@ -7,20 +7,42 @@
   max-width: 720px;
 }
 
+@media screen and (min-width: 768px) {
+  .container {
+    padding-top: 40px;
+    padding-left: 65px;
+    padding-right: 65px;
+    padding-bottom: 60px;
+    width: 540px;
+    border-radius: 20px;
+  }
+}
+
 .title {
+  margin: 0;
   font-size: 24px;
+  font-weight: 400;
   line-height: 36px;
   text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .title {
+    font-size: 30px;
+  }
 }
 
 .form {
   padding: 0 20px;
 }
 
-.formField {
-  display: block;
+@media screen and (min-width: 768px) {
+  .form {
+    padding: 0;
+  }
 }
 
+/* стили для переключателя расход\доход */
 .transTypeContainer {
   position: relative;
   display: flex;
@@ -59,7 +81,9 @@
 
 .switchToggleIncome {
   position: absolute;
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   top: -2px;
   transform: translateX(-4px);
   width: 44px;
@@ -74,7 +98,9 @@
 
 .switchToggleSpending {
   position: absolute;
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   top: -2px;
   transform: translateX(40px);
   width: 44px;
@@ -98,6 +124,13 @@
   width: 0;
   pointer-events: none;
 }
+
+.switchToggleSvg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+/* стили для переключателя расход\доход */
 
 /* Стили для выпадающего меню */
 .dropDownContainer {
@@ -145,7 +178,7 @@
   border-radius: 20px;
 
   backdrop-filter: blur(50px);
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(247, 247, 247, 0.7);
   box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -164,6 +197,12 @@
 
   font-size: 18px;
   font-weight: 400;
+  cursor: pointer;
+}
+
+.dropDownItem:hover {
+  color: #ff6596;
+  background-color: rgb(255, 255, 255);
 }
 
 .selectedCategory {
@@ -178,10 +217,18 @@
 
 /*стили для выпадающего меню закончены */
 
+/* стили для суммы */
 .summFieldContainer {
   position: relative;
   margin-top: 40px;
   width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .summFieldContainer {
+    display: inline-block;
+    width: 190px;
+  }
 }
 
 .summFieldContainer::after {
@@ -204,6 +251,13 @@
   border: none;
 }
 
+@media screen and (min-width: 768px) {
+  .summField {
+    padding-left: 0;
+    text-align: center;
+  }
+}
+
 .summField:focus {
   outline: none;
 }
@@ -213,11 +267,21 @@
   -webkit-appearance: none;
   /* -moz-appearance: textfield; */
 }
+/* стили для суммы */
 
+/* стили для календаря */
 .calendarContainer {
   position: relative;
   margin-top: 40px;
   width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .calendarContainer {
+    display: inline-block;
+    margin-left: 30px;
+    width: 190px;
+  }
 }
 
 .calendarContainer::after {
@@ -243,9 +307,31 @@
 .calendarField:focus {
   outline: none;
 }
+/* стили для календаря */
 
+/* стили для поля комментария */
 .commentFieldContainer {
   position: relative;
+  margin-top: 40px;
+}
+
+.commentField {
+  position: relative;
+  display: block;
+  padding-left: 20px;
+  width: 100%;
+  min-height: 74px;
+  resize: none;
+
+  border: none;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+@media screen and (min-width: 768px) {
+  .commentField {
+    min-height: 34px;
+  }
 }
 
 .commentFieldContainer::after {
@@ -258,22 +344,12 @@
   background-color: #bdbdbd;
 }
 
-.commentField {
-  display: block;
-  width: 100%;
-  height: 74px;
-  resize: none;
-  margin-top: 40px;
-  padding-left: 20px;
-  border: none;
-  font-size: 18px;
-  font-weight: 400;
-}
-
 .commentField:focus {
   outline: none;
 }
+/* стили для поля комментария */
 
+/* стили для блока кнопок отправить\отмена */
 .buttonsContainer {
   margin-top: 40px;
   padding: 0 10px;
@@ -294,6 +370,12 @@
   color: white;
 }
 
+@media screen and (min-width: 768px) {
+  .submitButton {
+    width: 300px;
+  }
+}
+
 .cancelButton {
   display: block;
   margin-left: auto;
@@ -309,3 +391,10 @@
   color: #4a56e2;
   background-color: transparent;
 }
+
+@media screen and (min-width: 768px) {
+  .cancelButton {
+    width: 300px;
+  }
+}
+/* стили для блока кнопок отправить\отмена */
