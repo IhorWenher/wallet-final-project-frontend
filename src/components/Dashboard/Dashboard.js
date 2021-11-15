@@ -47,7 +47,7 @@ export default function Dashboard() {
                 <td data-label="Комментарий">{el.comment}</td>
                 <td
                   data-label="Сумма"
-                  style={{ color: el.type === '+' ? '#24cca7' : '#ff6596' }}
+                  style={{ color: el.type === '+' ? '#24cca7' : '#ff6596', fontWeight: 'bold' }}
                 >
                   {el.sum}
                 </td>
