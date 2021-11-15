@@ -11,12 +11,14 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import {transactionsReducer }from './transactions/index';
+import { transactionsReducer } from './transactions/index';
 
-import {categoriesReducer} from './categories/index'
+import { categoriesReducer } from './categories/index';
 // import categoriesReducer from './categories'
 
 import { authReducer } from './auth';
+import { balanceReducer } from './balance';
+import currencyReducers from './currency/currencyReducers';
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -37,6 +39,9 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     transactions: transactionsReducer,
     categories: categoriesReducer,
+    balance: balanceReducer,
+    currency: currencyReducers,
+
   },
   middleware,
   devTools: process.env.NODE_ENV === 'development',
