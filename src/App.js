@@ -1,6 +1,7 @@
 import Container from './components/Container';
-import { lazy, Suspense } from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import StatisticView from './views/StatisticView';
 
 const RegisterView = lazy(() => import('./views/RegisterView/RegisterView.js'));
 const LoginView = lazy(() => import('./views/LoginView/LoginView.js'));
@@ -27,6 +28,7 @@ function App() {
           ></Route>
 
           <Route path="/" exact element={<MainView />}></Route>
+          <Route path="/statistic" exact element={<StatisticView />}></Route>
         </Routes>
       </Suspense>
     </Container>

@@ -1,17 +1,16 @@
 .container {
-  font-family: 'Circe', sans-serif;
+  padding-top: 30px;
   font-style: normal;
   padding-right: 25px;
   padding-left: 25px;
   margin: 0 auto;
   min-width: 320px;
-  background-color: #e7eaf2;
   color: #000000;
 }
 
 .table {
   border-spacing: 0;
-  width: 100%;
+  max-width: 700px;
   border-radius: 10px;
 }
 
@@ -43,7 +42,6 @@
   .table tr {
     display: block;
   }
-
   .tableHead {
     clip: rect(0 0 0 0);
     height: 1px;
@@ -53,18 +51,19 @@
     position: absolute;
     width: 1px;
   }
-
-  .tableElement {
-    border-right: 5px solid white;
+  .tableElement td:first-child {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
   }
-
+  .tableElement td:last-child {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
   .table td {
     display: block;
     text-align: right;
     background-color: #ffffff;
-    border-bottom: 1px solid #dcdcdf;
   }
-
   .table td::before {
     content: attr(data-label);
     float: left;
@@ -72,17 +71,15 @@
     font-size: 18px;
     color: black;
   }
-
-  .table td:last-child {
-    border-bottom: 0;
-  }
 }
 
 @media screen and (min-width: 768px) {
+  .container {
+    padding-top: 40px;
+  }
   .tableHead {
     background-color: #ffffff;
   }
-
   .table th:first-child {
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
@@ -91,25 +88,21 @@
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
   }
-
   .table th,
   .table td {
     padding-top: 15px;
     padding-bottom: 15px;
   }
-
   .tableElement:last-child td {
     padding-bottom: 0;
   }
-
   .tableElement {
-    border-left: 0;
+    box-shadow: 0 2px 0 -1px #ffffff;
+    border-radius: 0;
   }
-
   .table td:last-child {
     border-bottom: 1px solid #dcdcdf;
   }
-
   .table tr:last-child {
     margin-bottom: 0;
   }
@@ -117,6 +110,7 @@
 
 @media screen and (min-width: 1280px) {
   .container {
+    padding-top: 46px;
     min-width: 1080px;
   }
 }
