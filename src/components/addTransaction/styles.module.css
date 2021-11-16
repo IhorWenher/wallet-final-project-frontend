@@ -29,6 +29,7 @@
   height: 0;
   width: 0;
   pointer-events: none;
+  fill: red;
 }
 
 @media screen and (min-width: 768px) {
@@ -40,6 +41,12 @@
     right: 10px;
     width: auto;
     height: auto;
+  }
+
+  .closeBtnBox:hover,
+  .closeBtnBox:focus {
+    border-radius: 50%;
+    border: 2px solid #ff6596;
   }
 }
 
