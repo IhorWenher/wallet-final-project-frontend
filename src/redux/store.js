@@ -41,7 +41,6 @@ export const store = configureStore({
     categories: categoriesReducer,
     balance: balanceReducer,
     currency: currencyReducers,
-
   },
   middleware,
   devTools: process.env.NODE_ENV === 'development',
