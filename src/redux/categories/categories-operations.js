@@ -9,14 +9,15 @@ import {
   fetchCategoriesError,
 } from './categories-actions';
 
-axios.defaults.baseURL = '';
+axios.defaults.baseURL = 'https://final-project-back.herokuapp.com/api';
 
 const fetchCategories = () => async dispatch => {
-  dispatch(fetchCategoriesRequest);
+  dispatch(fetchCategoriesRequest());
   try {
-    dispatch(fetchCategoriesSucces);
+    const {data}= await axios.get('/categories')
+    dispatch(fetchCategoriesSucces(data));
   } catch (error) {
-    dispatch(fetchCategoriesError);
+    dispatch(fetchCategoriesError(error));
   }
 };
 
