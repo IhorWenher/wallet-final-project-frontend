@@ -13,7 +13,7 @@ import svgClose from '../../images/modal-close-icon.svg'
 
 import styles from './styles.module.css';
 
-function AddTransaction() {
+function AddTransaction({toggleModal}) {
     const [transactionType, setTransactionType] = useState("income")
     const [category, setCategory] = useState("Выберите категорию")
     const [listActive, setListActive] = useState(false)
@@ -67,10 +67,10 @@ function AddTransaction() {
         setComment(e.target.value)
     }
 
-    function closeComponent(e) {
-        console.log(e.currentTarget)
-        console.log('закрытие модалки')
-    }
+    // function closeComponent(e) {
+    //     console.log(e.currentTarget)
+    //     console.log('закрытие модалки')
+    // }
 
 
     // задача данных функций, повесить дополнительный класс по условию.
@@ -135,12 +135,12 @@ function AddTransaction() {
 
             <ReactSVG className={styles.dropDownIcon} src={svgListIcon} />
         </div>
-    // разметка для выпадающего списка
     )
+    // разметка для выпадающего списка
 
     return (
         <div className={styles.addTransContainer}>
-            <div onClick={closeComponent} className={styles.closeBtnBox}>
+            <div onClick={toggleModal} className={styles.closeBtnBox}>
                 <ReactSVG className={styles.closeIcon} src={svgClose} />
             </div>
             <h2 className={styles.title}>Добавить транзакцию</h2>
