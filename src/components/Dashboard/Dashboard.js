@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchTransactions } from '../../redux/transactions';
-import { getTransactions } from '../../redux/transactions';
+// import { useEffect } from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { fetchTransactions } from '../../redux/transactions';
+// import { getTransactions } from '../../redux/transactions';
 
 import data from './data.json';
 import styles from './Dashboard.module.css';

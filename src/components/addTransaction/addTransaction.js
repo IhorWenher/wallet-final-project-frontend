@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 // import { Link, useLocation } from 'react-router-dom';
 import Datetime from 'react-datetime'
 import 'moment/locale/ru'
@@ -13,7 +13,7 @@ import svgClose from '../../images/modal-close-icon.svg'
 
 import styles from './styles.module.css';
 
-function AddTransaction({toggleModal}) {
+function AddTransaction({toggleModal, toggleAddTransaction}) {
     const [transactionType, setTransactionType] = useState("income")
     const [category, setCategory] = useState("Выберите категорию")
     const [listActive, setListActive] = useState(false)
@@ -21,12 +21,48 @@ function AddTransaction({toggleModal}) {
     const [date, setDate] = useState(new Date())
     const [comment, setComment] = useState('')
 
+    useEffect(() => {
+        const backdrop = document.querySelector('#backdrop')
+        const dropDownList = document.querySelector(styles.dropDownList)
+
+        function clickListener(e) {
+            console.log('workshit')
+            if (e.target === backdrop) {
+                toggleAddTransaction()
+                toggleModal()
+            }
+            
+            if (e.target !== backdrop && e.target !== dropDownList && listActive) {
+                setListActive(!listActive)
+            }
+        }
+
+        function keyListener(e) {
+            console.log('press esc')
+            if (e.code === 'Escape') {
+                toggleAddTransaction()
+                toggleModal()
+            }
+        }
+
+        document.addEventListener('click', clickListener)
+        document.addEventListener('keydown', keyListener)
+
+        return function cleanup() {
+            document.removeEventListener('click', clickListener)
+            document.removeEventListener('keydown', keyListener)
+
+        }
+
+    }, [toggleAddTransaction, toggleModal, listActive])
+
 // 
     function submitHandler(e) {
         e.preventDefault()
         console.log(e)
         console.log('calling redux action')
     }
+    
     function switchClickHandler(e) {
         if (!e.target.checked) {
             setTransactionType('spending')
@@ -67,10 +103,10 @@ function AddTransaction({toggleModal}) {
         setComment(e.target.value)
     }
 
-    // function closeComponent(e) {
-    //     console.log(e.currentTarget)
-    //     console.log('закрытие модалки')
-    // }
+    function closeComponent() {
+        toggleAddTransaction()
+        toggleModal()
+    }
 
 
     // задача данных функций, повесить дополнительный класс по условию.
@@ -140,7 +176,7 @@ function AddTransaction({toggleModal}) {
 
     return (
         <div className={styles.addTransContainer}>
-            <div onClick={toggleModal} className={styles.closeBtnBox}>
+            <div onClick={closeComponent} className={styles.closeBtnBox}>
                 <ReactSVG className={styles.closeIcon} src={svgClose} />
             </div>
             <h2 className={styles.title}>Добавить транзакцию</h2>
@@ -179,7 +215,7 @@ function AddTransaction({toggleModal}) {
             </form>
             <div className={styles.buttonsContainer}>
                 <button className={styles.submitButton} form="transaction" type="submit" >Добавить</button>
-                <button className={styles.cancelButton}>Отмена</button>
+                <button onClick={closeComponent} className={styles.cancelButton}>Отмена</button>
             </div>
         </div>
     )
