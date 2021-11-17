@@ -39,6 +39,7 @@ p {
   border-right: none;
   border-bottom: 0.5px, solid;
   border-color: #e7eaf2;
+  outline: none;
 }
 
 ::placeholder {
