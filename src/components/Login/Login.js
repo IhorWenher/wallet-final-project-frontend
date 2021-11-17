@@ -1,5 +1,6 @@
 import Styles from './Login.module.css';
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -92,11 +93,12 @@ export default function Login() {
                 />
               </svg>
             </label>
-
-            <button type="submit" className={Styles.logBtn}>
-              вход
-            </button>
-            <button className={Styles.regBtn}>регистрация</button>
+            <NavLink to="/login" exact className={Styles.link}>
+              <button className={Styles.logBtn}>вход</button>
+            </NavLink>
+            <NavLink to="/register" exact className={Styles.link}>
+              <button className={Styles.regBtn}>регистрация</button>
+            </NavLink>
           </form>
         </div>
       </div>

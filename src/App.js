@@ -1,36 +1,60 @@
-import Container from './components/Container';
-import React, { lazy, Suspense } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import StatisticView from './views/StatisticView';
+import { useDispatch, useSelector } from 'react-redux';
+import { authOperations, authSelectors } from './redux/auth';
+//import { Switch } from 'react-router-dom';
 
-const RegisterView = lazy(() => import('./views/RegisterView/RegisterView.js'));
-const LoginView = lazy(() => import('./views/LoginView/LoginView.js'));
-const MainView = lazy(() => import('./views/MainView/MainView.js'));
+import Container from './components/Container';
+import AppBar from './components/AppBar';
+import Loader from './components/Loader';
+
+const StatisticView = lazy(() => import('./views/RegisterView'));
+const RegisterView = lazy(() => import('./views/RegisterView'));
+const LoginView = lazy(() => import('./views/LoginView'));
+const MainView = lazy(() => import('./views/MainView'));
 
 function App() {
+  const dispatch = useDispatch();
+  const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
+
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
+
   return (
     <Container>
-      <Suspense fallback={<h2>Loading...</h2>}>
-        <Routes>
-          <Route
-            path="/login"
-            // redirectTo="/"
-            element={<LoginView />}
-            restricted
-          ></Route>
+      {isFetchingCurrentUser ? (
+        <Loader />
+      ) : (
+        <>
+          <AppBar />
+          <Suspense fallback={<h2>Loading...</h2>}>
+            <Routes>
+              <Route
+                path="/login"
+                // redirectTo="/"
+                element={<LoginView />}
+                restricted
+              ></Route>
 
-          <Route
-            exact
-            path="/register"
-            // redirectTo="/"
-            element={<RegisterView />}
-            restricted
-          ></Route>
+              <Route
+                exact
+                path="/register"
+                // redirectTo="/"
+                element={<RegisterView />}
+                restricted
+              ></Route>
 
-          <Route path="/" exact element={<MainView />}></Route>
-          <Route path="/statistic" exact element={<StatisticView />}></Route>
-        </Routes>
-      </Suspense>
+              <Route path="/" exact element={<MainView />}></Route>
+              <Route
+                path="/statistic"
+                exact
+                element={<StatisticView />}
+              ></Route>
+            </Routes>
+          </Suspense>
+        </>
+      )}
     </Container>
   );
 }
