@@ -5,9 +5,6 @@ import Dashboard from '../../components/Dashboard';
 import AddTransactionBtn from '../../components/AddTransactionBtn';
 import AddTransaction from '../../components/addTransaction';
 import CurrencyRatesPanel from '../../components/CurrencyRatesPanel';
-import HeaderNav from '../../components/HeaderNav';
-import Navigation from '../../components/Navigation/Navigation';
-// import LogoutConfirm from '../../components/LogoutConfirm';
 import Backdrop from '../../components/Backdrop';
 
 import Styles from './MainView.module.css';
@@ -26,8 +23,6 @@ const MainView = () => {
 
   return (
     <div className={Styles.container}>
-      <HeaderNav />
-      <Navigation />
       <Balance />
       <CurrencyRatesPanel />
       <Dashboard />
