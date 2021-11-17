@@ -3,6 +3,8 @@ import React, { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import StatisticView from './views/StatisticView';
 
+import Loader from './components/Loader';
+
 const RegisterView = lazy(() => import('./views/RegisterView/RegisterView.js'));
 const LoginView = lazy(() => import('./views/LoginView/LoginView.js'));
 const MainView = lazy(() => import('./views/MainView/MainView.js'));
@@ -10,6 +12,7 @@ const MainView = lazy(() => import('./views/MainView/MainView.js'));
 function App() {
   return (
     <Container>
+      <Loader />
       <Suspense fallback={<h2>Loading...</h2>}>
         <Routes>
           <Route
