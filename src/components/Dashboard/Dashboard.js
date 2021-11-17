@@ -1,7 +1,7 @@
-// import { useEffect } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { fetchTransactions } from '../../redux/transactions/transactions-operations';
-// import { getTransactions } from '../../redux/transactions';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchTransactions } from '../../redux/transactions';
+import { getTransactions } from '../../redux/transactions';
 
 import data from './data.json';
 import styles from './Dashboard.module.css';
@@ -11,6 +11,7 @@ export default function Dashboard() {
   const dashboardData = data;
 
   // const dashboardData = useSelector(getTransactions)
+  // console.log(dashboardData)
   // const dispatch = useDispatch()
 
   // useEffect(() => {
@@ -38,16 +39,16 @@ export default function Dashboard() {
                 className={styles.tableElement}
                 style={{
                   borderLeft:
-                    el.type === '+' ? '5px solid #24cca7' : '5px solid #ff6596',
+                    el.type === true ? '5px solid #24cca7' : '5px solid #ff6596',
                 }}
               >
                 <td data-label="Дата">{el.date}</td>
-                <td data-label="Тип">{el.type}</td>
+                <td data-label="Тип">{el.type === true ? '+' : '-'}</td>
                 <td data-label="Категория">{el.category}</td>
                 <td data-label="Комментарий">{el.comment}</td>
                 <td
                   data-label="Сумма"
-                  style={{ color: el.type === '+' ? '#24cca7' : '#ff6596' }}
+                  style={{ color: el.type === true ? '#24cca7' : '#ff6596', fontWeight: 'bold' }}
                 >
                   {el.sum}
                 </td>

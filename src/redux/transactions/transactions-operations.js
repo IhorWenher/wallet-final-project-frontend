@@ -9,34 +9,31 @@ import {
   fetchTransactionsError,
 } from './transactions-actions';
 
-axios.defaults.baseURL = '';
+axios.defaults.baseURL = 'https://final-project-back.herokuapp.com/api';
 
-const fetchTransactions = () => async dispatch => {
-  dispatch(fetchTransactionsRequest);
+export const fetchTransactions = () => async dispatch => {
+  dispatch(fetchTransactionsRequest());
   try {
-    dispatch(fetchTransactionsSucces);
+    const { data } = await axios.get('/transactions');
+    dispatch(fetchTransactionsSucces(data));
   } catch (error) {
-    dispatch(fetchTransactionsError);
+    dispatch(fetchTransactionsError(error));
   }
 };
 
-const addTransaction = (type, date, category, sum, comment) => dispatch => {
-  const transaction = {
-    type,
-    date,
-    category,
-    sum,
-    comment,
+export const addTransaction =
+  (type, date, category, sum, comment) => dispatch => {
+    const transaction = {
+      type,
+      date,
+      category,
+      sum,
+      comment,
+    };
+    dispatch(addTransactionRequest);
+
+    axios
+      .post('/transactions', transaction)
+      .then(({ data }) => dispatch(addTransactionSucces(data)))
+      .catch(error => dispatch(addTransactionError(error)));
   };
-  dispatch(addTransactionRequest);
-
-  axios
-    .post('/transactions', transaction)
-    .then(({ data }) => dispatch(addTransactionSucces(data)))
-    .catch(error => dispatch(addTransactionError(error)));
-};
-
-export default {
-  fetchTransactions,
-  addTransaction
-}
