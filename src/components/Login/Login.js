@@ -1,5 +1,6 @@
 import Styles from './Login.module.css';
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 export default function Login() {
   return (
@@ -54,9 +55,12 @@ export default function Login() {
                 />
               </svg>
             </label>
-
-            <button className={Styles.logBtn}>вход</button>
-            <button className={Styles.regBtn}>регистрация</button>
+            <NavLink to="/login" exact className={Styles.link}>
+              <button className={Styles.logBtn}>вход</button>
+            </NavLink>
+            <NavLink to="/register" exact className={Styles.link}>
+              <button className={Styles.regBtn}>регистрация</button>
+            </NavLink>
           </form>
         </div>
       </div>
