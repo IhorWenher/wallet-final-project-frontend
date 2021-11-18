@@ -58,14 +58,14 @@ function App() {
               <Route
                 path="/login"
                 element={
-                  <PublicRoute redirectTo="/transactions" restricted>
+                  <PublicRoute redirectTo="/home" restricted>
                     <LoginView />
                   </PublicRoute>
                 }
               />
 
               <Route
-                path="/transactions"
+                path="/home"
                 element={
                   <PrivateRoute redirectTo="/login">
                     <MainView />
@@ -78,6 +78,15 @@ function App() {
                 element={
                   <PrivateRoute redirectTo="/login">
                     <StatisticView />
+                  </PrivateRoute>
+                }
+              />
+
+              <Route
+                path="/diagram"
+                element={
+                  <PrivateRoute redirectTo="/login">
+                    <CurrencyRatesPanel />
                   </PrivateRoute>
                 }
               />

@@ -16,7 +16,7 @@ export default function Navigation() {
     <nav className={style.container}>
       <div className={style.nav__link}>
         {!isLogin && (
-          <NavLink to="/transactions" className={style.home}>
+          <NavLink to="/home" className={style.home}>
             <ReactSVG className={style.home__svg} src={svgHome} />
             <span className={style.home__word}>Главная</span>
           </NavLink>
