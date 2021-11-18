@@ -10,7 +10,6 @@ import Container from './components/Container';
 import AppBar from './components/AppBar';
 import Loader from './components/Loader';
 import CurrencyRatesPanel from './components/CurrencyRatesPanel';
-import Balance from './components/Balance';
 
 const StatisticView = lazy(() => import('./views/StatisticView'));
 const RegisterView = lazy(() => import('./views/RegisterView'));
@@ -25,9 +24,7 @@ function App() {
   const isLogin = useSelector(authSelectors.getIsLoggedIn);
 
   useEffect(() => {
-    if (isLogin) {
-      dispatch(authOperations.fetchCurrentUser());
-    }
+    dispatch(authOperations.fetchCurrentUser());
   }, [dispatch, isLogin]);
 
   return (
@@ -37,12 +34,6 @@ function App() {
       ) : (
         <>
           <AppBar />
-          {!isLogin && (
-            <>
-              <Balance />
-              <CurrencyRatesPanel />
-            </>
-          )}
 
           <Suspense fallback={<Loader />}>
             <Routes>
@@ -57,6 +48,7 @@ function App() {
 
               <Route
                 path="/register"
+                exact
                 element={
                   <PublicRoute redirectTo="/login" restricted>
                     <RegisterView />
@@ -66,6 +58,7 @@ function App() {
 
               <Route
                 path="/login"
+                exact
                 element={
                   <PublicRoute redirectTo="/home" restricted>
                     <LoginView />
