@@ -3,40 +3,40 @@ import axios from 'axios';
 import {
   addTransactionRequest,
   addTransactionSucces,
-  addTransactionError,
+  // addTransactionError,
   fetchTransactionsRequest,
   fetchTransactionsSucces,
   fetchTransactionsError,
 } from './transactions-actions';
 
-axios.defaults.baseURL = '';
+axios.defaults.baseURL = 'https://final-project-back.herokuapp.com/api';
+// const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTU2MTY4YTgwZjc0ZGQ1MDJmMWI2NCIsImlhdCI6MTYzNzE3OTc2Nn0.NQTOwaBoglxcdu0RKYbTLsy80Jjm9qLA8gk-e82WDvg';
 
-const fetchTransactions = () => async dispatch => {
-  dispatch(fetchTransactionsRequest);
+export const fetchTransactions = () => async dispatch => {
+  dispatch(fetchTransactionsRequest());
   try {
-    dispatch(fetchTransactionsSucces);
+    const { data } = await axios.get('/transactions');
+    dispatch(fetchTransactionsSucces(data));
   } catch (error) {
-    dispatch(fetchTransactionsError);
+    dispatch(fetchTransactionsError(error));
   }
 };
 
-const addTransaction = (type, date, category, sum, comment) => dispatch => {
-  const transaction = {
-    type,
-    date,
-    category,
-    sum,
-    comment,
+export const addTransaction =
+  (type, date, category, sum, comment) => dispatch => {
+    const transaction = {
+      type,
+      date,
+      category,
+      sum,
+      comment,
+    };
+    console.log(transaction)
+    dispatch(addTransactionRequest);
+    dispatch(addTransactionSucces(transaction))
+
+    // axios
+    //   .post('/transactions', transaction)
+    //   .then(({ data }) => dispatch(addTransactionSucces(data)))
+    //   .catch(error => dispatch(addTransactionError(error)));
   };
-  dispatch(addTransactionRequest);
-
-  axios
-    .post('/transactions', transaction)
-    .then(({ data }) => dispatch(addTransactionSucces(data)))
-    .catch(error => dispatch(addTransactionError(error)));
-};
-
-export default {
-  fetchTransactions,
-  addTransaction
-}

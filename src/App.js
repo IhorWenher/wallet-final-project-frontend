@@ -1,36 +1,81 @@
-import Container from './components/Container';
-import React, { lazy, Suspense } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import StatisticView from './views/StatisticView';
+import { useDispatch, useSelector } from 'react-redux';
+import { authOperations, authSelectors } from './redux/auth';
 
-const RegisterView = lazy(() => import('./views/RegisterView/RegisterView.js'));
-const LoginView = lazy(() => import('./views/LoginView/LoginView.js'));
-const MainView = lazy(() => import('./views/MainView/MainView.js'));
+import PrivateRoute from './components/PrivateRoute';
+import PublicRoute from './components/PublicRoute';
+
+import Container from './components/Container';
+import AppBar from './components/AppBar';
+import Loader from './components/Loader';
+
+const StatisticView = lazy(() => import('./views/StatisticView'));
+const RegisterView = lazy(() => import('./views/RegisterView'));
+const LoginView = lazy(() => import('./views/LoginView'));
+const MainView = lazy(() => import('./views/MainView'));
+const LogoutView = lazy(() => import('./views/LogoutView'));
 
 function App() {
+  const dispatch = useDispatch();
+  const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
+
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
+
   return (
     <Container>
-      <Suspense fallback={<h2>Loading...</h2>}>
-        <Routes>
-          <Route
-            path="/login"
-            // redirectTo="/"
-            element={<LoginView />}
-            restricted
-          ></Route>
+      {isFetchingCurrentUser ? (
+        <Loader />
+      ) : (
+        <>
+          <AppBar />
+            <Suspense fallback={<Loader />}>
+              <Routes>
+                <Route path="/register"
+                  element={
+                    <PublicRoute redirectTo='/' restricted>
+                      <RegisterView />
+                    </PublicRoute>}
+                />
+                
+                <Route path="/login"
+                  element={
+                    <PublicRoute redirectTo='/transactions' restricted>
+                      <LoginView />
+                    </PublicRoute>}
+                />
+                
+                <Route path="/transactions"
+                  element={<PrivateRoute redirectTo="/login">
+                    <MainView />
+                  </PrivateRoute>}
+                />
 
-          <Route
-            exact
-            path="/register"
-            // redirectTo="/"
-            element={<RegisterView />}
-            restricted
-          ></Route>
+                <Route path="/statistic"
+                  element={<PrivateRoute redirectTo="/login">
+                    <StatisticView />
+                  </PrivateRoute>}
+                />
 
-          <Route path="/" exact element={<MainView />}></Route>
-          <Route path="/statistic" exact element={<StatisticView />}></Route>
-        </Routes>
-      </Suspense>
+                <Route path="/logout"
+                  element={<PrivateRoute redirectTo="/login">
+                    <LogoutView />
+                  </PrivateRoute>}
+                />
+                
+
+                {/* <PrivateRoute path="/statistic" redirectTo="/login">
+                  <StatisticView />
+                </PrivateRoute> */}
+                {/* <PrivateRoute path="/logout" redirectTo="/login">
+                  <LogoutView />
+                </PrivateRoute> */}
+              </Routes>
+            </Suspense>
+        </>
+      )}
     </Container>
   );
 }

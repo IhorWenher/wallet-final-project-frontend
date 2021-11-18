@@ -5,7 +5,7 @@
   margin-right: auto;
   background-color: white;
   padding-bottom: 40px;
-  max-width: 720px;
+  width: 100%;
 }
 
 @media screen and (min-width: 768px) {
@@ -14,33 +14,41 @@
     padding-left: 65px;
     padding-right: 65px;
     padding-bottom: 60px;
+    top: 204px;
     width: 540px;
     border-radius: 20px;
   }
 }
+
+@media screen and (min-width: 768px) {
+  .addTransContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
 /* стили кнопки закрытия окна */
 .closeBtnBox {
-  position: absolute;
-  right: 0;
-  top: 0;
-  margin: 0;
-  padding: 0;
-  opacity: 0;
-  height: 0;
-  width: 0;
-  pointer-events: none;
-  fill: red;
+  display: none;
 }
 
 @media screen and (min-width: 768px) {
   .closeBtnBox {
-    padding: 11px;
+    position: absolute;
+    box-sizing: border-box;
+    display: block;
+    padding: 8px;
     opacity: 1;
     pointer-events: all;
+
+    border: 2px solid #ff659600;
     top: 10px;
     right: 10px;
     width: auto;
     height: auto;
+    cursor: pointer;
   }
 
   .closeBtnBox:hover,
@@ -117,6 +125,7 @@
   height: 40px;
   border-radius: 30px;
   border: 1px solid #bdbdbd;
+  cursor: pointer;
 }
 
 .switchToggleIncome {
@@ -180,6 +189,7 @@
   width: 100%;
   margin-top: 40px;
   color: black;
+  cursor: pointer;
 }
 
 .dropDownContainer::after {
@@ -260,7 +270,7 @@
 .dropDownIcon {
   position: absolute;
   pointer-events: none;
-  right: 20px;
+  right: 10px;
   top: 5px;
   width: 18px;
   height: 9px;
@@ -300,6 +310,7 @@
   font-size: 18px;
   font-weight: 600;
   border: none;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {
@@ -353,6 +364,7 @@
 
   font-size: 18px;
   font-weight: 600;
+  cursor: pointer;
 }
 
 .calendarField:focus {
