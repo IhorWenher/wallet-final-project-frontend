@@ -223,7 +223,7 @@ function AddTransaction({toggleModal, toggleAddTransaction}) {
                 {/* рендер списка по условию */}
 
                 <div className={styles.summFieldContainer}>
-                    <input className={styles.summField} onChange={summChange} required min="0.01" type="number" placeholder="0.00" value={summ} />
+                    <input className={styles.summField} onChange={summChange} required min="0" type="number" placeholder="0.00" value={summ} />
                 </div>
 
                 <div className={styles.calendarContainer}>
