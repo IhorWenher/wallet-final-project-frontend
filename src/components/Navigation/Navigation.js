@@ -15,7 +15,7 @@ export default function Navigation() {
   return (
     <nav className={style.container}>
       <div className={style.nav__link}>
-        {!isLogin && (
+        {isLogin && (
           <NavLink
             to="/"
             className={style.home}
@@ -24,7 +24,7 @@ export default function Navigation() {
             <span className={style.home__word}>Главная</span>
           </NavLink>
         )}
-        {!isLogin && (
+        {isLogin && (
           <NavLink
             to="/statistic"
             className={style.statis} >
@@ -34,11 +34,11 @@ export default function Navigation() {
           </NavLink>
         )}
 
-        {/* {!isLogin && (
-          <NavLink to="/diagram"  className={style.curren} activeStyle={{color: "#6E78E8"}}>
+        {isLogin && (
+          <NavLink to="/diagram"  className={style.curren} >
             <ReactSVG className={style.curren__svg} src={svgCurren} />
           </NavLink>
-        )} */}
+        )} 
       </div>
     </nav>
   );
