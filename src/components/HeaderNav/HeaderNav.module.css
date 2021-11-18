@@ -10,7 +10,7 @@
 .header {
   display: flex;
   align-items: center;
-  justify-content: center;
+
   height: 60px;
 }
 
@@ -34,12 +34,12 @@
 
 .author {
   display: inline-flex;
-  align-items: center;
+  padding-top: 21px;
 }
 
 .name {
   margin-right: 10px;
-  width: 100%;
+  width: 80px;
   font-family: Circe;
   font-style: normal;
   font-weight: normal;
@@ -70,11 +70,10 @@
   }
   .header {
     height: 80px;
-    justify-content: center;
   }
   .logo {
     margin-right: 318px;
-    width: 100%;
+
     font-size: 30px;
     display: block;
   }
@@ -90,13 +89,9 @@
     margin-right: 15px;
   }
 
-  .button {
-    align-items: center;
-  }
-
   .output {
     display: initial;
-    width: 100%;
+
     margin-left: 10px;
     font-family: Circe;
     font-style: normal;
