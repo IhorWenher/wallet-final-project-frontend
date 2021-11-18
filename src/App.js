@@ -10,7 +10,7 @@ import Container from './components/Container';
 import AppBar from './components/AppBar';
 import Loader from './components/Loader';
 
-const StatisticView = lazy(() => import('./views/RegisterView'));
+const StatisticView = lazy(() => import('./views/StatisticView'));
 const RegisterView = lazy(() => import('./views/RegisterView'));
 const LoginView = lazy(() => import('./views/LoginView'));
 const MainView = lazy(() => import('./views/MainView'));
