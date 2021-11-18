@@ -9,6 +9,8 @@ import PublicRoute from './components/PublicRoute';
 import Container from './components/Container';
 import AppBar from './components/AppBar';
 import Loader from './components/Loader';
+import CurrencyRatesPanel from './components/CurrencyRatesPanel';
+import Balance from './components/Balance';
 
 const StatisticView = lazy(() => import('./views/StatisticView'));
 const RegisterView = lazy(() => import('./views/RegisterView'));
@@ -20,9 +22,13 @@ function App() {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
 
+  const isLogin = useSelector(authSelectors.getIsLoggedIn);
+
   useEffect(() => {
-    dispatch(authOperations.fetchCurrentUser());
-  }, [dispatch]);
+    if (isLogin) {
+      dispatch(authOperations.fetchCurrentUser());
+    }
+  }, [dispatch, isLogin]);
 
   return (
     <Container>
@@ -31,49 +37,61 @@ function App() {
       ) : (
         <>
           <AppBar />
-            <Suspense fallback={<Loader />}>
-              <Routes>
-                <Route path="/register"
-                  element={
-                    <PublicRoute redirectTo='/' restricted>
-                      <RegisterView />
-                    </PublicRoute>}
-                />
-                
-                <Route path="/login"
-                  element={
-                    <PublicRoute redirectTo='/transactions' restricted>
-                      <LoginView />
-                    </PublicRoute>}
-                />
-                
-                <Route path="/transactions"
-                  element={<PrivateRoute redirectTo="/login">
+          {!isLogin && (
+            <>
+              <Balance />
+              <CurrencyRatesPanel />
+            </>
+          )}
+
+          <Suspense fallback={<Loader />}>
+            <Routes>
+              <Route
+                path="/register"
+                element={
+                  <PublicRoute redirectTo="/login" restricted>
+                    <RegisterView />
+                  </PublicRoute>
+                }
+              />
+
+              <Route
+                path="/login"
+                element={
+                  <PublicRoute redirectTo="/transactions" restricted>
+                    <LoginView />
+                  </PublicRoute>
+                }
+              />
+
+              <Route
+                path="/transactions"
+                element={
+                  <PrivateRoute redirectTo="/login">
                     <MainView />
-                  </PrivateRoute>}
-                />
+                  </PrivateRoute>
+                }
+              />
 
-                <Route path="/statistic"
-                  element={<PrivateRoute redirectTo="/login">
+              <Route
+                path="/statistic"
+                element={
+                  <PrivateRoute redirectTo="/login">
                     <StatisticView />
-                  </PrivateRoute>}
-                />
+                  </PrivateRoute>
+                }
+              />
 
-                <Route path="/logout"
-                  element={<PrivateRoute redirectTo="/login">
+              <Route
+                path="/logout"
+                element={
+                  <PrivateRoute redirectTo="/login">
                     <LogoutView />
-                  </PrivateRoute>}
-                />
-                
-
-                {/* <PrivateRoute path="/statistic" redirectTo="/login">
-                  <StatisticView />
-                </PrivateRoute> */}
-                {/* <PrivateRoute path="/logout" redirectTo="/login">
-                  <LogoutView />
-                </PrivateRoute> */}
-              </Routes>
-            </Suspense>
+                  </PrivateRoute>
+                }
+              />
+            </Routes>
+          </Suspense>
         </>
       )}
     </Container>
