@@ -18,7 +18,7 @@
   padding: 0 20px 0 20px;
   border-radius: 40px;
 
-  background-color: #e7eaf2;
+  background-color: #fff;
 }
 .listItem {
   display: flex;
@@ -68,6 +68,9 @@
   justify-content: space-between;
 }
 @media screen and (min-width: 768px) {
+  .head {
+    width: 350px;
+  }
   .marker {
     width: 24px;
     height: 24px;
@@ -75,7 +78,10 @@
 }
 
 @media screen and (min-width: 1280px) {
-    .marker {
+  .head {
+    width: 350px;
+  }
+  .marker {
     width: 24px;
     height: 24px;
   }
