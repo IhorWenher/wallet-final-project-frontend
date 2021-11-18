@@ -44,7 +44,7 @@ function getStyles(name, personName, theme) {
   };
 }
 
-export default function MultipleSelectPlaceholder() {
+export default function StatisticMenu() {
   const theme = useTheme();
   const [month, setMonth] = useState('');
   const [year, setYear] = useState('');
@@ -116,6 +116,13 @@ export default function MultipleSelectPlaceholder() {
           ))}
         </Select>
       </FormControl>
+      {/* <select
+        name="country-select"
+        id="country-select"
+        class="events__search-country events__input"
+      >
+        <option value="">Choose country</option>
+      </select> */}
     </div>
   );
 }
