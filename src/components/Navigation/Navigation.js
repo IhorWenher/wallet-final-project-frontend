@@ -34,11 +34,11 @@ export default function Navigation() {
           </NavLink>
         )}
 
-        {!isLogin && (
+        {/* {!isLogin && (
           <NavLink to="/diagram"  className={style.curren} activeStyle={{color: "#6E78E8"}}>
             <ReactSVG className={style.curren__svg} src={svgCurren} />
           </NavLink>
-        )}
+        )} */}
       </div>
     </nav>
   );
