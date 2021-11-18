@@ -1,5 +1,5 @@
 import React, { useEffect, lazy, Suspense } from 'react';
-import { Routes } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { authOperations, authSelectors } from './redux/auth';
 
@@ -31,33 +31,49 @@ function App() {
       ) : (
         <>
           <AppBar />
-          <Routes>
             <Suspense fallback={<Loader />}>
-              <PublicRoute exact path="/login">
-                <LoginView />
-              </PublicRoute>
-              <PublicRoute exact path="/register" restricted>
-                <RegisterView />
-              </PublicRoute>
-              <PublicRoute
-                exact
-                path="/login"
-                redirectTo="/transactions"
-                restricted
-              >
-                <LoginView />
-              </PublicRoute>
-              <PrivateRoute path="/transactions" redirectTo="/login">
-                <MainView />
-              </PrivateRoute>
-              <PrivateRoute path="/statistic" redirectTo="/login">
-                <StatisticView />
-              </PrivateRoute>
-              <PrivateRoute path="/logout" redirectTo="/login">
-                <LogoutView />
-              </PrivateRoute>
+              <Routes>
+                <Route path="/register"
+                  element={
+                    <PublicRoute redirectTo='/' restricted>
+                      <RegisterView />
+                    </PublicRoute>}
+                />
+                
+                <Route path="/login"
+                  element={
+                    <PublicRoute redirectTo='/transactions' restricted>
+                      <LoginView />
+                    </PublicRoute>}
+                />
+                
+                <Route path="/transactions"
+                  element={<PrivateRoute redirectTo="/login">
+                    <MainView />
+                  </PrivateRoute>}
+                />
+
+                <Route path="/statistic"
+                  element={<PrivateRoute redirectTo="/login">
+                    <StatisticView />
+                  </PrivateRoute>}
+                />
+
+                <Route path="/logout"
+                  element={<PrivateRoute redirectTo="/login">
+                    <LogoutView />
+                  </PrivateRoute>}
+                />
+                
+
+                {/* <PrivateRoute path="/statistic" redirectTo="/login">
+                  <StatisticView />
+                </PrivateRoute> */}
+                {/* <PrivateRoute path="/logout" redirectTo="/login">
+                  <LogoutView />
+                </PrivateRoute> */}
+              </Routes>
             </Suspense>
-          </Routes>
         </>
       )}
     </Container>

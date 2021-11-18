@@ -19,8 +19,8 @@ export default function HeaderNav() {
         <div className={style.author}>
           <span className={style.name}>{name}</span>
           <div className={style.line}></div>
-          <button className={style.button} type="button">
-            onClick={() => dispatch(authOperations.logout())}
+          <button className={style.button} type="button"
+            onClick={() => dispatch(authOperations.logout())}>
             <ReactSVG className={style.output__svg} src={svgExit} />
             <span className={style.output}>Выйти</span>
           </button>

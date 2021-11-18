@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 // import { Link, useLocation } from 'react-router-dom';
 import Datetime from 'react-datetime'
 import 'moment/locale/ru'
+// import { addTransaction } from '../../redux/transactions'
+// import { useDispatch } from 'react-redux'
+import { validate } from 'indicative/validator'
 
 import { ReactSVG } from 'react-svg'
 import svgPlus from '../../images/plus-icon.svg'
@@ -21,12 +24,13 @@ function AddTransaction({toggleModal, toggleAddTransaction}) {
     const [date, setDate] = useState(new Date())
     const [comment, setComment] = useState('')
 
+    // const dispatch = useDispatch()
+
     useEffect(() => {
         const backdrop = document.querySelector('#backdrop')
         const dropDownList = document.querySelector(styles.dropDownList)
 
         function clickListener(e) {
-            console.log('workshit')
             if (e.target === backdrop) {
                 toggleAddTransaction()
                 toggleModal()
@@ -38,7 +42,6 @@ function AddTransaction({toggleModal, toggleAddTransaction}) {
         }
 
         function keyListener(e) {
-            console.log('press esc')
             if (e.code === 'Escape') {
                 toggleAddTransaction()
                 toggleModal()
@@ -56,11 +59,30 @@ function AddTransaction({toggleModal, toggleAddTransaction}) {
 
     }, [toggleAddTransaction, toggleModal, listActive])
 
+    const schema = {
+        type: 'required|string',
+        category: 'required|string',
+        sum: 'required|string',
+        date: 'required',
+        comment: 'string'
+    }
+
 // 
     function submitHandler(e) {
         e.preventDefault()
-        console.log(e)
-        console.log('calling redux action')
+        const transaction = {
+            type: transactionType,
+            category,
+            sum: summ,
+            date,
+            comment
+        }
+
+        console.log(typeof transaction.sum)
+
+        validate(transaction, schema).then(console.log).catch(console.log)
+        // dispatch(addTransaction(transaction))
+        
     }
     
     function switchClickHandler(e) {
@@ -201,7 +223,7 @@ function AddTransaction({toggleModal, toggleAddTransaction}) {
                 {/* рендер списка по условию */}
 
                 <div className={styles.summFieldContainer}>
-                    <input className={styles.summField} onChange={summChange} type="number" placeholder="0.00" value={summ} />
+                    <input className={styles.summField} onChange={summChange} required min="0.01" type="number" placeholder="0.00" value={summ} />
                 </div>
 
                 <div className={styles.calendarContainer}>

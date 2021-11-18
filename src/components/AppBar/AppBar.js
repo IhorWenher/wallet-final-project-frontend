@@ -1,4 +1,6 @@
+import React from 'react';
 import { useSelector } from 'react-redux';
+
 
 import Styles from './AppBar.module.css';
 import Navigation from '../Navigation';
@@ -7,12 +9,12 @@ import Login from '../Login';
 
 import { authSelectors } from '../../redux/auth';
 
-const AppBar = () => {
+export const AppBar = () => {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
   return (
     <header className={Styles.container}>
-      {!isLoggedIn ? (
+      {isLoggedIn ? (
         <Login />
       ) : (
         <>

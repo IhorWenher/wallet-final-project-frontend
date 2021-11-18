@@ -93,7 +93,7 @@ export default function Login() {
                 />
               </svg>
             </label>
-            <NavLink to="/login" exact className={Styles.link}>
+            <NavLink to="/login" className={Styles.link}>
               <button
                 className={Styles.logBtn}
                 onClick={() => dispatch(authOperations.login())}
@@ -101,7 +101,7 @@ export default function Login() {
                 вход
               </button>
             </NavLink>
-            <NavLink to="/register" exact className={Styles.link}>
+            <NavLink to="/register" className={Styles.link}>
               <button
                 className={Styles.regBtn}
                 onClick={() => dispatch(authOperations.register())}
