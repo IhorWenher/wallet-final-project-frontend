@@ -19,7 +19,7 @@ export const AppBar = () => {
       ) : (
         <>
           <Navigation />
-          <HeaderNav />
+          <HeaderNav /> 
         </>
       )}
     </header>
