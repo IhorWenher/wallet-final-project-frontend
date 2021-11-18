@@ -77,6 +77,7 @@ p {
   letter-spacing: 0.1em;
 } */
 
+
 .logBtn {
   background-color: #24cca7;
   border-color: transparent;
@@ -127,6 +128,7 @@ p {
     margin-bottom: 20px;
     outline: none;
   }
+  
   /* form {
     margin-left: 65px;
     margin-right: 65px;
@@ -136,6 +138,7 @@ p {
     width: 300px;
     margin-left: 55px;
   } */
+
   .logBtn {
     margin-top: 30px;
   }
@@ -168,6 +171,7 @@ p {
     background: rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(50px);
   }
+  
   .heroContainer {
     display: flex;
     flex-direction: column;
@@ -190,10 +194,12 @@ p {
     margin-bottom: 77px;
     margin-top: 598px;
   }
+  
   .heading {
     margin: 0;
     padding: 0;
   }
+  
   .loginImage {
     margin-top: 150px;
     margin-left: 76px;
