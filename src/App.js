@@ -46,6 +46,15 @@ function App() {
 
           <Suspense fallback={<Loader />}>
             <Routes>
+              {/* <Route
+                path="/"
+                element={
+                  <PrivateRoute redirectTo="/login" restricted>
+                    <MainView />
+                  </PrivateRoute>
+                }
+              /> */}
+
               <Route
                 path="/register"
                 element={
