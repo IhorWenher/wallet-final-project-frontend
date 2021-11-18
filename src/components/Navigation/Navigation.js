@@ -10,15 +10,15 @@ export default function Navigation() {
     return (
         <nav className={style.container}>
             <div className={style.nav__link}>
-                <NavLink to="/home" exact className={style.home}>
+                <NavLink to="/home" className={style.home}>
                     <ReactSVG className={style.home__svg} src={svgHome}/>
                     <span className={style.home__word}>Главная</span>
                 </NavLink>
-                <NavLink to="/diagram" exact className={style.statis}>
+                <NavLink to="/diagram" className={style.statis}>
                     <ReactSVG className={style.statis__svg} src={svgStats}/>
                     <span className={style.statis__word}>Статистика</span>
                 </NavLink>
-                <NavLink to="/diagram" exact className={style.curren}>
+                <NavLink to="/diagram" className={style.curren}>
                     <ReactSVG className={style.curren__svg} src={svgCurren}/>
                 </NavLink>
             </div>
