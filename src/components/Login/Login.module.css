@@ -143,14 +143,15 @@ p {
     margin-top: 20px;
     margin-bottom: 60px;
   }
-  /* span {
+
+  .heading {
     display: block;
     margin-left: 414px;
     padding-top: 167px;
     font-weight: 400;
     font-size: 30px;
     line-height: 45px;
-  } */
+  }
 }
 
 @media screen and (min-width: 1280px) {
@@ -189,10 +190,10 @@ p {
     margin-bottom: 77px;
     margin-top: 598px;
   }
-  /* span {
+  .heading {
     margin: 0;
     padding: 0;
-  } */
+  }
   .loginImage {
     margin-top: 150px;
     margin-left: 76px;

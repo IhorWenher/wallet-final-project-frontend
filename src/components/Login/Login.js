@@ -35,7 +35,7 @@ export default function Login() {
         <div className={Styles.loginImage}></div>
 
         <div className={Styles.spanContainer}>
-          <span>Finance App</span>
+          <span className={Styles.heading}>Finance App</span>
         </div>
       </div>
       <div className={Styles.desktopContainer}>

@@ -17,6 +17,12 @@
 .home__word,
 .statis__word {
   display: none;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 27px;
+  color: #000000;
 }
 
 @media screen and (min-width: 768px) {

@@ -18,8 +18,8 @@ export const AppBar = () => {
         <Login />
       ) : (
         <>
+          <HeaderNav/>
           <Navigation />
-          <HeaderNav /> 
         </>
       )}
     </header>

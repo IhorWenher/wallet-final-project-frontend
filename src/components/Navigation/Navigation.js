@@ -10,26 +10,32 @@ import style from '../Navigation/Navigation.module.css';
 
 export default function Navigation() {
   const isLogin = useSelector(authSelectors.getIsLoggedIn);
-  const displayWidth = window.innerWidth <= 768;
+  //const displayWidth = window.innerWidth <= 768;
 
   return (
     <nav className={style.container}>
       <div className={style.nav__link}>
-        {isLogin && (
-          <NavLink to="/" exact className={style.home}>
+        {!isLogin && (
+          <NavLink
+            to="/"
+            className={style.home}
+            >
             <ReactSVG className={style.home__svg} src={svgHome} />
             <span className={style.home__word}>Главная</span>
           </NavLink>
         )}
-        {isLogin && (
-          <NavLink to="/statistic" exact className={style.statis}>
+        {!isLogin && (
+          <NavLink
+            to="/statistic"
+            className={style.statis} >
+            
             <ReactSVG className={style.statis__svg} src={svgStats} />
             <span className={style.statis__word}>Статистика</span>
           </NavLink>
         )}
 
-        {displayWidth && isLogin && (
-          <NavLink to="/diagram" exact className={style.curren}>
+        {!isLogin && (
+          <NavLink to="/diagram"  className={style.curren} activeStyle={{color: "#6E78E8"}}>
             <ReactSVG className={style.curren__svg} src={svgCurren} />
           </NavLink>
         )}
@@ -37,3 +43,7 @@ export default function Navigation() {
     </nav>
   );
 }
+//<ReactSVG className={style.home__svg} src={svgHome} />
+//  <svg width="38" height="38">
+//              <use href="../../images/home-icon.svg"></use>
+//             </svg>

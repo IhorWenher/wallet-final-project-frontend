@@ -1,36 +1,36 @@
 .container {
-    margin-left: auto;
-    margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media screen and (max-width: 319px) {
-    .container {
-        width: 100%;
-    }
+  .container {
+    width: 100%;
+  }
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
-    .container {
-        width: 320px;
-    }
+  .container {
+    width: 320px;
+  }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1279px) {
-    .container {
-        width: 768px;
-        height: 100vh;
-        /*  background-repeat: no-repeat;
+  .container {
+    width: 768px;
+    height: 100vh;
+    /*  background-repeat: no-repeat;
         background-image: url(../../images/violet-shape.svg);
         background-position: bottom -150px left -150px; */
-    }
+  }
 }
 
 @media screen and (min-width: 1280px) {
-    .container {
-        width: 1280px;
-        height: 100vh;
-        /* background-repeat: no-repeat;
+  .container {
+    width: 1280px;
+    height: 100vh;
+    /* background-repeat: no-repeat;
         background-image: url(../../images/violet-shape.svg);
         background-position: bottom -150px left -150px; */
-    }
+  }
 }
