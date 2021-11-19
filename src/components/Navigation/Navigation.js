@@ -5,7 +5,7 @@ import { ReactSVG } from 'react-svg';
 import { authSelectors } from '../../redux/auth';
 import svgHome from '../../images/home-icon.svg';
 import svgStats from '../../images/stats-icon.svg';
-//import svgCurren from '../../images/dollar-icon.svg';
+import svgCurren from '../../images/dollar-icon.svg';
 import style from '../Navigation/Navigation.module.css';
 
 export default function Navigation() {
