@@ -1,4 +1,6 @@
 .currencyRatesPanel {
+    margin-left: auto;
+    margin-right: auto;
     position: relative;
     font-family: 'Circe', sans-serif;
     font-style: normal;
@@ -16,9 +18,9 @@
     justify-content: space-evenly;
     padding-top: 11px;
     padding-bottom: 12px;
-    font-weight: 500;
+    font-weight: bold;
     font-size: 18px;
-    line-height: 27px;
+    line-height: 1.5;
     background: rgba(255, 255, 255, 0.2);
 }
 .currencyRatesList {
@@ -60,6 +62,7 @@
     .currencyRatesPanel {
         width: 350px;
         padding-bottom: 0;
+        margin-left: 40px;
     }
     .currencyRatesList{
         padding-bottom: 15px;

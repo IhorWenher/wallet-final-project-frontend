@@ -1,7 +1,5 @@
 import React from 'react';
-
-import styles from './StatisticTable.module.css';
-import getCathegoryColor from '../PieChart/getCathegoryColor';
+import styles from './Table.module.css';
 
 const tableItem = [
   {
@@ -41,9 +39,19 @@ const tableItem = [
     value: 40,
   },
 ];
+const colors = [
+  '#FED057',
+  '#FFD8D0',
+  '#FD9498',
+  '#C5BAFF',
+  '#6E78E8',
+  '#4A56E2',
+  '#81E1FF',
+  '#24CCA7',
+  '#00AD84',
+];
 
-export default function StatisticTable() {
-
+export default function Table() {
   return (
     <div className={styles.container}>
       <p className={styles.head}>
@@ -51,16 +59,16 @@ export default function StatisticTable() {
         <b>Сумма</b>
       </p>
       <ul>
-        {tableItem.map(item => {
+        {tableItem.map((item, idx) => {
           return (
-            <li className={styles.listItem}>
+            <li className={styles.listItem} key={item.title}>
               <span
-                style={{ backgroundColor: getCathegoryColor() }}
+                style={{ backgroundColor: colors[idx] }}
                 className={styles.marker}
               ></span>
               <div className={styles.itemContainer}>
-                <span>{item.title}</span>
-                <span>{item.value}</span>
+                <span className={styles}>{item.title}</span>
+                <span className={styles}>{item.value}</span>
               </div>
             </li>
           );

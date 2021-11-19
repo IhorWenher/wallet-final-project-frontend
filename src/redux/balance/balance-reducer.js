@@ -1,7 +1,7 @@
 import { combineReducers, createReducer } from '@reduxjs/toolkit';
 import { fetchBalancePending, fetchBalanceSuccess, fetchBalanceError } from './balance-actions';
 
-const balance = createReducer([], {
+const balance = createReducer(null, {
   [fetchBalanceSuccess]: (_, { payload }) => payload,
   [fetchBalancePending]: (_) => null,
   [fetchBalanceError]: (_) => null
