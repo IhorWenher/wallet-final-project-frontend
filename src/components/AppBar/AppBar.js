@@ -1,11 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-
 import Styles from './AppBar.module.css';
 import Navigation from '../Navigation';
 import HeaderNav from '../HeaderNav';
-import Login from '../Login';
+import CurrencyRatesPanel from '../CurrencyRatesPanel';
+import Balance from '../Balance';
 
 import { authSelectors } from '../../redux/auth';
 
@@ -14,12 +14,12 @@ export const AppBar = () => {
 
   return (
     <header className={Styles.container}>
-      {isLoggedIn ? (
-        <Login />
-      ) : (
+      {isLoggedIn && (
         <>
-          <HeaderNav/>
+          <HeaderNav />
           <Navigation />
+          <Balance />
+          <CurrencyRatesPanel />
         </>
       )}
     </header>

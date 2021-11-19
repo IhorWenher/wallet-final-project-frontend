@@ -3,26 +3,27 @@ body {
     font-family: 'Circe', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: white;
+    background-color: #e7eaf2;
 }
 
 code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
 
 ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 p {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 button {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {
@@ -47,10 +48,10 @@ button {
 }
 
 @media screen and (min-width: 1280px) {
-    body {
-        background-position: top -150px right -150px;
-    }
-    body::after {
-        background-position: bottom -150px left -150px;
-    }
+  body {
+    background-position: top -150px right -150px;
+  }
+  body::after {
+    background-position: bottom -150px left -150px;
+  }
 }
