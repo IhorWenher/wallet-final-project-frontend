@@ -224,7 +224,7 @@
   z-index: 1;
   margin: 0;
   top: calc(100% + 5px);
-  height: 352px;
+  /* height: 352px; */
   width: 100%;
   overflow: scroll;
   border-radius: 20px;
