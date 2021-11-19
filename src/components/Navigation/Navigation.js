@@ -10,36 +10,31 @@ import style from '../Navigation/Navigation.module.css';
 
 export default function Navigation() {
   const isLogin = useSelector(authSelectors.getIsLoggedIn);
-  //const displayWidth = window.innerWidth <= 768;
+  const displayWidth = window.innerWidth <= 768;
+  const isMobile = displayWidth && isLogin;
 
   return (
     <nav className={style.container}>
       <div className={style.nav__link}>
-
         {isLogin && (
-          <NavLink
-            to="/"
-            className={style.home}
-            >
+          <NavLink to="/" className={style.home}>
             <ReactSVG className={style.home__svg} src={svgHome} />
             <span className={style.home__word}>Главная</span>
           </NavLink>
         )}
 
         {isLogin && (
-          <NavLink
-            to="/statistic"
-            className={style.statis} >
+          <NavLink to="/statistic" className={style.statis}>
             <ReactSVG className={style.statis__svg} src={svgStats} />
             <span className={style.statis__word}>Статистика</span>
           </NavLink>
         )}
 
-        {isLogin && (
-          <NavLink to="/diagram"  className={style.curren} >
+        {isMobile && (
+          <NavLink to="/diagram" className={style.curren}>
             <ReactSVG className={style.curren__svg} src={svgCurren} />
           </NavLink>
-        )} 
+        )}
       </div>
     </nav>
   );
