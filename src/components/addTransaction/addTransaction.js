@@ -3,8 +3,10 @@ import React, { useEffect, useState } from 'react'
 import Datetime from 'react-datetime'
 import 'moment/locale/ru'
 import { addTransaction } from '../../redux/transactions'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { validate } from 'indicative/validator'
+
+import { balance } from '../../redux/balance/balance-selectors'
 
 import { ReactSVG } from 'react-svg'
 import svgPlus from '../../images/plus-icon.svg'
@@ -24,7 +26,9 @@ function AddTransaction({toggleModal, toggleAddTransaction}) {
     const [date, setDate] = useState(new Date())
     const [comment, setComment] = useState('')
 
+    const userBalance = useSelector(balance)
     const dispatch = useDispatch()
+
 
     useEffect(() => {
         const backdrop = document.querySelector('#backdrop')
@@ -97,11 +101,13 @@ function AddTransaction({toggleModal, toggleAddTransaction}) {
             type: transactionType === 'income' ? true : false,
             category: category,
             sum: parseFloat(summ),
-            comm: comment,
+            comment: comment,
+            balance: userBalance
         }
         // нормализация данных бэк
 
         try {
+            console.log(transaction)
             await validate(transaction, SCHEMA)
             dispatch(addTransaction(transaction))
             closeComponent()
