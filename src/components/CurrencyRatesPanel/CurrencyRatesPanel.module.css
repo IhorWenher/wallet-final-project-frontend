@@ -1,7 +1,6 @@
 .currencyRatesPanel {
     margin-left: auto;
     margin-right: auto;
-    position: relative;
     font-family: 'Circe', sans-serif;
     font-style: normal;
     
@@ -12,6 +11,16 @@
 
     width: 280px;
 
+}
+.conteinerdata {
+    height: 124px;
+    position: relative;
+}
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
 }
 .currencyRatesHead {
     display: flex;
@@ -51,6 +60,7 @@
 @media screen and (min-width: 768px) and (max-width: 1279px) {
     .currencyRatesPanel {
         width: 335px;
+        height: 174px;
     }
     .vector {
         width: 335px;
@@ -64,11 +74,15 @@
         padding-bottom: 0;
         margin-left: 40px;
     }
+    .conteinerdata {
+        height: 287px;
+    }
     .currencyRatesList{
+        z-index: 1;
         padding-bottom: 15px;
     }
     .vector {
-        position: static;
+        position: absolute;
         bottom: 0;
         width: 350px;
         height: 134px;

@@ -11,12 +11,13 @@ export default function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [password_confirmation, setConfirmPassword] = useState('');
 
   const schema = {
     name: 'string|min:1|max:12',
     email: 'required|email',
-    password: 'required|min:6|max:12',
-    // confirmPassword: 'required|min:6|max:12',
+    password: 'required|min:6|max:12|confirmed',
+    password_confirmation: 'required|min:6|max:12',
   };
 
   const messages = {
@@ -24,6 +25,7 @@ export default function Register() {
     email: 'Enter valid email address',
     min: 'The value of name or password is too small',
     max: 'The value of name or password is too large',
+    confirmed: 'Entered passwords do not mutch',
   };
 
   const handleChange = ({ target: { name, value } }) => {
@@ -34,7 +36,8 @@ export default function Register() {
         return setEmail(value);
       case 'password':
         return setPassword(value);
-      // case 'confirmPassword':
+      case 'password_confirmation':
+        return setConfirmPassword(value);
 
       default:
         return;
@@ -44,11 +47,17 @@ export default function Register() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      await validate({ name, email, password }, schema, messages);
+      await validate(
+        { name, email, password, password_confirmation },
+        schema,
+        messages,
+      );
+
       dispatch(authOperations.register({ name, email, password }));
       setName('');
       setEmail('');
       setPassword('');
+      setConfirmPassword('');
     } catch (er) {
       alert(er[0].message);
     }
@@ -109,6 +118,7 @@ export default function Register() {
                 placeholder="Пароль"
                 onChange={handleChange}
                 name="password"
+                type="password"
                 value={password}
               ></input>
               <svg width="16" height="21" className={Styles.inputIcon}>
@@ -123,6 +133,7 @@ export default function Register() {
               <input
                 className={Styles.input}
                 placeholder="Подтвердите пароль"
+                type="password"
               ></input>
               <svg width="16" height="21" className={Styles.inputIcon}>
                 <path

@@ -4,6 +4,7 @@ import styles from './Balance.module.css';
 import { fetchBalance } from '../../redux/balance/balance-operations';
 import { balance as balanceSelector } from '../../redux/balance/balance-selectors';
 
+
 function Balance() {
     const balance = useSelector(balanceSelector);
     const dispatch = useDispatch();
@@ -17,7 +18,7 @@ function Balance() {
     return (
         <div className={styles.balance}>
             <h2 className={styles.balanceTitle}>Ваш баланс</h2>
-            <h2 className={styles.balanceValue}> <span className={styles.currencySymbol}>&#8372;</span> {balance ? formatBalance(balance) : ''}</h2>
+            <h2 className={styles.balanceValue}> <span className={styles.currencySymbol}>&#8372;</span> {balance ? formatBalance(balance) : formatBalance(0)}</h2>
         </div>
     );
 }

@@ -83,6 +83,7 @@ export default function Login() {
                 placeholder="Пароль"
                 onChange={handleChange}
                 name="password"
+                type="password"
                 value={password}
               ></input>
               <svg width="16" height="21" className={Styles.inputIcon}>
