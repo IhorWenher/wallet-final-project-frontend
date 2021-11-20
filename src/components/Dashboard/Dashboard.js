@@ -22,53 +22,57 @@ export default function Dashboard() {
 
   return (
     <div className={styles.container}>
-      <table className={styles.table}>
-        <thead>
-          <tr className={styles.tableHead}>
-            <th>Дата</th>
-            <th>Тип</th>
-            <th>Категория</th>
-            <th>Комментарий</th>
-            <th>Сумма</th>
-            <th>Баланс</th>
-          </tr>
-        </thead>
-        <tbody>
-          {dashboardData &&
-            dashboardData.map(el => {
-              return (
-                <tr
-                  key={el.id}
-                  className={styles.tableElement}
-                  style={{
-                    borderLeft:
-                      el.type === true
-                        ? '5px solid #24cca7'
-                        : '5px solid #ff6596',
-                  }}
-                >
-                  <td data-label="Дата">
-                    {el.day < 10 ? `0${el.day}` : el.day}.
-                    {el.month < 10 ? `0${el.month}` : el.month}.{el.year}
-                  </td>
-                  <td data-label="Тип">{el.type === true ? '+' : '-'}</td>
-                  <td data-label="Категория">{el.category}</td>
-                  <td data-label="Комментарий">{el.comment}</td>
-                  <td
-                    data-label="Сумма"
+      {dashboardData.length > 0 ? (
+        <table className={styles.table}>
+          <thead>
+            <tr className={styles.tableHead}>
+              <th>Дата</th>
+              <th>Тип</th>
+              <th>Категория</th>
+              <th>Комментарий</th>
+              <th>Сумма</th>
+              <th>Баланс</th>
+            </tr>
+          </thead>
+          <tbody>
+            {dashboardData &&
+              dashboardData.map(el => {
+                return (
+                  <tr
+                    key={el.id}
+                    className={styles.tableElement}
                     style={{
-                      color: el.type === true ? '#24cca7' : '#ff6596',
-                      fontWeight: 'bold',
+                      borderLeft:
+                        el.type === true
+                          ? '5px solid #24cca7'
+                          : '5px solid #ff6596',
                     }}
                   >
-                    {el.sum}
-                  </td>
-                  <td data-label="Баланс">{el.balance}</td>
-                </tr>
-              );
-            })}
-        </tbody>
-      </table>
+                    <td data-label="Дата">
+                      {el.day < 10 ? `0${el.day}` : el.day}.
+                      {el.month < 10 ? `0${el.month}` : el.month}.{el.year}
+                    </td>
+                    <td data-label="Тип">{el.type === true ? '+' : '-'}</td>
+                    <td data-label="Категория">{el.category}</td>
+                    <td data-label="Комментарий">{el.comment}</td>
+                    <td
+                      data-label="Сумма"
+                      style={{
+                        color: el.type === true ? '#24cca7' : '#ff6596',
+                        fontWeight: 'bold',
+                      }}
+                    >
+                      {el.sum}
+                    </td>
+                    <td data-label="Баланс">{el.balance}</td>
+                  </tr>
+                );
+              })}
+          </tbody>
+        </table>
+      ) : (
+          <h3 className={styles.title}>Привет! Добавь свою первую транзакцию!</h3>
+      )}
     </div>
   );
 }
