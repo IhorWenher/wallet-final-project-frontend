@@ -1,8 +1,13 @@
 import Styles from './Container.module.css';
+import { useSelector } from 'react-redux';
 import React from 'react';
+import {authSelectors} from '../../redux/auth'
 
 const Container = ({ children }) => {
-  return <div className={Styles.container}> {children} </div>;
+  const isLogedIn = useSelector(authSelectors.getIsLoggedIn)
+  console.log(isLogedIn)
+
+  return <div className={!isLogedIn ? Styles.container : Styles.login}> {children} </div>;
 };
 
 export default Container;
