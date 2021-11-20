@@ -1,14 +1,13 @@
 .container {
   padding-top: 30px;
-  font-style: normal;
   padding-right: 25px;
   padding-left: 25px;
   margin: 0 auto;
   min-width: 320px;
-  color: #000000;
 }
 
 .table {
+  margin: 0 auto;
   border-spacing: 0;
   max-width: 700px;
   border-radius: 10px;
@@ -93,10 +92,7 @@
     padding-top: 15px;
     padding-bottom: 15px;
   }
-  .tableElement:last-child td {
-    padding-bottom: 0;
-  }
-  .tableElement {
+  .tableElement:not(:last-child) {
     box-shadow: 0 2px 0 -1px #ffffff;
     border-radius: 0;
   }
@@ -106,11 +102,17 @@
   .table tr:last-child {
     margin-bottom: 0;
   }
+  .tableElement:last-child td {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
 }
 
 @media screen and (min-width: 1280px) {
   .container {
     padding-top: 46px;
     min-width: 1080px;
+    box-shadow: -2px 0 0 -1px #ffffff;
+    border-left: 1px solid #dcdcdf;
   }
 }

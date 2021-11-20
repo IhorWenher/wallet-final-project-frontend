@@ -1,6 +1,6 @@
 import Styles from './Login.module.css';
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../../redux/auth';
@@ -60,8 +60,8 @@ export default function Login() {
             </svg>
           </div>
 
-          <form onSubmit={handleSubmit}>
-            <label>
+          <form className={Styles.form} onSubmit={handleSubmit}>
+            <label className={Styles.authLabel}>
               <input
                 className={Styles.input}
                 placeholder="E-mail"
@@ -77,7 +77,7 @@ export default function Login() {
               </svg>
             </label>
 
-            <label>
+            <label className={Styles.authLabel}>
               <input
                 className={Styles.input}
                 placeholder="Пароль"
@@ -97,7 +97,11 @@ export default function Login() {
               вход
             </button>
 
-            <button className={Styles.regBtn}>регистрация</button>
+            <Link to="/register" className={Styles.authLink}>
+              <button type="submit" className={Styles.regBtn}>
+                регистрация
+              </button>
+            </Link>
           </form>
         </div>
       </div>

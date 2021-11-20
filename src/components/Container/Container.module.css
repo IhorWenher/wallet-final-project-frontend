@@ -1,6 +1,8 @@
 .container {
   margin-left: auto;
   margin-right: auto;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(50px);
 }
 
 @media screen and (max-width: 319px) {
@@ -27,7 +29,7 @@
 
 @media screen and (min-width: 1280px) {
   .container {
-    width: 1280px;
+    min-width: 1280px;
     height: 100vh;
     /* background-repeat: no-repeat;
         background-image: url(../../images/violet-shape.svg);

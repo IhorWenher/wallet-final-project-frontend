@@ -21,11 +21,9 @@ function App() {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
 
-  const isLogin = useSelector(authSelectors.getIsLoggedIn);
-
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
-  }, [dispatch, isLogin]);
+  }, [dispatch]);
 
   return (
     <Container>

@@ -3,7 +3,8 @@ body {
   font-family: 'Circe', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #e7eaf2;
+  /* background-color: #637dc4; */
+  background-color: white;
 }
 
 code {
