@@ -86,7 +86,7 @@ function App() {
                 path="/diagram"
                 element={
                   <PrivateRoute redirectTo="/login">
-                    <CurrencyRatesPanel />
+                    {/* <CurrencyRatesPanel /> */}
                   </PrivateRoute>
                 }
               />

@@ -18,8 +18,10 @@ export const AppBar = () => {
         <>
           <HeaderNav />
           <Navigation />
-          <Balance />
-          <CurrencyRatesPanel />
+          <div className={Styles.containerBalanceCurrencyRatesPanel}> 
+            <Balance />
+            <CurrencyRatesPanel />
+          </div>
         </>
       )}
     </header>
