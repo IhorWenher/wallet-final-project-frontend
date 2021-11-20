@@ -2,6 +2,44 @@ import { PieChart } from 'react-minimal-pie-chart';
 import React from 'react';
 import styled from 'styled-components';
 
+const tableItem = [
+  {
+    title: 'Основные расходы',
+    value: 8700,
+  },
+  {
+    title: 'Продукты',
+    value: 1300,
+  },
+  {
+    title: 'Машина',
+    value: 100,
+  },
+  {
+    title: 'Забота о себе',
+    value: 500,
+  },
+  {
+    title: 'Забота о детях',
+    value: 7500,
+  },
+  {
+    title: 'Товары для дома',
+    value: 1300,
+  },
+  {
+    title: 'Образование',
+    value: 20,
+  },
+  {
+    title: 'Досуг',
+    value: 7000,
+  },
+  {
+    title: 'Другие расходы',
+    value: 40,
+  },
+];
 const colors = [
   '#FED057',
   '#FFD8D0',
@@ -14,39 +52,39 @@ const colors = [
   '#00AD84',
 ];
 
-const PieChartComponent = ({
-  categories = [
-    { title: 'main', value: 13 },
-    { title: 'food', value: 36 },
-    { title: 'car', value: 9 },
-    { title: 'selfCare', value: 6 },
-    { title: 'childrenCare', value: 6 },
-    { title: 'homeGoods', value: 1 },
-    { title: 'education', value: 14 },
-    { title: 'hobbies', value: 9 },
-    { title: 'other', value: 6 },
-  ],
-  total = 24000,
-}) => (
-  <div>
-    <h2 style={{ marginBottom: 10 }}>Статистика</h2>
+const total = tableItem.reduce((acc, item) => acc + item.value, 0);
+const categories = tableItem.map((item, index) => ({
+  title: item.title,
+  value: (item.value * 100) / total,
+  color: colors[index],
+}));
+
+const formatBalance = balance =>
+  balance
+    .toLocaleString('ru-RU', { minimumFractionDigits: 2 })
+    .replace(',', '.');
+
+const PieChartComponent = () => (
+  <Wrapper style={{ marginTop: '20px' }}>
+    <Title>Статистика</Title>
     <PieChartWrapper>
-      <CustomPieChart
-        lineWidth={25}
-        animate
-        radius={50}
-        data={categories.map((category, idx) => ({
-          ...category,
-          color: colors[idx],
-        }))}
-      />
-      <Total>₴ {total}</Total>
+      <CustomPieChart lineWidth={25} animate radius={50} data={categories} />
+      <Total>₴ {formatBalance(total)}</Total>
     </PieChartWrapper>
-  </div>
+  </Wrapper>
 );
 
 export default PieChartComponent;
 
+const Wrapper = styled.div``;
+const Title = styled.h2`
+  margin-top: 0;
+  margin-bottom: 20px;
+
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1.5;
+`;
 const Total = styled.span`
   position: absolute;
   top: 50%;
