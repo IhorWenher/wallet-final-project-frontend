@@ -23,15 +23,19 @@ const register = createAsyncThunk('/auth/register', async credentials => {
   }
 });
 
-const login = createAsyncThunk('/auth/login', async credentials => {
-  console.log(credentials)
-  try {
-    const { data } = await axios.post('/auth/login', credentials);
-    token.set(data.token);
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
+const login = createAsyncThunk('/auth/login',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const data = await
+        axios.post('/auth/login', credentials)
+        .then((responce => responce.data));
+      
+      console.log('proshel fullfiled')
+      token.set(data.token);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error)
+    }
 });
 
 const logout = createAsyncThunk('/auth/logout', async () => {
