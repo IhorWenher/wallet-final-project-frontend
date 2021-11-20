@@ -1,14 +1,75 @@
 import Styles from './Register.module.css';
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { authOperations } from '../../redux/auth';
+import { validate } from 'indicative/validator';
 
 export default function Register() {
+  const dispatch = useDispatch();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [password_confirmation, setConfirmPassword] = useState('');
+
+  const schema = {
+    name: 'string|min:1|max:12',
+    email: 'required|email',
+    password: 'required|min:6|max:12|confirmed',
+    password_confirmation: 'required|min:6|max:12',
+  };
+
+  const messages = {
+    required: 'Make sure to enter email and password',
+    email: 'Enter valid email address',
+    min: 'The value of name or password is too small',
+    max: 'The value of name or password is too large',
+    confirmed: 'Entered passwords do not mutch',
+  };
+
+  const handleChange = ({ target: { name, value } }) => {
+    switch (name) {
+      case 'name':
+        return setName(value);
+      case 'email':
+        return setEmail(value);
+      case 'password':
+        return setPassword(value);
+      case 'password_confirmation':
+        return setConfirmPassword(value);
+
+      default:
+        return;
+    }
+  };
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      await validate(
+        { name, email, password, password_confirmation },
+        schema,
+        messages,
+      );
+
+      dispatch(authOperations.register({ name, email, password }));
+      setName('');
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
+    } catch (er) {
+      alert(er[0].message);
+    }
+  }
+
   return (
     <div className={Styles.container}>
       <div className={Styles.heroContainer}>
         <div className={Styles.loginImage}></div>
 
         <div className={Styles.spanContainer}>
-          <span>Finance App</span>
+          <span className={Styles.heading}>Finance App</span>
         </div>
       </div>
       <div className={Styles.desktopContainer}>
@@ -34,9 +95,15 @@ export default function Register() {
             </svg>
           </div>
 
-          <form>
-            <label>
-              <input className={Styles.input} placeholder="E-mail"></input>
+          <form className={Styles.form} onSubmit={handleSubmit}>
+            <label className={Styles.authLabel}>
+              <input
+                className={Styles.input}
+                placeholder="E-mail"
+                onChange={handleChange}
+                name="email"
+                value={email}
+              ></input>
               <svg width="21" height="16" className={Styles.inputIcon}>
                 <path
                   d="M18 0H2C.9 0 .00999999.9.00999999 2L0 14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2Zm0 4-8 5-8-5V2l8 5 8-5v2Z"
@@ -45,20 +112,14 @@ export default function Register() {
               </svg>
             </label>
 
-            <label>
-              <input className={Styles.input} placeholder="Пароль"></input>
-              <svg width="16" height="21" className={Styles.inputIcon}>
-                <path
-                  d="M14 7h-1V5c0-2.76-2.24-5-5-5S3 2.24 3 5v2H2C.9 7 0 7.9 0 9v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2Zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2Zm3.1-9H4.9V5c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2Z"
-                  fill="#E0E0E0"
-                />
-              </svg>
-            </label>
-
-            <label>
+            <label className={Styles.authLabel}>
               <input
                 className={Styles.input}
-                placeholder="Подтвердите пароль"
+                placeholder="Пароль"
+                onChange={handleChange}
+                name="password"
+                type="password"
+                value={password}
               ></input>
               <svg width="16" height="21" className={Styles.inputIcon}>
                 <path
@@ -68,8 +129,28 @@ export default function Register() {
               </svg>
             </label>
 
-            <label>
-              <input className={Styles.input} placeholder="Ваше имя"></input>
+            <label className={Styles.authLabel}>
+              <input
+                className={Styles.input}
+                placeholder="Подтвердите пароль"
+                type="password"
+              ></input>
+              <svg width="16" height="21" className={Styles.inputIcon}>
+                <path
+                  d="M14 7h-1V5c0-2.76-2.24-5-5-5S3 2.24 3 5v2H2C.9 7 0 7.9 0 9v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2Zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2Zm3.1-9H4.9V5c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2Z"
+                  fill="#E0E0E0"
+                />
+              </svg>
+            </label>
+
+            <label className={Styles.authLabel}>
+              <input
+                className={Styles.input}
+                placeholder="Ваше имя"
+                onChange={handleChange}
+                name="name"
+                value={name}
+              ></input>
               <svg width="18" height="18" className={Styles.inputIcon}>
                 <path
                   d="M0 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2H2C.89 0 0 .9 0 2Zm12 4c0 1.66-1.34 3-3 3S6 7.66 6 6s1.34-3 3-3 3 1.34 3 3Zm-9 8c0-2 4-3.1 6-3.1s6 1.1 6 3.1v1H3v-1Z"
@@ -78,8 +159,14 @@ export default function Register() {
               </svg>
             </label>
 
-            <button className={Styles.logBtn}>вход</button>
-            <button className={Styles.regBtn}>регистрация</button>
+            <button type="submit" className={Styles.regBtn}>
+              регистрация
+            </button>
+            <Link to="/login" className={Styles.authLink}>
+              <button className={Styles.logBtn} type="submit">
+                вход
+              </button>
+            </Link>
           </form>
         </div>
       </div>

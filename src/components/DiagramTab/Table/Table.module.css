@@ -18,7 +18,7 @@
   padding: 0 20px 0 20px;
   border-radius: 40px;
 
-  background-color: #e7eaf2;
+  background-color: #fff;
 }
 .listItem {
   display: flex;
@@ -39,8 +39,6 @@
   min-height: 24px;
 
   margin-right: 16px;
-
-  background-color: tomato;
 }
 .itemContainer {
   display: inline-flex;
@@ -49,7 +47,8 @@
 
   width: 100%;
 }
-.itemContainer span:last-child {
+
+.element:last-child {
   margin-right: 12px;
 }
 .total {
@@ -72,11 +71,18 @@
   .head {
     width: 350px;
   }
-  .container {
-    min-width: 320px;
-    max-width: 350px;
+  .marker {
+    width: 24px;
+    height: 24px;
   }
 }
 
 @media screen and (min-width: 1280px) {
+  .head {
+    width: 350px;
+  }
+  .marker {
+    width: 24px;
+    height: 24px;
+  }
 }

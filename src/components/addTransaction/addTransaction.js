@@ -2,6 +2,11 @@ import React, { useEffect, useState } from 'react'
 // import { Link, useLocation } from 'react-router-dom';
 import Datetime from 'react-datetime'
 import 'moment/locale/ru'
+import { addTransaction } from '../../redux/transactions'
+import { useDispatch, useSelector } from 'react-redux'
+import { validate } from 'indicative/validator'
+
+import { balance } from '../../redux/balance/balance-selectors'
 
 import { ReactSVG } from 'react-svg'
 import svgPlus from '../../images/plus-icon.svg'
@@ -15,30 +20,31 @@ import styles from './styles.module.css';
 
 function AddTransaction({toggleModal, toggleAddTransaction}) {
     const [transactionType, setTransactionType] = useState("income")
-    const [category, setCategory] = useState("Выберите категорию")
+    const [category, setCategory] = useState("Регулярный доход")
     const [listActive, setListActive] = useState(false)
     const [summ, setSumm] = useState('')
     const [date, setDate] = useState(new Date())
     const [comment, setComment] = useState('')
 
+    const userBalance = useSelector(balance)
+    const dispatch = useDispatch()
+
+
     useEffect(() => {
         const backdrop = document.querySelector('#backdrop')
-        const dropDownList = document.querySelector(styles.dropDownList)
 
         function clickListener(e) {
-            console.log('workshit')
             if (e.target === backdrop) {
                 toggleAddTransaction()
                 toggleModal()
             }
             
-            if (e.target !== backdrop && e.target !== dropDownList && listActive) {
+            if (e.target !== backdrop && listActive) {
                 setListActive(!listActive)
             }
         }
 
         function keyListener(e) {
-            console.log('press esc')
             if (e.code === 'Escape') {
                 toggleAddTransaction()
                 toggleModal()
@@ -51,24 +57,74 @@ function AddTransaction({toggleModal, toggleAddTransaction}) {
         return function cleanup() {
             document.removeEventListener('click', clickListener)
             document.removeEventListener('keydown', keyListener)
-
         }
 
     }, [toggleAddTransaction, toggleModal, listActive])
 
+    useEffect(() => {
+        const dropDownList = document.querySelector('.'+styles.dropDownList)
+        if (dropDownList) {
+            dropDownList.style.cssText = 'height:' + dropDownList.scrollHeight + 'px';
+        }
+    }, [listActive])
 // 
-    function submitHandler(e) {
+    const SCHEMA = {
+        type: 'required|boolean',
+        category: 'required|string',
+        sum: 'required|number',
+        comment: 'string',
+        day: 'required|number',
+        month: 'required|number',
+        year: 'required|number'
+    }
+
+    // function formReset() {
+    //     setTransactionType('income')
+    //     setCategory('Регулярный доход')
+    //     setSumm('')
+    //     setDate(new Date())
+    //     setComment('')
+    // }
+
+    async function submitHandler(e) {
         e.preventDefault()
-        console.log(e)
-        console.log('calling redux action')
+        if (category === 'Выберите категорию') {
+            alert('Укажите категорию')
+            return
+        }
+
+        // нормализация данных для бэка
+        const transaction = {
+            day: date.getDay(),
+            month: date.getMonth(),
+            year: date.getFullYear(),
+            type: transactionType === 'income' ? true : false,
+            category: category,
+            sum: parseFloat(summ),
+            comment: comment,
+            balance: userBalance
+        }
+        // нормализация данных бэк
+
+        try {
+            console.log(transaction)
+            await validate(transaction, SCHEMA)
+            dispatch(addTransaction(transaction))
+            closeComponent()
+        } catch (error) {
+            console.log(error[0].message)
+        }
+        
     }
     
     function switchClickHandler(e) {
         if (!e.target.checked) {
             setTransactionType('spending')
+            setCategory('Выберите категорию')
             return
         }
-         setTransactionType('income')
+        setTransactionType('income')
+        setCategory('Регулярный доход')
     }
 
     function categoryClickHandler(e) {
@@ -159,14 +215,19 @@ function AddTransaction({toggleModal, toggleAddTransaction}) {
             </div>
 
             {listActive && <ul className={styles.dropDownList}>
-                <li onClick={categoryClickHandler} className={styles.dropDownItem}>Основной</li>
-                <li onClick={categoryClickHandler} className={styles.dropDownItem}>Еда</li>
-                <li onClick={categoryClickHandler} className={styles.dropDownItem}>Авто</li>
-                <li onClick={categoryClickHandler} className={styles.dropDownItem}>Развитие</li>
-                <li onClick={categoryClickHandler} className={styles.dropDownItem}>Дети</li>
-                <li onClick={categoryClickHandler} className={styles.dropDownItem}>Дом</li>
-                <li onClick={categoryClickHandler} className={styles.dropDownItem}>Образование</li>
-                <li onClick={categoryClickHandler} className={styles.dropDownItem}>Остальные</li>
+                {/* категории для доходв */}
+                {transactionType === 'income' && <li onClick={categoryClickHandler} className={styles.dropDownItem}>Регулярный доход</li>}
+                {transactionType === 'income' && <li onClick={categoryClickHandler} className={styles.dropDownItem}>Нерегулярный доход</li>}
+
+                {/* категории для расхода */}
+                {transactionType === 'spending' && <li onClick={categoryClickHandler} className={styles.dropDownItem}>Основной</li>}
+                {transactionType === 'spending' && <li onClick={categoryClickHandler} className={styles.dropDownItem}>Еда</li>}
+                {transactionType === 'spending' && <li onClick={categoryClickHandler} className={styles.dropDownItem}>Авто</li>}
+                {transactionType === 'spending' && <li onClick={categoryClickHandler} className={styles.dropDownItem}>Развитие</li>}
+                {transactionType === 'spending' && <li onClick={categoryClickHandler} className={styles.dropDownItem}>Дети</li>}
+                {transactionType === 'spending' && <li onClick={categoryClickHandler} className={styles.dropDownItem}>Дом</li>}
+                {transactionType === 'spending' && <li onClick={categoryClickHandler} className={styles.dropDownItem}>Образование</li>}
+                {transactionType === 'spending' && <li onClick={categoryClickHandler} className={styles.dropDownItem}>Остальное</li>}
             </ul>}
 
             <ReactSVG className={styles.dropDownIcon} src={svgListIcon} />
@@ -197,11 +258,11 @@ function AddTransaction({toggleModal, toggleAddTransaction}) {
                 </div>
 
                 {/* рендер списка по условию */}
-                {transactionType === 'spending' && dropDownJSX}
+                {dropDownJSX}
                 {/* рендер списка по условию */}
 
                 <div className={styles.summFieldContainer}>
-                    <input className={styles.summField} onChange={summChange} type="number" placeholder="0.00" value={summ} />
+                    <input className={styles.summField} onChange={summChange} required min="0.00" step="0.01" type="number" placeholder="0.00" value={summ} />
                 </div>
 
                 <div className={styles.calendarContainer}>

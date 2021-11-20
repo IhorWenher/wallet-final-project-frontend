@@ -27,7 +27,7 @@ p {
 }
 
 .input {
-    width: 100%;
+    width: 280px;
     height: 34px;
     margin-top: 10px;
     margin-bottom: 30px;
@@ -51,17 +51,21 @@ p {
     bottom: 3px;
 }
 
-form {
+
+/* .authForm {
+  margin-left: 20px;
+  margin-right: 20px;
+} */
+
+.authLabel {
+    position: relative;
+    width: 280px;
     margin-left: 20px;
     margin-right: 20px;
 }
 
-label {
-    position: relative;
-    width: 100%;
-}
-
-button {
+.logBtn,
+.regBtn {
     display: block;
     width: 280px;
     height: 50px;
@@ -95,8 +99,15 @@ button {
     margin-top: -10px;
 }
 
+.authLink {
+    outline: none;
+    text-decoration: none;
+}
+
 @media screen and (min-width: 768px) {
     .logoIcon {
+        width: 181px;
+        height: 40px;
         margin-top: 40px;
         margin-left: 180px;
     }
@@ -105,7 +116,7 @@ button {
         margin-top: 360px;
         margin-right: auto;
         margin-left: auto;
-        margin-top: 148px;
+        margin-top: 140px;
         width: 540px;
         height: 100%;
         border-radius: 20px;
@@ -121,16 +132,22 @@ button {
         background-repeat: no-repeat;
         background-size: contain;
     }
+    .authLabel {
+        margin-left: auto;
+        margin-right: auto;
+    }
     .input {
         width: 410px;
         margin-top: 20px;
         margin-bottom: 20px;
+        outline: none;
     }
-    form {
+    .form {
         margin-left: 65px;
         margin-right: 65px;
     }
-    button {
+    .logBtn,
+    .regBtn {
         display: inline;
         width: 300px;
         margin-left: 55px;
@@ -142,7 +159,7 @@ button {
         margin-top: 20px;
         margin-bottom: 60px;
     }
-    span {
+    .heading {
         display: block;
         margin-left: 414px;
         padding-top: 167px;
@@ -188,7 +205,7 @@ button {
         margin-bottom: 77px;
         margin-top: 598px;
     }
-    span {
+    .heading {
         margin: 0;
         padding: 0;
     }
