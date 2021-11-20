@@ -1,7 +1,6 @@
 import Styles from './Login.module.css';
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../../redux/auth';
@@ -61,8 +60,8 @@ export default function Login() {
             </svg>
           </div>
 
-          <form onSubmit={handleSubmit}>
-            <label>
+          <form className={Styles.form} onSubmit={handleSubmit}>
+            <label className={Styles.authLabel}>
               <input
                 className={Styles.input}
                 placeholder="E-mail"
@@ -78,12 +77,13 @@ export default function Login() {
               </svg>
             </label>
 
-            <label>
+            <label className={Styles.authLabel}>
               <input
                 className={Styles.input}
                 placeholder="Пароль"
                 onChange={handleChange}
                 name="password"
+                type="password"
                 value={password}
               ></input>
               <svg width="16" height="21" className={Styles.inputIcon}>
@@ -93,22 +93,16 @@ export default function Login() {
                 />
               </svg>
             </label>
-            <NavLink to="/login" className={Styles.link}>
-              <button
-                className={Styles.logBtn}
-                onClick={() => dispatch(authOperations.login())}
-              >
-                вход
-              </button>
-            </NavLink>
-            <NavLink to="/register" className={Styles.link}>
-              <button
-                className={Styles.regBtn}
-                onClick={() => dispatch(authOperations.register())}
-              >
+
+            <button className={Styles.logBtn} type="submit">
+              вход
+            </button>
+
+            <Link to="/register" className={Styles.authLink}>
+              <button type="submit" className={Styles.regBtn}>
                 регистрация
               </button>
-            </NavLink>
+            </Link>
           </form>
         </div>
       </div>

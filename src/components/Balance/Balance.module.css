@@ -2,7 +2,11 @@
     padding-bottom: 13px;
     padding-top: 8px;
     padding-left: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
     width: 280px;
+    height: 80px;
     background: #FFFFFF;
     border-radius: 30px;
 }
@@ -21,15 +25,20 @@
     margin: 0;
     font-family: 'Poppins', sans-serif;
     font-style: normal;
-    font-weight: normal;
+    font-weight: bold;
     font-size: 30px;
     line-height: 1.5;
 }
-
+.currencySymbol{
+    font-weight: 400;
+}
 @media screen and (min-width: 768px) and (max-width: 1279px) {
     .balance {
         width: 335px;
+        height: 80px;
         padding-left: 40px;
+        margin-right: 20px;
+        margin-bottom: 0px;
     }
     
 }
@@ -37,5 +46,8 @@
 @media screen and (min-width: 1280px) {
     .balance {
         width: 350px;
+        margin-top: 30;
+        margin-bottom: 30px;
+        margin-left: 40px;
     }
 }

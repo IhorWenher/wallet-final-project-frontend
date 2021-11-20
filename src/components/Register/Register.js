@@ -1,15 +1,32 @@
 import Styles from './Register.module.css';
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../../redux/auth';
+import { validate } from 'indicative/validator';
 
 export default function Register() {
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [password_confirmation, setConfirmPassword] = useState('');
+
+  const schema = {
+    name: 'string|min:1|max:12',
+    email: 'required|email',
+    password: 'required|min:6|max:12|confirmed',
+    password_confirmation: 'required|min:6|max:12',
+  };
+
+  const messages = {
+    required: 'Make sure to enter email and password',
+    email: 'Enter valid email address',
+    min: 'The value of name or password is too small',
+    max: 'The value of name or password is too large',
+    confirmed: 'Entered passwords do not mutch',
+  };
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -19,18 +36,32 @@ export default function Register() {
         return setEmail(value);
       case 'password':
         return setPassword(value);
+      case 'password_confirmation':
+        return setConfirmPassword(value);
+
       default:
         return;
     }
   };
 
-  const handleSubmit = e => {
+  async function handleSubmit(e) {
     e.preventDefault();
-    dispatch(authOperations.register({ name, email, password }));
-    setName('');
-    setEmail('');
-    setPassword('');
-  };
+    try {
+      await validate(
+        { name, email, password, password_confirmation },
+        schema,
+        messages,
+      );
+
+      dispatch(authOperations.register({ name, email, password }));
+      setName('');
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
+    } catch (er) {
+      alert(er[0].message);
+    }
+  }
 
   return (
     <div className={Styles.container}>
@@ -38,7 +69,7 @@ export default function Register() {
         <div className={Styles.loginImage}></div>
 
         <div className={Styles.spanContainer}>
-          <span>Finance App</span>
+          <span className={Styles.heading}>Finance App</span>
         </div>
       </div>
       <div className={Styles.desktopContainer}>
@@ -64,8 +95,8 @@ export default function Register() {
             </svg>
           </div>
 
-          <form onSubmit={handleSubmit}>
-            <label>
+          <form className={Styles.form} onSubmit={handleSubmit}>
+            <label className={Styles.authLabel}>
               <input
                 className={Styles.input}
                 placeholder="E-mail"
@@ -81,12 +112,13 @@ export default function Register() {
               </svg>
             </label>
 
-            <label>
+            <label className={Styles.authLabel}>
               <input
                 className={Styles.input}
                 placeholder="Пароль"
                 onChange={handleChange}
                 name="password"
+                type="password"
                 value={password}
               ></input>
               <svg width="16" height="21" className={Styles.inputIcon}>
@@ -97,10 +129,11 @@ export default function Register() {
               </svg>
             </label>
 
-            <label>
+            <label className={Styles.authLabel}>
               <input
                 className={Styles.input}
                 placeholder="Подтвердите пароль"
+                type="password"
               ></input>
               <svg width="16" height="21" className={Styles.inputIcon}>
                 <path
@@ -110,7 +143,7 @@ export default function Register() {
               </svg>
             </label>
 
-            <label>
+            <label className={Styles.authLabel}>
               <input
                 className={Styles.input}
                 placeholder="Ваше имя"
@@ -126,10 +159,14 @@ export default function Register() {
               </svg>
             </label>
 
-            <button className={Styles.logBtn}>вход</button>
             <button type="submit" className={Styles.regBtn}>
               регистрация
             </button>
+            <Link to="/login" className={Styles.authLink}>
+              <button className={Styles.logBtn} type="submit">
+                вход
+              </button>
+            </Link>
           </form>
         </div>
       </div>

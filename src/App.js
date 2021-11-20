@@ -9,6 +9,7 @@ import PublicRoute from './components/PublicRoute';
 import Container from './components/Container';
 import AppBar from './components/AppBar';
 import Loader from './components/Loader';
+import CurrencyRatesPanel from './components/CurrencyRatesPanel';
 
 const StatisticView = lazy(() => import('./views/StatisticView'));
 const RegisterView = lazy(() => import('./views/RegisterView'));
@@ -31,49 +32,75 @@ function App() {
       ) : (
         <>
           <AppBar />
-            <Suspense fallback={<Loader />}>
-              <Routes>
-                <Route path="/register"
-                  element={
-                    <PublicRoute redirectTo='/' restricted>
-                      <RegisterView />
-                    </PublicRoute>}
-                />
-                
-                <Route path="/login"
-                  element={
-                    <PublicRoute redirectTo='/transactions' restricted>
-                      <LoginView />
-                    </PublicRoute>}
-                />
-                
-                <Route path="/transactions"
-                  element={<PrivateRoute redirectTo="/login">
+
+          <Suspense fallback={<Loader />}>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <PrivateRoute redirectTo="/login" restricted>
                     <MainView />
-                  </PrivateRoute>}
-                />
+                  </PrivateRoute>
+                }
+              />
 
-                <Route path="/statistic"
-                  element={<PrivateRoute redirectTo="/login">
+              <Route
+                path="/register"
+                exact
+                element={
+                  <PublicRoute redirectTo="/login" restricted>
+                    <RegisterView />
+                  </PublicRoute>
+                }
+              />
+
+              <Route
+                path="/login"
+                exact
+                element={
+                  <PublicRoute redirectTo="/home" restricted>
+                    <LoginView />
+                  </PublicRoute>
+                }
+              />
+
+              <Route
+                path="/home"
+                element={
+                  <PrivateRoute redirectTo="/login">
+                    <MainView />
+                  </PrivateRoute>
+                }
+              />
+
+              <Route
+                path="/statistic"
+                element={
+                  <PrivateRoute redirectTo="/login">
                     <StatisticView />
-                  </PrivateRoute>}
-                />
+                  </PrivateRoute>
+                }
+              />
 
-                <Route path="/logout"
-                  element={<PrivateRoute redirectTo="/login">
+              <Route
+                path="/diagram"
+                element={
+                  <PrivateRoute redirectTo="/login">
+                    <CurrencyRatesPanel />
+                  </PrivateRoute>
+                }
+              />
+
+              <Route
+                path="/logout"
+                element={
+                  <PrivateRoute redirectTo="/login">
                     <LogoutView />
-                  </PrivateRoute>}
-                />
-                
-
-                {/* <PrivateRoute path="/statistic" redirectTo="/login">
-                  <StatisticView />
-                </PrivateRoute> */}
-                {/* <PrivateRoute path="/logout" redirectTo="/login">
-                  <LogoutView />
-                </PrivateRoute> */}
-              </Routes>
-            </Suspense>
+                  </PrivateRoute>
+                }
+              />
+            </Routes>
+          </Suspense>
         </>
       )}
     </Container>
