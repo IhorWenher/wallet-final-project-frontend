@@ -12,17 +12,21 @@ const token = {
   },
 };
 
-const register = createAsyncThunk('/auth/register', async credentials => {
-  try {
-    console.log(credentials);
-    const { data } = await axios.post('/auth/register', credentials);
-    const { loginData } = await axios.post('/auth/login', data.user);
-    token.set(loginData.token);
-    return loginData;
-  } catch (error) {
-    console.log(error);
-  }
-});
+const register = createAsyncThunk(
+  '/auth/register',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      console.log(credentials);
+      const { data } = await axios.post('/auth/register', credentials);
+
+      const { loginData } = await axios.post('/auth/login', data.user);
+      token.set(loginData.token);
+      return loginData;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
 
 const login = createAsyncThunk('/auth/login', async credentials => {
   console.log(credentials);
