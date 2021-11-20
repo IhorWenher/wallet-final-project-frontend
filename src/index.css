@@ -5,10 +5,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: white;
   background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(50px);
-
+  /* backdrop-filter: blur(50px); */
 }
-
 
 /* #root {
     backdrop-filter: blur(15px);

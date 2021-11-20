@@ -39,7 +39,7 @@ function App() {
                 path="/"
                 element={
                   <PrivateRoute redirectTo="/login" restricted>
-                    <MainView />
+                    <MainView/>
                   </PrivateRoute>
                 }
               />
