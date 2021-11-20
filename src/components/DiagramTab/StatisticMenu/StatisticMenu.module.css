@@ -1,37 +1,21 @@
 .container {
-  padding-top: 30px;
-  font-style: normal;
-  padding-right: 25px;
-  padding-left: 25px;
-  min-width: 320px;
-  color: #000000;
-}
-
-.formContainer:not(:last-child) {
-  margin-bottom: 20px !important;
-}
-.select {
-  width: 280px !important;
-  height: 50px !important;
-
-  border-radius: 40px !important;
-  border: 1px solid #000;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 @media screen and (min-width: 768px) {
-  .select {
-    width: 166px !important;
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
   }
-
-  .formContainer:not(:last-child) {
-    margin-bottom: 0 !important;
-    margin-right: 19px;
-  }
+  
 }
 
 @media screen and (min-width: 1280px) {
   .container {
-  padding-top: 90px;
-  
-}
+    padding-top: 90px;
+  }
 }
