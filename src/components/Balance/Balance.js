@@ -4,6 +4,7 @@ import styles from './Balance.module.css';
 import { fetchBalance } from '../../redux/balance/balance-operations';
 import { balance as balanceSelector } from '../../redux/balance/balance-selectors';
 
+
 function Balance() {
     const balance = useSelector(balanceSelector);
     const dispatch = useDispatch();
