@@ -1,13 +1,13 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { authSelectors, authOperations } from '../../redux/auth';
+import { useSelector } from 'react-redux';
+import { authSelectors } from '../../redux/auth';
+import { NavLink } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 import svgLogo from '../../images/wallet-icon.svg';
 import svgExit from '../../images/exit-icon.svg';
 import style from './HeaderNav.module.css';
 
 export default function HeaderNav() {
-  const dispatch = useDispatch();
   const name = useSelector(authSelectors.getUsername);
 
   return (
@@ -22,17 +22,12 @@ export default function HeaderNav() {
 
           <div className={style.line}></div>
 
-          <button
-            className={style.button}
-            type="button"
-            onClick={() => dispatch(authOperations.logout())}
-          >
+          <NavLink to="/logout" className={style.button}>
             <ReactSVG className={style.output__svg} src={svgExit} />
             <span className={style.output}>Выйти</span>
-          </button>
+          </NavLink>
         </div>
       </div>
     </div>
   );
 }
-//<ReactSVG className={style.logo__svg} src={svgLogo}  width ='30px'/>
