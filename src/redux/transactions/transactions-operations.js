@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 import {
-  addTransactionRequest,
-  addTransactionSucces,
+  // addTransactionRequest,
+  // addTransactionSucces,
   // addTransactionError,
   fetchTransactionsRequest,
   fetchTransactionsSucces,
@@ -10,7 +10,8 @@ import {
 } from './transactions-actions';
 
 axios.defaults.baseURL = 'https://final-project-back.herokuapp.com/api';
-// const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTU2MTY4YTgwZjc0ZGQ1MDJmMWI2NCIsImlhdCI6MTYzNzE3OTc2Nn0.NQTOwaBoglxcdu0RKYbTLsy80Jjm9qLA8gk-e82WDvg';
+// const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTg1ODFlMTk0MWE0NGM0YzNiODdjNyIsImlhdCI6MTYzNzM3NDAxNn0.IoESZ4hXfQbOchCD_I43ROeNGjlOZ5ISNxgQNaGH-lU';
+// axios.defaults.headers.common.Authorization = `Bearer ${token}`
 
 export const fetchTransactions = () => async dispatch => {
   dispatch(fetchTransactionsRequest());
@@ -23,10 +24,10 @@ export const fetchTransactions = () => async dispatch => {
 };
 
 export const addTransaction =
-  (data) => dispatch => {
+  (transaction) => dispatch => {
 
-    dispatch(addTransactionRequest);
-    dispatch(addTransactionSucces(data))
+    // dispatch(addTransactionRequest);
+    // dispatch(addTransactionSucces(data))
 
     // axios
     //   .post('/transactions', transaction)
