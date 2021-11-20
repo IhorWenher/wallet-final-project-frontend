@@ -17,7 +17,7 @@ function Balance() {
     return (
         <div className={styles.balance}>
             <h2 className={styles.balanceTitle}>Ваш баланс</h2>
-            <h2 className={styles.balanceValue}> <span className={styles.currencySymbol}>&#8372;</span> {balance ? formatBalance(balance) : ''}</h2>
+            <h2 className={styles.balanceValue}> <span className={styles.currencySymbol}>&#8372;</span> {balance ? formatBalance(balance) : formatBalance(0)}</h2>
         </div>
     );
 }
