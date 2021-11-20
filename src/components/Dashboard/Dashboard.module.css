@@ -6,6 +6,10 @@
   min-width: 320px;
 }
 
+.title td {
+  text-align: center;
+}
+
 .table {
   margin: 0 auto;
   border-spacing: 0;

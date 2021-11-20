@@ -34,7 +34,7 @@ export default function Dashboard() {
           </tr>
         </thead>
         <tbody>
-          {dashboardData &&
+          {dashboardData.length > 0 ? (
             dashboardData.map(el => {
               return (
                 <tr
@@ -66,7 +66,17 @@ export default function Dashboard() {
                   <td data-label="Баланс">{el.balance}</td>
                 </tr>
               );
-            })}
+            })
+          ) : (
+            <tr className={styles.title}>
+              <td>Привет!</td>
+              <td>добавь</td>
+              <td>свою</td>
+              <td>первую</td>
+              <td>транзакцию</td>
+              <td></td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>
