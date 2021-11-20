@@ -3,7 +3,7 @@ import axios from 'axios';
 import {
   addTransactionRequest,
   addTransactionSucces,
-  // addTransactionError,
+  addTransactionError,
   fetchTransactionsRequest,
   fetchTransactionsSucces,
   fetchTransactionsError,
@@ -16,27 +16,20 @@ export const fetchTransactions = () => async dispatch => {
   dispatch(fetchTransactionsRequest());
   try {
     const { data } = await axios.get('/transactions');
-    dispatch(fetchTransactionsSucces(data));
+    dispatch(fetchTransactionsSucces(data.data.transactionsData));
   } catch (error) {
     dispatch(fetchTransactionsError(error));
   }
 };
 
 export const addTransaction =
-  (type, date, category, sum, comment) => dispatch => {
-    const transaction = {
-      type,
-      date,
-      category,
-      sum,
-      comment,
-    };
-    console.log(transaction)
+  (data) => dispatch => {
+    console.log(data)
     dispatch(addTransactionRequest);
-    dispatch(addTransactionSucces(transaction))
+    dispatch(addTransactionSucces(data))
 
     // axios
-    //   .post('/transactions', transaction)
+    //   .post('/transactions', data)
     //   .then(({ data }) => dispatch(addTransactionSucces(data)))
     //   .catch(error => dispatch(addTransactionError(error)));
   };

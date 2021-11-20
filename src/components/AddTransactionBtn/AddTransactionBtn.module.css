@@ -1,5 +1,5 @@
 .btn {
-  position: fixed;
+  position: sticky;
   bottom: 30px;
   left: 251px;
   width: 44px;
