@@ -23,17 +23,10 @@ export const fetchTransactions = () => async dispatch => {
 };
 
 export const addTransaction =
-  (type, date, category, sum, comment) => dispatch => {
-    const transaction = {
-      type,
-      date,
-      category,
-      sum,
-      comment,
-    };
-    console.log(transaction)
+  (data) => dispatch => {
+
     dispatch(addTransactionRequest);
-    dispatch(addTransactionSucces(transaction))
+    dispatch(addTransactionSucces(data))
 
     // axios
     //   .post('/transactions', transaction)
