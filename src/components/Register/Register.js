@@ -133,7 +133,10 @@ export default function Register() {
               <input
                 className={Styles.input}
                 placeholder="Подтвердите пароль"
+                onChange={handleChange}
                 type="password"
+                name="password_confirmation"
+                value={password_confirmation}
               ></input>
               <svg width="16" height="21" className={Styles.inputIcon}>
                 <path
