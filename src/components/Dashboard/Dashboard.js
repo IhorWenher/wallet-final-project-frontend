@@ -21,7 +21,7 @@ export default function Dashboard() {
   useEffect(() => {
     dispatch(fetchTransactions());
   }, [dispatch, currentBalance]);
-  
+
   return (
     <div className={styles.container}>
       {dashboardData.length > 0 ? (
