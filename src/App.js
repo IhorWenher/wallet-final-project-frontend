@@ -11,6 +11,7 @@ import AppBar from './components/AppBar';
 import Loader from './components/Loader';
 import CurrencyRatesPanel from './components/CurrencyRatesPanel';
 import Wrap from './components/Wrap';
+import './index.css';
 
 const StatisticView = lazy(() => import('./views/StatisticView'));
 const RegisterView = lazy(() => import('./views/RegisterView'));
@@ -21,19 +22,25 @@ const LogoutView = lazy(() => import('./views/LogoutView'));
 function App() {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
+  const isLogedIn = useSelector(authSelectors.getIsLoggedIn);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
 
   return (
-    <Container>
+
+    <div className={isLogedIn ? "containerBlur" : ''}>
+      <AppBar />
+      <Container>
       {isFetchingCurrentUser ? (
-        <Loader />
+        <div className="mainLoader">
+          <Loader />
+        </div>
       ) : (
         <>
-          <AppBar />
-          <Suspense fallback={<Loader />}>
+          
+          <Suspense fallback={<div className="mainLoader"><Loader /></div>}>
             <Routes>
               {/* <Route
                 path="/"
@@ -90,7 +97,7 @@ function App() {
                 path="/diagram"
                 element={
                   <PrivateRoute redirectTo="/login">
-                    <CurrencyRatesPanel />
+                    <Wrap />
                   </PrivateRoute>
                 }
               />
@@ -108,6 +115,7 @@ function App() {
         </>
       )}
     </Container>
+    </div>
   );
 }
 
