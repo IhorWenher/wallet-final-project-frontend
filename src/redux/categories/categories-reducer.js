@@ -7,10 +7,7 @@ import {
 } from './categories-actions';
 
 const items = createReducer([], {
-  [fetchCategoriesSucces]: (_, { payload }) => {
-    console.log([payload])
-    return [payload]
-  },
+  [fetchCategoriesSucces]: (_, { payload }) => payload
 });
 
 const loading = createReducer(false, {
