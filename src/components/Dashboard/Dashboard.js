@@ -5,20 +5,23 @@ import { fetchTransactions } from '../../redux/transactions';
 import { getTransactions } from '../../redux/transactions';
 import { isLoading, isError } from '../../redux/transactions';
 
+import { balance } from '../../redux/balance/balance-selectors';
+
 // import Loader from '../Loader'
 import styles from './Dashboard.module.css';
 
 export default function Dashboard() {
   // const loading = useSelector(isLoading);
   const dashboardData = useSelector(getTransactions);
+  const currentBalance = useSelector(balance)
 
   // const error = useSelector(isError);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchTransactions());
-  }, [dispatch]);
-
+  }, [dispatch, currentBalance]);
+  
   return (
     <div className={styles.container}>
       {dashboardData.length > 0 ? (

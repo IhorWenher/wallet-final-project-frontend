@@ -11,7 +11,7 @@ import {
 
 const items = createReducer([], {
   [fetchTransactionsSucces]: (_, { payload }) => payload,
-  [addTransactionSucces]: (state, {payload})=>[...state, payload]
+  [addTransactionSucces]: (state, { payload }) => [...state, payload]
 })
 
 const loading = createReducer(false, {
