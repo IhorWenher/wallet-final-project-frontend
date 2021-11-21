@@ -17,6 +17,7 @@ export const fetchTransactions = () => async dispatch => {
   dispatch(fetchTransactionsRequest());
   try {
     const { data } = await axios.get('/transactions');
+    console.log(data)
     dispatch(fetchTransactionsSucces(data.data.transactionsData));
   } catch (error) {
     console.log(error)
@@ -24,7 +25,7 @@ export const fetchTransactions = () => async dispatch => {
   }
 };
 
-export const addTransaction = 
+export const addTransaction =
   (data) => dispatch => {
 
     // dispatch(addTransactionRequest);
@@ -32,6 +33,6 @@ export const addTransaction =
 
     axios
       .post('/transactions', data)
-      .then(responce => dispatch(addTransactionSucces(responce.data.data.transactionData)))
+      .then(({ data }) => dispatch(addTransactionSucces(data)))
       .catch(error => dispatch(addTransactionError(error)));
   };
