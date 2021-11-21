@@ -6,11 +6,11 @@
   /* backdrop-filter: blur(50px); */
 }
 
-.login {
+/* .login {
   margin-left: auto;
   margin-right: auto;
   backdrop-filter: blur(50px);
-}
+}  */
 
 @media screen and (max-width: 319px) {
   .container {
@@ -33,7 +33,7 @@
 
 @media screen and (min-width: 1280px) {
   .container {
-    min-width: 1280px;
+    width: 1280px;
     height: 100vh;
   }
 }
