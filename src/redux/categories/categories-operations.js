@@ -12,9 +12,7 @@ const fetchCategories = () => async dispatch => {
   dispatch(fetchCategoriesRequest());
   try {
     const { data } = await axios.get('/transactions');
-
-    console.log(data.data);
-
+    
     dispatch(fetchCategoriesSucces(data));
   } catch (error) {
     dispatch(fetchCategoriesError(error));
