@@ -1,15 +1,12 @@
 .container {
-  overflow-x: auto;
   padding-top: 30px;
-  padding-right: 25px;
-  padding-left: 25px;
   margin: 0 auto;
   min-width: 320px;
-  max-height: 600px;
 }
 
 .title {
   text-align: center;
+  min-width: 320px;
 }
 
 .table {
@@ -38,6 +35,10 @@
 
 .table td:not(:last-child) {
   border-bottom: 1px solid #dcdcdf;
+}
+
+.table td {
+  text-align: center;
 }
 
 @media screen and (max-width: 767px) {
@@ -81,6 +82,8 @@
 @media screen and (min-width: 768px) {
   .container {
     padding-top: 40px;
+    overflow-x: auto;
+    max-height: 600px;
   }
   .tableHead {
     background-color: #ffffff;
@@ -118,7 +121,5 @@
   .container {
     padding-top: 46px;
     min-width: 1080px;
-    box-shadow: -2px 0 0 -1px #ffffff;
-    border-left: 1px solid #dcdcdf;
   }
 }
