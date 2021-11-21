@@ -1,6 +1,8 @@
 import { PieChart } from 'react-minimal-pie-chart';
 import React from 'react';
 import styled from 'styled-components';
+import { balance } from './../../redux/balance/balance-selectors';
+import { useSelector } from 'react-redux';
 
 const tableItem = [
   {
@@ -61,20 +63,26 @@ const categories = tableItem.map((item, index) => ({
 
 const formatBalance = balance =>
   balance
-    .toLocaleString('ru-RU', { minimumFractionDigits: 2 })
-    .replace(',', '.');
+    ? balance
+        .toLocaleString('ru-RU', { minimumFractionDigits: 2 })
+        .replace(',', '.')
+    : 0;
 
-const PieChartComponent = () => (
-  <Wrapper
-    style={{ marginTop: '20px', marginLeft: 'auto', marginRight: 'auto' }}
-  >
-    <Title>Статистика</Title>
-    <PieChartWrapper>
-      <CustomPieChart lineWidth={25} animate radius={50} data={categories} />
-      <Total>₴ {formatBalance(total)}</Total>
-    </PieChartWrapper>
-  </Wrapper>
-);
+const PieChartComponent = () => {
+  const currentBalance = useSelector(balance);
+
+  return (
+    <Wrapper
+      style={{ marginTop: '20px', marginLeft: 'auto', marginRight: 'auto' }}
+    >
+      <Title>Статистика</Title>
+      <PieChartWrapper>
+        <CustomPieChart lineWidth={25} animate radius={50} data={categories} />
+        <Total>₴ {formatBalance(currentBalance)}</Total>
+      </PieChartWrapper>
+    </Wrapper>
+  );
+};
 
 export default PieChartComponent;
 

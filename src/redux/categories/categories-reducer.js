@@ -7,7 +7,7 @@ import {
 } from './categories-actions';
 
 const items = createReducer([], {
-  [fetchCategoriesSucces]: (_, { payload }) => payload,
+  [fetchCategoriesSucces]: (_, { payload }) => payload
 });
 
 const loading = createReducer(false, {

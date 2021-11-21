@@ -29,7 +29,6 @@ function App() {
   }, [dispatch]);
 
   return (
-
     <div className={isLogedIn ? "containerBlur" : ''}>
       <AppBar />
       <Container>
@@ -43,13 +42,13 @@ function App() {
           <Suspense fallback={<div className="mainLoader"><Loader /></div>}>
             <Routes>
               {/* <Route
-                path="/"
-                element={
-                  <PrivateRoute redirectTo="/login" restricted>
-                    <MainView />
-                  </PrivateRoute>
-                }
-                /> */}
+                  path="/"
+                  element={
+                    <PrivateRoute redirectTo="/login" restricted>
+                      <MainView />
+                    </PrivateRoute>
+                  }
+                  /> */}
               <Route
                 exact
                 path="/"

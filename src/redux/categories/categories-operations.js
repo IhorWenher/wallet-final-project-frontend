@@ -12,10 +12,39 @@ const fetchCategories = () => async dispatch => {
   dispatch(fetchCategoriesRequest());
   try {
     const { data } = await axios.get('/transactions');
+    const array = data.data.transactionsData
 
-    console.log(data.data);
+    const categories = {
+      income: 0,
+      spending: 0
+    }
+    // const transArray = []
+    array.forEach((item) => {
+      const name = item.category
+      const sum = item.sum
+      const type = item.type
 
-    dispatch(fetchCategoriesSucces(data));
+      if (type) {
+        categories.income += sum
+        return
+      }
+
+      if (!type) {
+        categories.spending += sum
+      }
+
+      categories[name] = categories[name] === undefined ? sum : categories[name] + sum
+    })
+    
+    const keys = Object.keys(categories)
+    const sortedArray = keys.map((item) => {
+      return {
+        name: item,
+        summ: categories[item]
+      }
+    })
+
+    dispatch(fetchCategoriesSucces(sortedArray));
   } catch (error) {
     dispatch(fetchCategoriesError(error));
   }

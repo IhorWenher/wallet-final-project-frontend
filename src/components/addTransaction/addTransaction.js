@@ -3,10 +3,9 @@ import React, { useEffect, useState } from 'react'
 import Datetime from 'react-datetime'
 import 'moment/locale/ru'
 import { addTransaction } from '../../redux/transactions'
+import { balance } from '../../redux/balance/balance-selectors';
 import { useDispatch, useSelector } from 'react-redux'
 import { validate } from 'indicative/validator'
-
-// import { balance } from '../../redux/balance/balance-selectors'
 
 import { ReactSVG } from 'react-svg'
 import svgPlus from '../../images/plus-icon.svg'
@@ -26,7 +25,7 @@ function AddTransaction({toggleModal, toggleAddTransaction}) {
     const [date, setDate] = useState(new Date())
     const [comment, setComment] = useState('')
 
-    // const userBalance = useSelector(balance)
+    const currentBalance = useSelector(balance)
     const dispatch = useDispatch()
 
 
@@ -88,11 +87,15 @@ function AddTransaction({toggleModal, toggleAddTransaction}) {
 
     async function submitHandler(e) {
         e.preventDefault()
+        if (!currentBalance && transactionType === 'spending') {
+            alert('Вы не можете ввести расход при нулевом балансе')
+            return
+        }
         if (category === 'Выберите категорию') {
             alert('Укажите категорию')
             return
         }
-
+        const userBalance = currentBalance.toString()
         // нормализация данных для бэка
         const transaction = {
             day: date.getDate(),
@@ -102,13 +105,25 @@ function AddTransaction({toggleModal, toggleAddTransaction}) {
             category: category,
             sum: parseFloat(summ),
             comment: comment,
-            // balance: userBalance
+            balance: transactionType === 'income' ? userBalance + parseFloat(summ) : userBalance - parseFloat(summ)
+            // balance: currentBalance.toString()
+        }
+
+        const transactionNoComment = {
+            day: date.getDate(),
+            month: date.getMonth(),
+            year: date.getFullYear(),
+            type: transactionType === 'income' ? true : false,
+            category: category,
+            sum: parseFloat(summ),
+            balance: transactionType === 'income' ? userBalance + parseFloat(summ) : userBalance - parseFloat(summ)
+            // balance: currentBalance.toString()
         }
         // нормализация данных бэк
 
         try {
             await validate(transaction, SCHEMA)
-            dispatch(addTransaction(transaction))
+            dispatch(addTransaction(comment ? transaction: transactionNoComment))
             closeComponent()
         } catch (error) {
             console.log(error[0].message)
