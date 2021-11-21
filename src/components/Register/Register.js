@@ -28,6 +28,21 @@ export default function Register() {
     confirmed: 'Entered passwords do not mutch',
   };
 
+  function activeClassTrigger() {
+    const passLength = password.length;
+
+    if (passLength >= 1 && passLength < 7) {
+      return Styles.badSafe;
+    }
+    if (passLength >= 7 && passLength < 10) {
+      return Styles.middleSafe;
+    }
+    if (passLength >= 10) {
+      return Styles.strongSafe;
+    }
+    return Styles.base;
+  }
+
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
       case 'name':
@@ -114,6 +129,7 @@ export default function Register() {
 
             <label className={Styles.authLabel}>
               <input
+                id="inputcheck"
                 className={Styles.input}
                 placeholder="Пароль"
                 onChange={handleChange}
@@ -145,6 +161,8 @@ export default function Register() {
                 />
               </svg>
             </label>
+
+            <div id="check" className={activeClassTrigger()}></div>
 
             <label className={Styles.authLabel}>
               <input
