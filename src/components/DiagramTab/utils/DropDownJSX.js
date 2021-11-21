@@ -8,7 +8,7 @@ import { categoriesOperations } from '../../../redux/categories';
 export default function DropDownJSX({ categoryName, categoryArray }) {
   const [category, setCategory] = useState(categoryName);
   const [listVisible, setListVisible] = useState(false);
-  const [categoriesArray, setCategoriesAray] = useState([]);
+  // const [categoriesArray, setCategoriesAray] = useState([]);
 
   function onClickCategory() {
     listVisible ? setListVisible(false) : setListVisible(true);
