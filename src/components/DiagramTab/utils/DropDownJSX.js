@@ -21,8 +21,10 @@ export default function DropDownJSX({ categoryName, categoryArray }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log('before');
     dispatch(categoriesOperations.fetchCategories());
-  }, []);
+    console.log('after');
+  });
 
   return (
     <form className={styles.container}>
