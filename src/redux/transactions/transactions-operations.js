@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 import {
-  // addTransactionRequest,
-  // addTransactionSucces,
-  // addTransactionError,
+  addTransactionRequest,
+  addTransactionSucces,
+  addTransactionError,
   fetchTransactionsRequest,
   fetchTransactionsSucces,
   fetchTransactionsError,
@@ -26,13 +26,13 @@ export const fetchTransactions = () => async dispatch => {
 };
 
 export const addTransaction =
-  (transaction) => dispatch => {
+  (data) => dispatch => {
 
     // dispatch(addTransactionRequest);
     // dispatch(addTransactionSucces(data))
 
-    // axios
-    //   .post('/transactions', data)
-    //   .then(({ data }) => dispatch(addTransactionSucces(data)))
-    //   .catch(error => dispatch(addTransactionError(error)));
+    axios
+      .post('/transactions', data)
+      .then(({ data }) => dispatch(addTransactionSucces(data)))
+      .catch(error => dispatch(addTransactionError(error)));
   };

@@ -6,7 +6,7 @@ import { addTransaction } from '../../redux/transactions'
 import { useDispatch, useSelector } from 'react-redux'
 import { validate } from 'indicative/validator'
 
-import { balance } from '../../redux/balance/balance-selectors'
+// import { balance } from '../../redux/balance/balance-selectors'
 
 import { ReactSVG } from 'react-svg'
 import svgPlus from '../../images/plus-icon.svg'
@@ -26,7 +26,7 @@ function AddTransaction({toggleModal, toggleAddTransaction}) {
     const [date, setDate] = useState(new Date())
     const [comment, setComment] = useState('')
 
-    const userBalance = useSelector(balance)
+    // const userBalance = useSelector(balance)
     const dispatch = useDispatch()
 
 
@@ -95,14 +95,14 @@ function AddTransaction({toggleModal, toggleAddTransaction}) {
 
         // нормализация данных для бэка
         const transaction = {
-            day: date.getDay(),
+            day: date.getDate(),
             month: date.getMonth(),
             year: date.getFullYear(),
             type: transactionType === 'income' ? true : false,
             category: category,
             sum: parseFloat(summ),
             comment: comment,
-            balance: userBalance
+            // balance: userBalance
         }
         // нормализация данных бэк
 
