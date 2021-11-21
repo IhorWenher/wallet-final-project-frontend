@@ -95,7 +95,7 @@ function AddTransaction({toggleModal, toggleAddTransaction}) {
             alert('Укажите категорию')
             return
         }
-
+        const userBalance = currentBalance.toString()
         // нормализация данных для бэка
         const transaction = {
             day: date.getDate(),
@@ -105,7 +105,8 @@ function AddTransaction({toggleModal, toggleAddTransaction}) {
             category: category,
             sum: parseFloat(summ),
             comment: comment,
-            balance: currentBalance.toString()
+            balance: transactionType === 'income' ? userBalance + parseFloat(summ) : userBalance - parseFloat(summ)
+            // balance: currentBalance.toString()
         }
 
         const transactionNoComment = {
@@ -115,7 +116,8 @@ function AddTransaction({toggleModal, toggleAddTransaction}) {
             type: transactionType === 'income' ? true : false,
             category: category,
             sum: parseFloat(summ),
-            balance: currentBalance.toString()
+            balance: transactionType === 'income' ? userBalance + parseFloat(summ) : userBalance - parseFloat(summ)
+            // balance: currentBalance.toString()
         }
         // нормализация данных бэк
 
