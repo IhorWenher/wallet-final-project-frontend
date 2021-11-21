@@ -42,8 +42,6 @@ const login = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/auth/login', credentials);
-      console.log(data)
-      console.log(data.data.token)
       token.set(data.data.token);
       return data;
     } catch (error) {
@@ -75,7 +73,6 @@ const fetchCurrentUser = createAsyncThunk(
 
     try {
       const { data } = await axios.get('/auth/current');
-      console.log(data);
       return data;
     } catch (error) {
       console.log(error);

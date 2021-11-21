@@ -22,27 +22,26 @@ function App() {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
 
+  console.log(isFetchingCurrentUser)
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
 
   return (
     <Container>
-      {isFetchingCurrentUser ? (
-        <Loader />
-      ) : (
+      {!isFetchingCurrentUser &&
         <>
           <AppBar />
-          <Suspense fallback={<Loader />}>
+          <Suspense fallback={<Loader/>}>
             <Routes>
               {/* <Route
-                path="/"
-                element={
-                  <PrivateRoute redirectTo="/login" restricted>
-                    <MainView />
-                  </PrivateRoute>
-                }
-                /> */}
+                  path="/"
+                  element={
+                    <PrivateRoute redirectTo="/login" restricted>
+                      <MainView />
+                    </PrivateRoute>
+                  }
+                  /> */}
               <Route
                 exact
                 path="/"
@@ -106,9 +105,9 @@ function App() {
             </Routes>
           </Suspense>
         </>
-      )}
+      }
     </Container>
-  );
+  )
 }
 
 export default App;
