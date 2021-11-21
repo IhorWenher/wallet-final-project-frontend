@@ -43,17 +43,17 @@ function App() {
                   </PrivateRoute>
                 }
                 /> */}
-                <Route
-                  exact
-                  path="/"
-                  element={
-                    <PrivateRoute redirectTo="/login">
-                      <Wrap>
-                        <MainView />
-                      </Wrap>
-                    </PrivateRoute>
-                  }
-                />
+              <Route
+                exact
+                path="/"
+                element={
+                  <PrivateRoute redirectTo="/login">
+                    <Wrap>
+                      <MainView />
+                    </Wrap>
+                  </PrivateRoute>
+                }
+              />
 
               <Route
                 path="/register"
@@ -79,9 +79,9 @@ function App() {
                 path="/statistic"
                 element={
                   <PrivateRoute redirectTo="/login">
-                     <Wrap>
-                        <StatisticView />
-                      </Wrap>
+                    <Wrap>
+                      <StatisticView />
+                    </Wrap>
                   </PrivateRoute>
                 }
               />
@@ -90,7 +90,7 @@ function App() {
                 path="/diagram"
                 element={
                   <PrivateRoute redirectTo="/login">
-                    {/* <CurrencyRatesPanel /> */}
+                    <CurrencyRatesPanel />
                   </PrivateRoute>
                 }
               />

@@ -65,7 +65,9 @@ const formatBalance = balance =>
     .replace(',', '.');
 
 const PieChartComponent = () => (
-  <Wrapper style={{ marginTop: '20px' }}>
+  <Wrapper
+    style={{ marginTop: '20px', marginLeft: 'auto', marginRight: 'auto' }}
+  >
     <Title>Статистика</Title>
     <PieChartWrapper>
       <CustomPieChart lineWidth={25} animate radius={50} data={categories} />
