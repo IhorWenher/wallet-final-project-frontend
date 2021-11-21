@@ -107,7 +107,6 @@ function AddTransaction({toggleModal, toggleAddTransaction}) {
         // нормализация данных бэк
 
         try {
-            console.log(transaction)
             await validate(transaction, SCHEMA)
             dispatch(addTransaction(transaction))
             closeComponent()
