@@ -9,8 +9,8 @@ import PublicRoute from './components/PublicRoute';
 import Container from './components/Container';
 import AppBar from './components/AppBar';
 import Loader from './components/Loader';
-import CurrencyRatesPanel from './components/CurrencyRatesPanel';
 import Wrap from './components/Wrap';
+import HeaderBackground from './components/HeaderBackground'
 import './index.css';
 
 const StatisticView = lazy(() => import('./views/StatisticView'));
@@ -30,7 +30,9 @@ function App() {
 
   return (
     <div className={isLogedIn ? "containerBlur" : ''}>
-      <AppBar />
+
+      <HeaderBackground/>
+
       <Container>
       {isFetchingCurrentUser ? (
         <div className="mainLoader">
