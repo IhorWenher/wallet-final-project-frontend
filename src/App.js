@@ -32,6 +32,7 @@ function App() {
       ) : (
         <>
           <AppBar />
+
           <Suspense fallback={<Loader />}>
             <Routes>
               <Route
