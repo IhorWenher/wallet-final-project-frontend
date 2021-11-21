@@ -1,8 +1,11 @@
 .container {
   padding-top: 30px;
-  padding-right: 25px;
-  padding-left: 25px;
   margin: 0 auto;
+  min-width: 320px;
+}
+
+.title {
+  text-align: center;
   min-width: 320px;
 }
 
@@ -15,7 +18,7 @@
 
 .table th,
 .table td {
-  text-align: left;
+  min-height: 45px;
   padding: 10px 20px;
 }
 
@@ -32,6 +35,10 @@
 
 .table td:not(:last-child) {
   border-bottom: 1px solid #dcdcdf;
+}
+
+.table td {
+  text-align: center;
 }
 
 @media screen and (max-width: 767px) {
@@ -106,13 +113,16 @@
     padding-bottom: 0;
     border-bottom: none;
   }
+
+  .scrollDiv {
+    overflow-y: auto;
+    max-height: 600px;
+  }
 }
 
 @media screen and (min-width: 1280px) {
   .container {
     padding-top: 46px;
-    min-width: 1080px;
-    box-shadow: -2px 0 0 -1px #ffffff;
-    border-left: 1px solid #dcdcdf;
+    padding-left: 30px;
   }
 }

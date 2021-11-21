@@ -10,6 +10,7 @@ import Container from './components/Container';
 import AppBar from './components/AppBar';
 import Loader from './components/Loader';
 import CurrencyRatesPanel from './components/CurrencyRatesPanel';
+import Wrap from './components/Wrap';
 
 const StatisticView = lazy(() => import('./views/StatisticView'));
 const RegisterView = lazy(() => import('./views/RegisterView'));
@@ -32,17 +33,27 @@ function App() {
       ) : (
         <>
           <AppBar />
-
           <Suspense fallback={<Loader />}>
             <Routes>
-              <Route
+              {/* <Route
                 path="/"
                 element={
                   <PrivateRoute redirectTo="/login" restricted>
                     <MainView />
                   </PrivateRoute>
                 }
-              />
+                /> */}
+                <Route
+                  exact
+                  path="/"
+                  element={
+                    <PrivateRoute redirectTo="/login">
+                      <Wrap>
+                        <MainView />
+                      </Wrap>
+                    </PrivateRoute>
+                  }
+                />
 
               <Route
                 path="/register"
@@ -58,18 +69,9 @@ function App() {
                 path="/login"
                 exact
                 element={
-                  <PublicRoute redirectTo="/home" restricted>
+                  <PublicRoute redirectTo="/" restricted>
                     <LoginView />
                   </PublicRoute>
-                }
-              />
-
-              <Route
-                path="/home"
-                element={
-                  <PrivateRoute redirectTo="/login">
-                    <MainView />
-                  </PrivateRoute>
                 }
               />
 
@@ -77,7 +79,9 @@ function App() {
                 path="/statistic"
                 element={
                   <PrivateRoute redirectTo="/login">
-                    <StatisticView />
+                     <Wrap>
+                        <StatisticView />
+                      </Wrap>
                   </PrivateRoute>
                 }
               />
@@ -86,7 +90,7 @@ function App() {
                 path="/diagram"
                 element={
                   <PrivateRoute redirectTo="/login">
-                    <CurrencyRatesPanel />
+                    {/* <CurrencyRatesPanel /> */}
                   </PrivateRoute>
                 }
               />

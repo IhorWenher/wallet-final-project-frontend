@@ -16,28 +16,41 @@ const register = createAsyncThunk(
   '/auth/register',
   async (credentials, { rejectWithValue }) => {
     try {
-      console.log(credentials);
       const { data } = await axios.post('/auth/register', credentials);
+      const user = data.data.user
 
-      const { loginData } = await axios.post('/auth/login', data.user);
-      token.set(loginData.token);
-      return loginData;
+      const login = await axios.post('auth/login', user)
+      const activeUser = login.data.data.user
+      const activeToken = login.data.data.token
+      token.set(activeToken)
+
+      const finishedUser = {
+        token: activeToken,
+        user: activeUser
+      }
+
+      return finishedUser
+
     } catch (error) {
       return rejectWithValue(error);
     }
   },
 );
 
-const login = createAsyncThunk('/auth/login', async credentials => {
-  console.log(credentials);
-  try {
-    const { data } = await axios.post('/auth/login', credentials);
-    token.set(data.token);
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
-});
+const login = createAsyncThunk(
+  '/auth/login',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post('/auth/login', credentials);
+      console.log(data)
+      console.log(data.data.token)
+      token.set(data.data.token);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
 
 const logout = createAsyncThunk('/auth/logout', async () => {
   try {
@@ -59,8 +72,10 @@ const fetchCurrentUser = createAsyncThunk(
     }
 
     token.set(persistedToken);
+
     try {
       const { data } = await axios.get('/auth/current');
+      console.log(data);
       return data;
     } catch (error) {
       console.log(error);

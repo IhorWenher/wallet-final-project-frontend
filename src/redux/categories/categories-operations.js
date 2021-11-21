@@ -14,7 +14,8 @@ axios.defaults.baseURL = 'https://final-project-back.herokuapp.com/api';
 const fetchCategories = () => async dispatch => {
   dispatch(fetchCategoriesRequest());
   try {
-    const {data}= await axios.get('/categories')
+    const { data } = await axios.get('/categories')
+    console.log(data)
     dispatch(fetchCategoriesSucces(data));
   } catch (error) {
     dispatch(fetchCategoriesError(error));
