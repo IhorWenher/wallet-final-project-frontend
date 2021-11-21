@@ -33,6 +33,6 @@ export const addTransaction =
 
     axios
       .post('/transactions', data)
-      .then(({ data }) => dispatch(addTransactionSucces(data)))
+      .then(responce => dispatch(addTransactionSucces(responce.data.data.transactionData)))
       .catch(error => dispatch(addTransactionError(error)));
   };
