@@ -143,6 +143,14 @@ p {
   text-decoration: none;
 }
 
+@media screen and (max-width: 767px) {
+  .form {
+    width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 @media screen and (min-width: 768px) {
   .logoIcon {
     width: 181px;
