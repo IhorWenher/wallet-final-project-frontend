@@ -17,21 +17,43 @@ export default function Navigation() {
       <div className={style.nav__link}>
         {isLogin && (
           <>
-            <NavLink to="/home" className={style.home}
-
-            >
-              <Homesvg fill=' current' className={`${style.home__svg} ${pathname === '/home'? style.activ : ''} `}/>
-                <span className={`${style.home__word} ${pathname === '/home'? style.activ : ''}`}>Главная</span>
+            <NavLink to="/home" className={style.home}>
+              <Homesvg
+                fill=" current"
+                className={`${style.home__svg} ${
+                  pathname === '/home' ? style.activ : ''
+                } `}
+              />
+              <span
+                className={`${style.home__word} ${
+                  pathname === '/home' ? style.activ : ''
+                }`}
+              >
+                Главная
+              </span>
             </NavLink>
 
             <NavLink to="/statistic" className={style.statis}>
-              <Statissvg className={`${style.statis__svg} ${pathname === '/statistic'? style.activ : ''}`} />
-              <span className={`${style.statis__word} ${pathname === '/statistic'? style.activ : ''}`}>Статистика</span>
-
+              <Statissvg
+                className={`${style.statis__svg} ${
+                  pathname === '/statistic' ? style.activ : ''
+                }`}
+              />
+              <span
+                className={`${style.statis__word} ${
+                  pathname === '/statistic' ? style.activ : ''
+                }`}
+              >
+                Статистика
+              </span>
             </NavLink>
 
             <NavLink to="/diagram" className={style.curren}>
-              <Dollarsvg className={`${style.curren__svg} ${pathname === '/diagram'? style.activ: ''}`} />
+              <Dollarsvg
+                className={`${style.curren__svg} ${
+                  pathname === '/diagram' ? style.activ : ''
+                }`}
+              />
             </NavLink>
           </>
         )}
