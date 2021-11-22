@@ -1,11 +1,11 @@
 .confirmContainer {
     padding: 40px 20px;
     width: 100%;
-    /* padding-top: 40px; */
     margin-top: 10vh;
     height: 70vh;
     text-align: center;
     background-color: white;
+    border-radius: 20px;
 }
 
 @media screen and (min-width: 768px) {
@@ -13,7 +13,6 @@
         margin-right: auto;
         margin-left: auto;
         width: 540px;
-        border-radius: 20px;
     }
 }
 
@@ -31,6 +30,7 @@
     border: 0;
     font-size: 18px;
     text-decoration: none;
+    padding: 10px;
 }
 
 .btn:first-child {
