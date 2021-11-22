@@ -14,6 +14,13 @@
   height: 60px;
 }
 
+.home {
+  display: flex;
+  margin-right: auto;
+  text-decoration: none;
+  align-items: center;
+}
+
 .logo__svg {
   width: 30px;
   height: 30px;
@@ -21,8 +28,6 @@
 }
 
 .logo {
-  margin-right: auto;
-  display: block;
   font-style: normal;
   font-weight: 700;
   font-size: 25px;
