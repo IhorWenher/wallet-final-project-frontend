@@ -53,6 +53,13 @@
     display: initial;
   }
 
+  .home__word:active {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 27px;
+  }
+
   .curren__svg {
     display: none;
   }

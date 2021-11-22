@@ -16,7 +16,8 @@ export default function Navigation() {
       <div className={style.nav__link}>
         {isLogin && (
           <>
-            <NavLink to="/home" className={style.home}>
+            <NavLink  to="/home" className={style.home}>
+
              <svg version="1.1"  viewBox="0 0 32 32" className={style.home__svg}>
               <title>home</title>
               <path fill="#4a56e2" d="M3.556 0c-1.964 0-3.556 1.592-3.556 3.556v0 24.889c0 1.964 1.592 3.556 3.556 3.556v0h24.889c1.964 0 3.556-1.592 3.556-3.556v0-24.889c0-1.964-1.592-3.556-3.556-3.556v0h-24.889zM13.867 17.988v6.901h-5.333v-9.202h-3.2l10.667-10.354 10.667 10.354h-3.2v9.202h-5.333v-6.901h-4.267z"></path>
