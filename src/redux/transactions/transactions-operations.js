@@ -27,7 +27,7 @@ export const addTransaction =
     dispatch(addTransactionRequest);
 
     axios
-      .post('/transactions/post', data)
+      .post('/transactions/add', data)
       .then(responce => {
         dispatch(addTransactionSucces(responce.data.data.transactionData))
       })
