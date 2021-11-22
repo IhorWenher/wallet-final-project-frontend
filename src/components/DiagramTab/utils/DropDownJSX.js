@@ -22,7 +22,7 @@ export default function DropDownJSX({ categoryName, categoryArray }) {
 
   useEffect(() => {
     dispatch(categoriesOperations.fetchCategories());
-  }, []);
+  });
 
   return (
     <form className={styles.container}>
