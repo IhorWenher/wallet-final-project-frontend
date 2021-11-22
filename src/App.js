@@ -9,7 +9,9 @@ import PublicRoute from './components/PublicRoute';
 import Container from './components/Container';
 import AppBar from './components/AppBar';
 import Loader from './components/Loader';
-import CurrencyRatesPanel from './components/CurrencyRatesPanel';
+import Wrap from './components/Wrap';
+import HeaderBackground from './components/HeaderBackground'
+import './index.css';
 
 const StatisticView = lazy(() => import('./views/StatisticView'));
 const RegisterView = lazy(() => import('./views/RegisterView'));
@@ -20,26 +22,42 @@ const LogoutView = lazy(() => import('./views/LogoutView'));
 function App() {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
+  const isLogedIn = useSelector(authSelectors.getIsLoggedIn);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
 
   return (
-    <Container>
+    <div className={isLogedIn ? "containerBlur" : ''}>
+
+      <HeaderBackground/>
+
+      <Container>
       {isFetchingCurrentUser ? (
-        <Loader />
+        <div className="mainLoader">
+          <Loader />
+        </div>
       ) : (
         <>
-          <AppBar />
-
-          <Suspense fallback={<Loader />}>
+          
+          <Suspense fallback={<div className="mainLoader"><Loader /></div>}>
             <Routes>
               <Route
-                path="/"
+                  path="/"
+                  element={
+                    <PrivateRoute redirectTo="/home" restricted>
+                    </PrivateRoute>
+                  }
+                  />
+              <Route
+                exact
+                path="/home"
                 element={
-                  <PrivateRoute redirectTo="/login" restricted>
-                    <MainView/>
+                  <PrivateRoute redirectTo="/login">
+                    <Wrap>
+                      <MainView />
+                    </Wrap>
                   </PrivateRoute>
                 }
               />
@@ -65,19 +83,12 @@ function App() {
               />
 
               <Route
-                path="/home"
-                element={
-                  <PrivateRoute redirectTo="/login">
-                    <MainView />
-                  </PrivateRoute>
-                }
-              />
-
-              <Route
                 path="/statistic"
                 element={
                   <PrivateRoute redirectTo="/login">
-                    <StatisticView />
+                    <Wrap>
+                      <StatisticView />
+                    </Wrap>
                   </PrivateRoute>
                 }
               />
@@ -86,7 +97,7 @@ function App() {
                 path="/diagram"
                 element={
                   <PrivateRoute redirectTo="/login">
-                    <CurrencyRatesPanel />
+                    <Wrap />
                   </PrivateRoute>
                 }
               />
@@ -104,6 +115,7 @@ function App() {
         </>
       )}
     </Container>
+    </div>
   );
 }
 

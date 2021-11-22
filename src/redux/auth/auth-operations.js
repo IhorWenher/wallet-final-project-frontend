@@ -16,16 +16,21 @@ const register = createAsyncThunk(
   '/auth/register',
   async (credentials, { rejectWithValue }) => {
     try {
-      const register = async () => {
-        const { data } = await axios.post('/auth/register', credentials);
-        return data.data.user;
-      };
+      const { data } = await axios.post('/auth/register', credentials);
+      const user = data.data.user
 
-      const user = await register();
+      const login = await axios.post('auth/login', user)
+      const activeUser = login.data.data.user
+      const activeToken = login.data.data.token
+      token.set(activeToken)
 
-      const { data } = await axios.post('/auth/login', user);
-      token.set(data.token);
-      return data;
+      const finishedUser = {
+        token: activeToken,
+        user: activeUser
+      }
+
+      return finishedUser
+
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -35,10 +40,9 @@ const register = createAsyncThunk(
 const login = createAsyncThunk(
   '/auth/login',
   async (credentials, { rejectWithValue }) => {
-    console.log(credentials);
     try {
       const { data } = await axios.post('/auth/login', credentials);
-      token.set(data.token);
+      token.set(data.data.token);
       return data;
     } catch (error) {
       return rejectWithValue(error);
@@ -66,6 +70,7 @@ const fetchCurrentUser = createAsyncThunk(
     }
 
     token.set(persistedToken);
+
     try {
       const { data } = await axios.get('/auth/current');
       return data;

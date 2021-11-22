@@ -7,13 +7,21 @@
 
 .nav__link {
   display: flex;
+  justify-content: space-between;
 }
 
 .home__svg,
-.statis__svg {
-  margin-right: 36px;
+.statis__svg,
+.curren__svg {
+  fill: #6e78e8;
+  height: 38px;
+  width: 38px;
 }
-
+.activ {
+  fill: #4a56e2;
+  color: black;
+  font-weight: bold;
+}
 .home__word,
 .statis__word {
   display: none;
@@ -39,14 +47,28 @@
     text-decoration: none;
     display: flex;
   }
+
+  .activ {
+    color: black;
+    font-weight: bold;
+  }
   .home__svg,
   .statis__svg {
+    width: 18px;
+    height: 18px;
     margin-right: 23px;
   }
 
   .home__word,
   .statis__word {
     display: initial;
+  }
+
+  .home__word:active {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 27px;
   }
 
   .curren__svg {
@@ -56,7 +78,7 @@
 
 @media screen and (min-width: 1280px) {
   .container {
-    min-width: 1080px;
+    display: inline-flex;
     padding-top: 45px;
     padding-left: 88px;
   }
