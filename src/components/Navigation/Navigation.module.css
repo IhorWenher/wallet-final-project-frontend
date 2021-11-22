@@ -11,10 +11,11 @@
 }
 
 .home__svg,
-.statis__svg {
+.statis__svg,
+.curren__svg {
+  fill: #6E78E8;
   height: 38px;
   width: 38px;
-  margin-right: 36px;
 }
 
 .home__word,
