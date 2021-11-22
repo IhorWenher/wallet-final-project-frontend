@@ -20,11 +20,13 @@
 .logo__svg {
   width: 30px;
   height: 30px;
+  margin-right: 16px;
 }
 
 .logo {
+  font-family: Poppins;
   font-style: normal;
-  font-weight: 700;
+  font-weight: bold;
   font-size: 25px;
   line-height: 45px;
   display: flex;
@@ -72,6 +74,7 @@
   .logo {
     margin-right: 318px;
     font-size: 30px;
+    font-weight: bold;
     display: block;
   }
   .logo__svg {
