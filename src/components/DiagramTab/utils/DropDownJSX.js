@@ -1,12 +1,18 @@
-import React from 'react';
 import styles from './DropDownJSX.module.css';
 import { ReactSVG } from 'react-svg';
 import svgIcon from '../../../images/categories-list-icon.svg';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { categoriesOperations } from '../../../redux/categories';
+// import { useRouteMatch, useLocation, useHistory } from 'react-router-dom';
 
 export default function DropDownJSX({ categoryName, categoryArray }) {
+  // const match = useRouteMatch()
+  // console.log(match)
+
   const [category, setCategory] = useState(categoryName);
   const [listVisible, setListVisible] = useState(false);
+  // const [categoriesArray, setCategoriesAray] = useState([]);
 
   function onClickCategory() {
     listVisible ? setListVisible(false) : setListVisible(true);
@@ -15,6 +21,12 @@ export default function DropDownJSX({ categoryName, categoryArray }) {
     setCategory(name);
     setListVisible(false);
   }
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(categoriesOperations.fetchCategories());
+  });
 
   return (
     <form className={styles.container}>
@@ -35,6 +47,9 @@ export default function DropDownJSX({ categoryName, categoryArray }) {
           ))}
         </ul>
       )}
+      {/* <button type="submit" onClick={() => fetchCategories()}>
+        загр
+      </button> */}
     </form>
   );
 }

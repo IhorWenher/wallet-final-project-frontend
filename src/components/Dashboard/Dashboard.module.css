@@ -1,15 +1,11 @@
 .container {
-  overflow-x: auto;
-  padding-top: 30px;
-  padding-right: 25px;
-  padding-left: 25px;
   margin: 0 auto;
   min-width: 320px;
-  max-height: 600px;
 }
 
 .title {
   text-align: center;
+  min-width: 320px;
 }
 
 .table {
@@ -40,6 +36,10 @@
   border-bottom: 1px solid #dcdcdf;
 }
 
+.table td {
+  text-align: center;
+}
+
 @media screen and (max-width: 767px) {
   .table {
     border-collapse: collapse;
@@ -68,6 +68,7 @@
     display: block;
     text-align: right;
     background-color: #ffffff;
+    min-width: 280px;
   }
   .table td::before {
     content: attr(data-label);
@@ -112,13 +113,16 @@
     padding-bottom: 0;
     border-bottom: none;
   }
+
+  .scrollDiv {
+    overflow-y: auto;
+    max-height: 600px;
+  }
 }
 
 @media screen and (min-width: 1280px) {
   .container {
     padding-top: 46px;
-    min-width: 1080px;
-    box-shadow: -2px 0 0 -1px #ffffff;
-    border-left: 1px solid #dcdcdf;
+    padding-left: 30px;
   }
 }

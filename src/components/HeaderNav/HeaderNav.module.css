@@ -1,28 +1,27 @@
-.container {
-    font-style: normal;
-    margin: 0 auto;
-    padding-left: 20px;
-    padding-right: 20px;
-    min-width: 320px;
-    background: #ffffff;
-    border-bottom: 1px solid #ececec;
-}
-
 .header {
+    padding: 0 20px;
     display: flex;
     align-items: center;
     height: 60px;
 }
 
+.home {
+    display: flex;
+    margin-right: auto;
+    text-decoration: none;
+    align-items: center;
+}
+
 .logo__svg {
+    width: 30px;
+    height: 30px;
     margin-right: 16px;
 }
 
 .logo {
-    margin-right: 53px;
-    display: block;
+    font-family: Poppins, sans-serif;
     font-style: normal;
-    font-weight: 700;
+    font-weight: bold;
     font-size: 25px;
     line-height: 45px;
     display: flex;
@@ -37,7 +36,7 @@
 .name {
     margin-right: 10px;
     width: 80px;
-    font-family: Circe;
+    font-family: 'Circe', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
@@ -63,11 +62,8 @@
 }
 
 @media screen and (min-width: 768px) {
-    .container {
-        padding-left: 40px;
-        padding-right: 40px;
-    }
     .header {
+        padding: 0 40px;
         height: 80px;
     }
     .logo {
@@ -76,6 +72,8 @@
         display: block;
     }
     .logo__svg {
+        width: 40px;
+        height: 40px;
         margin-right: 20px;
     }
     .line {
@@ -87,7 +85,7 @@
     .output {
         display: initial;
         margin-left: 10px;
-        font-family: Circe;
+        font-family: Circe, sans-serif;
         font-style: normal;
         font-weight: normal;
         font-size: 18px;
@@ -97,11 +95,12 @@
 }
 
 @media screen and (min-width: 1280px) {
-    .container {
-        min-width: 1080px;
+    .header {
+        padding: 0 85px;
+        height: 80px;
     }
     .logo {
-        margin-right: 739px;
+        margin-right: auto;
     }
     .line {
         border: 1px solid #bdbdbd;

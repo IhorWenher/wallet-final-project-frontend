@@ -1,7 +1,4 @@
 .btn {
-  position: sticky;
-  bottom: 30px;
-  left: 251px;
   width: 44px;
   height: 44px;
   background-color: #24cca7;
@@ -16,24 +13,21 @@
   box-shadow: 0px 6px 20px rgba(25, 143, 117, 0.774);
 }
 
+@media screen and (max-width: 767px) {
+  .btn {
+    position: sticky;
+    bottom: 5%;
+    left: 80%;
+  }
+}
+
 @media screen and (min-width: 768px) {
   .btn {
-    bottom: 40px;
-    left: 684px;
+    position: fixed;
+    right: 5%;
+    bottom: 15%;
   }
 }
-
-@media screen and (min-width: 1280px) {
-  .btn {
-    left: 1151px;
-  }
-}
-
-/* .btn svg {
-  width: 20px;
-  height: 20px;
-  fill: white;
-} */
 
 .svgComponent {
   margin-left: auto;

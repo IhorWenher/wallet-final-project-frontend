@@ -48,6 +48,12 @@
         width: 350px;
         margin-top: 30;
         margin-bottom: 30px;
-        margin-left: 40px;
+        margin-left: 85px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .hidden {
+        display: none;
     }
 }
