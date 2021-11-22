@@ -4,8 +4,12 @@ import svgIcon from '../../../images/categories-list-icon.svg';
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { categoriesOperations } from '../../../redux/categories';
+// import { useRouteMatch, useLocation, useHistory } from 'react-router-dom';
 
 export default function DropDownJSX({ categoryName, categoryArray }) {
+  // const match = useRouteMatch()
+  // console.log(match)
+
   const [category, setCategory] = useState(categoryName);
   const [listVisible, setListVisible] = useState(false);
   // const [categoriesArray, setCategoriesAray] = useState([]);
