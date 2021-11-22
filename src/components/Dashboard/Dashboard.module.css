@@ -69,6 +69,7 @@
     display: block;
     text-align: right;
     background-color: #ffffff;
+    min-width: 280px;
   }
   .table td::before {
     content: attr(data-label);
@@ -82,8 +83,6 @@
 @media screen and (min-width: 768px) {
   .container {
     padding-top: 40px;
-    overflow-x: auto;
-    max-height: 600px;
   }
   .tableHead {
     background-color: #ffffff;
@@ -115,11 +114,16 @@
     padding-bottom: 0;
     border-bottom: none;
   }
+
+  .scrollDiv {
+    overflow-y: auto;
+    max-height: 600px;
+  }
 }
 
 @media screen and (min-width: 1280px) {
   .container {
     padding-top: 46px;
-    min-width: 1080px;
+    padding-left: 30px;
   }
 }

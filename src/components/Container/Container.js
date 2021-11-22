@@ -7,7 +7,7 @@ const Container = ({ children }) => {
   const isLogedIn = useSelector(authSelectors.getIsLoggedIn);
 
   return (
-    <div className={!isLogedIn ? Styles.container : Styles.login}>
+    <div className={isLogedIn ? Styles.container : Styles.login}>
       {' '}
       {children}{' '}
     </div>
