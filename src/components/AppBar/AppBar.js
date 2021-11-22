@@ -2,7 +2,6 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import Styles from './AppBar.module.css';
-
 import HeaderNav from '../HeaderNav';
 
 import { authSelectors } from '../../redux/auth';

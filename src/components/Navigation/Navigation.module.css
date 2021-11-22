@@ -7,7 +7,7 @@
 
 .nav__link {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .home__svg,

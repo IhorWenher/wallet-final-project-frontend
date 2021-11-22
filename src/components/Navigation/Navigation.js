@@ -27,6 +27,7 @@ export default function Navigation() {
             <NavLink to="/statistic" className={style.statis}>
               <Statissvg className={`${style.statis__svg} ${pathname === '/statistic'? style.activ : ''}`} />
               <span className={`${style.statis__word} ${pathname === '/statistic'? style.activ : ''}`}>Статистика</span>
+
             </NavLink>
 
             <NavLink to="/diagram" className={style.curren}>
