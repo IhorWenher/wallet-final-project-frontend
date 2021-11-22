@@ -11,7 +11,7 @@ function Balance() {
     const dispatch = useDispatch();
     const location = useLocation();
 
-    const isHome = location.pathname === '/';
+    const isHome = location.pathname === '/home';
 
     // Добавил переменную которая вытягивает значение поля Transactions из редакса, для того чтобы баланс обновлялся каждый раз, как только добавится новая транзакция.
     // записал эту переменную в зависимости useEffect.
