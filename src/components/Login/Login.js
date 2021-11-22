@@ -4,6 +4,11 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../../redux/auth';
+import { alert, defaults } from '@pnotify/core';
+
+defaults.styling = 'material';
+defaults.icons = 'material';
+defaults.delay = 1000;
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -22,10 +27,21 @@ export default function Login() {
   };
 
   const handleSubmit = e => {
-    e.preventDefault();
-    dispatch(authOperations.login({ email, password }));
-    setEmail('');
-    setPassword('');
+    try {
+      e.preventDefault();
+      dispatch(authOperations.login({ email, password }));
+      setEmail('');
+      setPassword('');
+    } catch (error) {
+      alert({
+        text: error[0].message,
+        hide: true,
+        delay: 2000,
+        sticker: false,
+        closer: true,
+        dir1: 'down',
+      });
+    }
   };
 
   return (

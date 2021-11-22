@@ -38,6 +38,16 @@ p {
     transform: translate(-50%, -50%) scale(1);
 }
 
+.containerBlur {
+  backdrop-filter: blur(50px);
+}
+.mainLoader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+}
+
 button {
     cursor: pointer;
 }
@@ -47,6 +57,13 @@ button {
         background-color: #e7eaf2;
         height: 100vh;
     }
+}
+
+@media screen and (max-width: 767px) {
+  .containerBlur {
+    background-color: #e7eaf2;
+    height: 100vh;
+  }
 }
 
 @media screen and (min-width: 768px) {
