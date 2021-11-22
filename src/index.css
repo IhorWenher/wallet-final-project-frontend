@@ -39,13 +39,14 @@ p {
 }
 
 .containerBlur {
-  backdrop-filter: blur(50px);
+    backdrop-filter: blur(50px);
 }
+
 .mainLoader {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(1);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
 }
 
 button {
@@ -55,15 +56,17 @@ button {
 @media screen and (max-width: 767px) {
     .containerBlur {
         background-color: #e7eaf2;
-        height: 100vh;
+        margin-left: auto;
+        margin-right: auto;
+        width: 320px;
     }
 }
 
 @media screen and (max-width: 767px) {
-  .containerBlur {
-    background-color: #e7eaf2;
-    height: 100vh;
-  }
+    .containerBlur {
+        background-color: #e7eaf2;
+        height: 100vh;
+    }
 }
 
 @media screen and (min-width: 768px) {
