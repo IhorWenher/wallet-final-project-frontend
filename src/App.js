@@ -7,10 +7,9 @@ import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 
 import Container from './components/Container';
-import AppBar from './components/AppBar';
 import Loader from './components/Loader';
 import Wrap from './components/Wrap';
-import HeaderBackground from './components/HeaderBackground'
+import HeaderBackground from './components/HeaderBackground';
 import './index.css';
 
 const StatisticView = lazy(() => import('./views/StatisticView'));
@@ -29,92 +28,95 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className={isLogedIn ? "containerBlur" : ''}>
-
-      <HeaderBackground/>
+    <div className={isLogedIn ? 'containerBlur' : ''}>
+      <HeaderBackground />
 
       <Container>
-      {isFetchingCurrentUser ? (
-        <div className="mainLoader">
-          <Loader />
-        </div>
-      ) : (
-        <>
-          
-          <Suspense fallback={<div className="mainLoader"><Loader /></div>}>
-            <Routes>
-              <Route
+        {isFetchingCurrentUser ? (
+          <div className="mainLoader">
+            <Loader />
+          </div>
+        ) : (
+          <>
+            <Suspense
+              fallback={
+                <div className="mainLoader">
+                  <Loader />
+                </div>
+              }
+            >
+              <Routes>
+                <Route
                   path="/"
                   element={
-                    <PrivateRoute redirectTo="/home" restricted>
+                    <PrivateRoute redirectTo="/home" restricted></PrivateRoute>
+                  }
+                />
+                <Route
+                  exact
+                  path="/home"
+                  element={
+                    <PrivateRoute redirectTo="/login">
+                      <Wrap>
+                        <MainView />
+                      </Wrap>
                     </PrivateRoute>
                   }
-                  />
-              <Route
-                exact
-                path="/home"
-                element={
-                  <PrivateRoute redirectTo="/login">
-                    <Wrap>
-                      <MainView />
-                    </Wrap>
-                  </PrivateRoute>
-                }
-              />
+                />
 
-              <Route
-                path="/register"
-                exact
-                element={
-                  <PublicRoute redirectTo="/login" restricted>
-                    <RegisterView />
-                  </PublicRoute>
-                }
-              />
+                <Route
+                  path="/register"
+                  exact
+                  element={
+                    <PublicRoute redirectTo="/login" restricted>
+                      <RegisterView />
+                    </PublicRoute>
+                  }
+                />
 
-              <Route
-                path="/login"
-                exact
-                element={
-                  <PublicRoute redirectTo="/home" restricted>
-                    <LoginView />
-                  </PublicRoute>
-                }
-              />
+                <Route
+                  path="/login"
+                  exact
+                  element={
+                    <PublicRoute redirectTo="/home" restricted>
+                      <LoginView />
+                    </PublicRoute>
+                  }
+                />
 
-              <Route
-                path="/statistic"
-                element={
-                  <PrivateRoute redirectTo="/login">
-                    <Wrap>
-                      <StatisticView />
-                    </Wrap>
-                  </PrivateRoute>
-                }
-              />
+                <Route
+                  path="/statistic"
+                  element={
+                    <PrivateRoute redirectTo="/login">
+                      <Wrap>
+                        <StatisticView />
+                      </Wrap>
+                    </PrivateRoute>
+                  }
+                />
 
-              <Route
-                path="/diagram"
-                element={
-                  <PrivateRoute redirectTo="/login">
-                    <Wrap />
-                  </PrivateRoute>
-                }
-              />
+                <Route
+                  path="/diagram"
+                  element={
+                    <PrivateRoute redirectTo="/login">
+                      <Wrap />
+                    </PrivateRoute>
+                  }
+                />
 
-              <Route
-                path="/logout"
-                element={
-                  <PrivateRoute redirectTo="/login">
-                    <LogoutView />
-                  </PrivateRoute>
-                }
-              />
-            </Routes>
-          </Suspense>
-        </>
-      )}
-    </Container>
+                <Route
+                  path="/logout"
+                  element={
+                    <PrivateRoute redirectTo="/login">
+                      <LogoutView />
+                    </PrivateRoute>
+                  }
+                />
+              </Routes>
+            </Suspense>
+          </>
+        )}
+      </Container>
     </div>
   );
 }
