@@ -41,7 +41,7 @@ button {
   cursor: pointer;
 }
 @media screen and (max-width: 767px) {
-  body {
+  .containerBlur {
     background-color:#E7EAF2;
   }
 }
