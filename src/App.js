@@ -43,17 +43,16 @@ function App() {
           
           <Suspense fallback={<div className="mainLoader"><Loader /></div>}>
             <Routes>
-              {/* <Route
+              <Route
                   path="/"
                   element={
-                    <PrivateRoute redirectTo="/login" restricted>
-                      <MainView />
+                    <PrivateRoute redirectTo="/home" restricted>
                     </PrivateRoute>
                   }
-                  /> */}
+                  />
               <Route
                 exact
-                path="/"
+                path="/home"
                 element={
                   <PrivateRoute redirectTo="/login">
                     <Wrap>
@@ -77,7 +76,7 @@ function App() {
                 path="/login"
                 exact
                 element={
-                  <PublicRoute redirectTo="/" restricted>
+                  <PublicRoute redirectTo="/home" restricted>
                     <LoginView />
                   </PublicRoute>
                 }
