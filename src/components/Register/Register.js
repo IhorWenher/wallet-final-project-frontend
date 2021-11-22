@@ -5,6 +5,11 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../../redux/auth';
 import { validate } from 'indicative/validator';
+import { alert, defaults } from '@pnotify/core';
+
+defaults.styling = 'material';
+defaults.icons = 'material';
+defaults.delay = 1000;
 
 export default function Register() {
   const dispatch = useDispatch();
@@ -74,7 +79,14 @@ export default function Register() {
       setPassword('');
       setConfirmPassword('');
     } catch (er) {
-      alert(er[0].message);
+      alert({
+        text: er[0].message,
+        hide: true,
+        delay: 2000,
+        sticker: false,
+        closer: true,
+        dir1: 'down',
+      });
     }
   }
 
