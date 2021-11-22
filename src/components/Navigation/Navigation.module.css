@@ -13,11 +13,15 @@
 .home__svg,
 .statis__svg,
 .curren__svg {
-  fill: #6E78E8;
+  fill: #6e78e8;
   height: 38px;
   width: 38px;
 }
-
+.activ {
+  fill: #4a56e2;
+  color: black;
+  font-weight: bold;
+}
 .home__word,
 .statis__word {
   display: none;
@@ -42,6 +46,11 @@
     align-items: center;
     text-decoration: none;
     display: flex;
+  }
+
+  .activ {
+    color: black;
+    font-weight: bold;
   }
   .home__svg,
   .statis__svg {
