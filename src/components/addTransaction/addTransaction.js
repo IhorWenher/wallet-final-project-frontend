@@ -99,7 +99,7 @@ function AddTransaction({toggleModal, toggleAddTransaction}) {
         // нормализация данных для бэка
         const transaction = {
             day: date.getDate(),
-            month: date.getMonth(),
+            month: date.getMonth() + 1,
             year: date.getFullYear(),
             type: transactionType === 'income' ? true : false,
             category: category,
@@ -111,7 +111,7 @@ function AddTransaction({toggleModal, toggleAddTransaction}) {
 
         const transactionNoComment = {
             day: date.getDate(),
-            month: date.getMonth(),
+            month: date.getMonth() + 1,
             year: date.getFullYear(),
             type: transactionType === 'income' ? true : false,
             category: category,

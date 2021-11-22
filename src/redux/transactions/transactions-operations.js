@@ -14,7 +14,7 @@ axios.defaults.baseURL = 'https://final-project-back.herokuapp.com/api';
 export const fetchTransactions = () => async dispatch => {
   dispatch(fetchTransactionsRequest());
   try {
-    const { data } = await axios.get('/transactions');
+    const { data } = await axios.post('/transactions/get');
     dispatch(fetchTransactionsSucces(data.data.transactionsData));
   } catch (error) {
     console.log(error)
@@ -27,7 +27,7 @@ export const addTransaction =
     dispatch(addTransactionRequest);
 
     axios
-      .post('/transactions', data)
+      .post('/transactions/post', data)
       .then(responce => {
         dispatch(addTransactionSucces(responce.data.data.transactionData))
       })
