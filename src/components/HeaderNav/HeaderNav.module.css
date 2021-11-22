@@ -16,7 +16,7 @@
 }
 
 .logo {
-  margin-right: 53px;
+  margin-right: auto;
   display: block;
   font-style: normal;
   font-weight: 700;
@@ -65,7 +65,7 @@
     height: 80px;
   }
   .logo {
-    margin-right: 318px;
+    margin-right: auto;
     font-size: 30px;
     display: block;
   }
