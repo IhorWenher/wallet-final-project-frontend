@@ -6,12 +6,13 @@ import currencySelector from '../../redux/currency/currencySelectors';
 import Vector from '../../images/vector.svg';
 import styles from './CurrencyRatesPanel.module.css';
 import Loader from "../Loader";
+import { useLocation } from 'react-router';
 
 function CurrencyRatesPanel() {
   const currencyRates = useSelector(currencySelector.currencyRates);
-  const currencyRatesLoading = useSelector(
-    currencySelector.currencyRatesLoading,
-  );
+  const currencyRatesLoading = useSelector(currencySelector.currencyRatesLoading);
+  const location = useLocation();
+  const isDiagram = location.pathname === '/diagram';
 
   const dispatch = useDispatch();
 
@@ -23,7 +24,7 @@ function CurrencyRatesPanel() {
     rate > 9 ? '' + Number(rate).toFixed(2) : '0' + Number(rate).toFixed(2);
 
   return (
-    <div className={styles.currencyRatesPanel}>
+    <div className={`${styles.currencyRatesPanel} ${isDiagram ? '' : styles.hidden}`}>
       <ul className={styles.currencyRatesHead}>
         <li>Валюта</li>
         <li>Покупка</li>

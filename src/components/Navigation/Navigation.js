@@ -5,6 +5,8 @@ import { ReactSVG } from 'react-svg';
 import { authSelectors } from '../../redux/auth';
 import svgCurren from '../../images/dollar-icon.svg';
 import style from '../Navigation/Navigation.module.css';
+import CurrencyRatesPanel from '../CurrencyRatesPanel';
+import Balance from '../Balance';
 
 export default function Navigation() {
   const isLogin = useSelector(authSelectors.getIsLoggedIn);
