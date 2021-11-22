@@ -7,6 +7,7 @@
 
 .nav__link {
   display: flex;
+  justify-content: center;
 }
 
 .home__svg,
@@ -51,6 +52,13 @@
   .home__word,
   .statis__word {
     display: initial;
+  }
+
+  .home__word:active {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 27px;
   }
 
   .curren__svg {
