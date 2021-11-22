@@ -46,6 +46,7 @@ button {
 @media screen and (max-width: 767px) {
     .containerBlur {
         background-color: #e7eaf2;
+        height: 100vh;
     }
 }
 
