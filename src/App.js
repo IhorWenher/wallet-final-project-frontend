@@ -44,7 +44,7 @@ function App() {
                   /> */}
               <Route
                 exact
-                path="/"
+                path="/home"
                 element={
                   <PrivateRoute redirectTo="/login">
                     <Wrap>
@@ -68,7 +68,7 @@ function App() {
                 path="/login"
                 exact
                 element={
-                  <PublicRoute redirectTo="/" restricted>
+                  <PublicRoute redirectTo="/home" restricted>
                     <LoginView />
                   </PublicRoute>
                 }
@@ -89,7 +89,7 @@ function App() {
                 path="/diagram"
                 element={
                   <PrivateRoute redirectTo="/login">
-                    <CurrencyRatesPanel />
+                    {/* <CurrencyRatesPanel /> */}
                   </PrivateRoute>
                 }
               />
