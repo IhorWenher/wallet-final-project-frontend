@@ -17,7 +17,12 @@ const months = [
   'Ноябрь',
   'Декабрь',
 ];
-const years = [2021, 2022, 2023];
+
+const years = [
+  new Date().getFullYear().toString(),
+  (new Date().getFullYear() + 1).toString(),
+  (new Date().getFullYear() + 2).toString()
+]
 
 export default function StatisticMenu({monthClicker, yearClicker}) {
   // const monthNow = new Date().getMonth();

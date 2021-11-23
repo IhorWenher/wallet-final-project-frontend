@@ -51,11 +51,10 @@ export default function DiagramTab() {
 
   function changeYear(value) {
     const calendar = {
-      0: '2021',
-      1: '2022',
-      2: '2023'
+      0: new Date().getFullYear().toString(),
+      1: (new Date().getFullYear() +1).toString(),
+      2: (new Date().getFullYear()+2).toString()
     }
-
     setYear(calendar[value])
   }
   
