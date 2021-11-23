@@ -1,13 +1,8 @@
-html {
-    background-color: #e7eaf2;
-}
-
 body {
     margin: 0;
     font-family: 'Circe', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /*     background-color: #e7eaf2; */
     background: rgba(255, 255, 255, 0.4);
 }
 
@@ -66,6 +61,7 @@ button {
 
 @media screen and (max-width: 767px) {
     .containerBlur {
+        overflow-y: scroll;
         background-color: #e7eaf2;
         height: 100vh;
     }
