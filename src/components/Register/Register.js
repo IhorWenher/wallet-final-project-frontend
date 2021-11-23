@@ -5,6 +5,11 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../../redux/auth';
 import { validate } from 'indicative/validator';
+import { alert, defaults } from '@pnotify/core';
+
+defaults.styling = 'material';
+defaults.icons = 'material';
+defaults.delay = 1000;
 
 export default function Register() {
   const dispatch = useDispatch();
@@ -27,6 +32,21 @@ export default function Register() {
     max: 'The value of name or password is too large',
     confirmed: 'Entered passwords do not mutch',
   };
+
+  function activeClassTrigger() {
+    const passLength = password.length;
+
+    if (passLength >= 1 && passLength < 7) {
+      return Styles.badSafe;
+    }
+    if (passLength >= 7 && passLength < 10) {
+      return Styles.middleSafe;
+    }
+    if (passLength >= 10) {
+      return Styles.strongSafe;
+    }
+    return Styles.base;
+  }
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -59,7 +79,14 @@ export default function Register() {
       setPassword('');
       setConfirmPassword('');
     } catch (er) {
-      alert(er[0].message);
+      alert({
+        text: er[0].message,
+        hide: true,
+        delay: 2000,
+        sticker: false,
+        closer: true,
+        dir1: 'down',
+      });
     }
   }
 
@@ -114,6 +141,7 @@ export default function Register() {
 
             <label className={Styles.authLabel}>
               <input
+                id="inputcheck"
                 className={Styles.input}
                 placeholder="Пароль"
                 onChange={handleChange}
@@ -145,6 +173,8 @@ export default function Register() {
                 />
               </svg>
             </label>
+
+            <div id="check" className={activeClassTrigger()}></div>
 
             <label className={Styles.authLabel}>
               <input

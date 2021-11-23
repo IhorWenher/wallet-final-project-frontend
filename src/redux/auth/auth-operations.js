@@ -1,5 +1,10 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { alert, defaults } from '@pnotify/core';
+
+defaults.styling = 'material';
+defaults.icons = 'material';
+defaults.delay = 1000;
 
 axios.defaults.baseURL = 'https://final-project-back.herokuapp.com/api';
 
@@ -42,11 +47,17 @@ const login = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/auth/login', credentials);
-      console.log(data)
-      console.log(data.data.token)
       token.set(data.data.token);
       return data;
     } catch (error) {
+      alert({
+        text: 'Not authorized',
+        hide: true,
+        delay: 2000,
+        sticker: false,
+        closer: true,
+        dir1: 'down',
+      });
       return rejectWithValue(error);
     }
   },
@@ -75,7 +86,6 @@ const fetchCurrentUser = createAsyncThunk(
 
     try {
       const { data } = await axios.get('/auth/current');
-      console.log(data);
       return data;
     } catch (error) {
       console.log(error);

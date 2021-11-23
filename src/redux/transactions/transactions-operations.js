@@ -10,15 +10,26 @@ import {
 } from './transactions-actions';
 
 axios.defaults.baseURL = 'https://final-project-back.herokuapp.com/api';
-// const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTg1ODFlMTk0MWE0NGM0YzNiODdjNyIsImlhdCI6MTYzNzM3NDAxNn0.IoESZ4hXfQbOchCD_I43ROeNGjlOZ5ISNxgQNaGH-lU';
-// axios.defaults.headers.common.Authorization = `Bearer ${token}`
+
 
 export const fetchTransactions = () => async dispatch => {
   dispatch(fetchTransactionsRequest());
   try {
-    const { data } = await axios.get('/transactions');
-    console.log(data)
-    dispatch(fetchTransactionsSucces(data.data.transactionsData));
+    const { data } = await axios.post('/transactions/get');
+    const rawResponce = data.data.transactionsData
+    const sortResponce = rawResponce.reverse()
+    // const sortResponce = rawResponce.sort((first, second) => {
+    //   const days = first.day - second.day
+    //   const months = first.month - second.month
+    //   const years = first.year - second.year
+
+    //   if (days <= 0 && months <= 0 && years <= 0) {
+    //     return 1
+    //   }
+    //   return -1
+    // })
+
+    dispatch(fetchTransactionsSucces(sortResponce));
   } catch (error) {
     console.log(error)
     dispatch(fetchTransactionsError(error));
@@ -27,12 +38,14 @@ export const fetchTransactions = () => async dispatch => {
 
 export const addTransaction =
   (data) => dispatch => {
-
-    // dispatch(addTransactionRequest);
-    // dispatch(addTransactionSucces(data))
+    dispatch(addTransactionRequest);
 
     axios
-      .post('/transactions', data)
-      .then(({ data }) => dispatch(addTransactionSucces(data)))
-      .catch(error => dispatch(addTransactionError(error)));
+      .post('/transactions/add', data)
+      .then(responce => {
+        dispatch(addTransactionSucces(responce.data.data.transactionData))
+      })
+      .catch(error => {
+        dispatch(addTransactionError(error))
+      });
   };

@@ -1,5 +1,4 @@
 .container {
-  padding-top: 30px;
   margin: 0 auto;
   min-width: 320px;
 }
@@ -69,6 +68,7 @@
     display: block;
     text-align: right;
     background-color: #ffffff;
+    min-width: 280px;
   }
   .table td::before {
     content: attr(data-label);

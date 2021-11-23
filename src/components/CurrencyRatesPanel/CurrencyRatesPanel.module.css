@@ -76,7 +76,7 @@
     .currencyRatesPanel {
         width: 350px;
         padding-bottom: 0;
-        margin-left: 40px;
+        margin-left: 85px;
     }
     .conteinerdata {
         height: 287px;
@@ -90,5 +90,11 @@
         bottom: 0;
         width: 350px;
         height: 134px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .hidden {
+        display: none;
     }
 }
