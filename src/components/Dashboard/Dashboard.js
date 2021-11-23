@@ -12,6 +12,7 @@ import styles from './Dashboard.module.css';
 export default function Dashboard() {
   // const loading = useSelector(getLoading);
   const dashboardData = useSelector(getTransactions);
+  
   const currentBalance = useSelector(balance)
   // const error = useSelector(isError);
   const dispatch = useDispatch();

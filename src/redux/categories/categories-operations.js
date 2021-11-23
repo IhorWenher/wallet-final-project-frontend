@@ -8,17 +8,35 @@ import {
 
 axios.defaults.baseURL = 'https://final-project-back.herokuapp.com/api';
 
-const fetchCategories = () => async dispatch => {
+const fetchCategories = (month, year) => async dispatch => {
   dispatch(fetchCategoriesRequest());
   try {
-    const { data } = await axios.post('/transactions/get');
-    const array = data.data.transactionsData
+    let responceObj;
+
+    if (!year && !month) {
+      const res = await axios.post('/transactions/get')
+      responceObj = res.data
+    }
+
+    if (!month) {
+      const  res  = await axios.post('/transactions/get', { year })
+      responceObj = res.data
+    }
+
+    if (month && year) {
+      const  res  = await axios.post('/transactions/get', { year, month })
+      responceObj = res.data
+    }
+
+    const array = responceObj.data.transactionsData
+
+    // const { data } = await axios.post('/transactions/get');
+    // const array = data.data.transactionsData
 
     const categories = {
       income: 0,
       spending: 0
     }
-    // const transArray = []
     array.forEach((item) => {
       const name = item.category
       const sum = item.sum

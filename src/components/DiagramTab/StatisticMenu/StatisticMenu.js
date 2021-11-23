@@ -19,14 +19,14 @@ const months = [
 ];
 const years = [2021, 2022, 2023];
 
-export default function StatisticMenu() {
+export default function StatisticMenu({monthClicker, yearClicker}) {
   // const monthNow = new Date().getMonth();
   // const yearNow = new Date().getFullYear();
 
   return (
     <div className={styles.container}>
-      <DropDownJSX categoryName={'Месяц'} categoryArray={months} />
-      <DropDownJSX categoryName={'Год'} categoryArray={years} />
+      <DropDownJSX dateClicker={monthClicker} categoryName={'Месяц'} categoryArray={months} />
+      <DropDownJSX dateClicker={yearClicker} categoryName={'Год'} categoryArray={years} />
     </div>
   );
 }
