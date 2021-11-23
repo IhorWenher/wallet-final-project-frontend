@@ -7,7 +7,7 @@ import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 
 import Container from './components/Container';
-import AppBar from './components/AppBar';
+// import AppBar from './components/AppBar';
 import Loader from './components/Loader';
 import Wrap from './components/Wrap';
 import HeaderBackground from './components/HeaderBackground'
