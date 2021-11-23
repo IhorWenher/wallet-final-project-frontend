@@ -7,10 +7,10 @@ import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 
 import Container from './components/Container';
-<<<<<<< HEAD
+
 // import AppBar from './components/AppBar';
-=======
->>>>>>> 0702daacfc352abc04a210e4687ed7ce74ea7684
+
+
 import Loader from './components/Loader';
 import Wrap from './components/Wrap';
 import HeaderBackground from './components/HeaderBackground';

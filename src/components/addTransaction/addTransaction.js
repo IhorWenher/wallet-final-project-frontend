@@ -16,6 +16,11 @@ import svgClose from '../../images/modal-close-icon.svg';
 
 import styles from './styles.module.css';
 
+import { alert, defaults } from '@pnotify/core';
+defaults.styling = 'material';
+defaults.icons = 'material';
+defaults.delay = 1000;
+
 function AddTransaction({ toggleModal, toggleAddTransaction }) {
   const [transactionType, setTransactionType] = useState('income');
   const [category, setCategory] = useState('Регулярный доход');
@@ -84,12 +89,29 @@ function AddTransaction({ toggleModal, toggleAddTransaction }) {
 
   async function submitHandler(e) {
     e.preventDefault();
-    if (!currentBalance && transactionType === 'spending') {
-      alert('Вы не можете ввести расход при нулевом балансе');
+      const nextBalance = currentBalance - summ
+      console.log(nextBalance)
+
+    if (nextBalance <= 0 && transactionType === 'spending' && category !== 'Выберите категорию') {
+      alert({
+        text: 'Недостаточно средств',
+        hide: true,
+        delay: 2000,
+        sticker: false,
+        closer: true,
+        dir1: 'down',
+      });;
       return;
     }
     if (category === 'Выберите категорию') {
-      alert('Укажите категорию');
+      alert({
+        text: 'Пожалуйста выберите категорию',
+        hide: true,
+        delay: 2000,
+        sticker: false,
+        closer: true,
+        dir1: 'down',
+      });;
       return;
     }
     const userBalance = currentBalance.toString();
