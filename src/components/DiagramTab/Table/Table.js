@@ -58,24 +58,24 @@ const colors = [
 ];
 
 export default function Table() {
-  const categories = useSelector(getCategories)
+  const categories = useSelector(getCategories);
 
-  const totalFields = {}
+  const totalFields = {};
   for (const item of categories) {
     if (item.name === 'income' || item.name === 'spending') {
-        totalFields[item.name] = item.summ
+      totalFields[item.name] = item.summ;
     }
-    continue
+    continue;
   }
 
-  const groupFields = []
+  const groupFields = [];
   for (const item of categories) {
     if (item.name === 'income' || item.name === 'spending') {
-        continue
+      continue;
     }
-    groupFields.push(item)
+    groupFields.push(item);
   }
-  
+
   return (
     <div className={styles.container}>
       <p className={styles.head}>
@@ -85,7 +85,7 @@ export default function Table() {
       <ul>
         {groupFields.map((item, idx) => {
           return (
-            <li className={styles.listItem} key={idx+1}>
+            <li className={styles.listItem} key={idx + 1}>
               <span
                 style={{ backgroundColor: colors[idx] }}
                 className={styles.marker}
@@ -98,10 +98,10 @@ export default function Table() {
           );
         })}
       </ul>
-      
+
       <p className={styles.total}>
         <b className={styles.totalItem}>
-        <span>Расходы</span>
+          <span>Расходы</span>
           <span style={{ color: '#FF6596' }}>{totalFields.spending}</span>
         </b>
         <b className={styles.totalItem}>

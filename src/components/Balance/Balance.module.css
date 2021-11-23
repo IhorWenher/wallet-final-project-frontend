@@ -7,21 +7,22 @@
     margin-bottom: 30px;
     width: 280px;
     height: 80px;
-    background: #FFFFFF;
+    background: #ffffff;
     border-radius: 30px;
 }
-.balanceTitle{
+
+.balanceTitle {
     margin: 0;
-    margin-bottom: 10px;
     font-family: 'Circe', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
     line-height: 1.5;
     text-transform: uppercase;
-    color: #A6A6A6;
+    color: #a6a6a6;
 }
-.balanceValue{
+
+.balanceValue {
     margin: 0;
     font-family: 'Poppins', sans-serif;
     font-style: normal;
@@ -29,9 +30,11 @@
     font-size: 30px;
     line-height: 1.5;
 }
-.currencySymbol{
+
+.currencySymbol {
     font-weight: 400;
 }
+
 @media screen and (min-width: 768px) and (max-width: 1279px) {
     .balance {
         width: 335px;
@@ -40,7 +43,6 @@
         margin-right: 20px;
         margin-bottom: 0px;
     }
-    
 }
 
 @media screen and (min-width: 1280px) {

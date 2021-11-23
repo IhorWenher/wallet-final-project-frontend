@@ -1,5 +1,10 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { alert, defaults } from '@pnotify/core';
+
+defaults.styling = 'material';
+defaults.icons = 'material';
+defaults.delay = 1000;
 
 axios.defaults.baseURL = 'https://final-project-back.herokuapp.com/api';
 
@@ -45,6 +50,14 @@ const login = createAsyncThunk(
       token.set(data.data.token);
       return data;
     } catch (error) {
+      alert({
+        text: 'Not authorized',
+        hide: true,
+        delay: 2000,
+        sticker: false,
+        closer: true,
+        dir1: 'down',
+      });
       return rejectWithValue(error);
     }
   },
