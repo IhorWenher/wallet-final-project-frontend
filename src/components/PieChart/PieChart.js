@@ -1,51 +1,9 @@
 import { PieChart } from 'react-minimal-pie-chart';
 import React from 'react';
 import styled from 'styled-components';
-import { balance } from './../../redux/balance/balance-selectors';
 import { useSelector } from 'react-redux';
 import { getCategories } from '../../redux/categories/index'
 
-
-
-
-// const tableItem = [
-//   {
-//     title: 'Основные расходы',
-//     value: 8700,
-//   },
-//   {
-//     title: 'Продукты',
-//     value: 1300,
-//   },
-//   {
-//     title: 'Машина',
-//     value: 100,
-//   },
-//   {
-//     title: 'Забота о себе',
-//     value: 500,
-//   },
-//   {
-//     title: 'Забота о детях',
-//     value: 7500,
-//   },
-//   {
-//     title: 'Товары для дома',
-//     value: 1300,
-//   },
-//   {
-//     title: 'Образование',
-//     value: 20,
-//   },
-//   {
-//     title: 'Досуг',
-//     value: 7000,
-//   },
-//   {
-//     title: 'Другие расходы',
-//     value: 40,
-//   },
-// ];
 const colors = [
   '#FED057',
   '#FFD8D0',
@@ -58,13 +16,11 @@ const colors = [
   '#00AD84',
 ];
 
-
 const PieChartComponent = () => {
-  const currentBalance = useSelector(balance);
 
   const AllCategories = useSelector(getCategories)
 
-  const totalFields = {}
+  let totalFields = {}
   for (const item of AllCategories) {
     if (item.name === 'income' || item.name === 'spending') {
         totalFields[item.name] = item.summ
@@ -81,18 +37,20 @@ const PieChartComponent = () => {
   }
 
   const total = groupFields.reduce((acc, item) => acc + item.summ, 0);
+
   const categories = groupFields.map((item, index) => ({
-    title: item.name,
-    value: (item.summ * 100) / total,
-    color: colors[index],
+  title: item.name,
+  value: (item.summ * 100) / total,
+  color: colors[index],
   }));
 
-  const formatBalance = balance =>
-    balance
-      ? balance
-          .toLocaleString('ru-RU', { minimumFractionDigits: 2 })
-          .replace(',', '.')
-      : 0;
+
+  // const formatBalance = balance =>
+  //   balance
+  //     ? balance
+  //         .toLocaleString('ru-RU', { minimumFractionDigits: 2 })
+  //         .replace(',', '.')
+  //     : 0;
 
 
   return (
@@ -101,8 +59,11 @@ const PieChartComponent = () => {
     >
       <Title>Статистика</Title>
       <PieChartWrapper>
-        <CustomPieChart lineWidth={25} animate radius={50} data={categories} />
-        <Total>₴ {formatBalance(currentBalance)}</Total>
+        {groupFields.length > 0 ? <CustomPieChart lineWidth={25} animate radius={50} data={categories} /> : null}
+        {/* <Total>₴ {formatBalance(currentBalance)}</Total> */}
+        <Total>
+          {totalFields.spending > 0 ? ('₴ ' + totalFields.spending) : null}
+        </Total>
       </PieChartWrapper>
     </Wrapper>
   );

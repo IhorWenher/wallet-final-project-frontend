@@ -79,18 +79,9 @@ function AddTransaction({ toggleModal, toggleAddTransaction }) {
     year: 'required|number',
   };
 
-  // function formReset() {
-  //     setTransactionType('income')
-  //     setCategory('Регулярный доход')
-  //     setSumm('')
-  //     setDate(new Date())
-  //     setComment('')
-  // }
-
   async function submitHandler(e) {
     e.preventDefault();
       const nextBalance = currentBalance - summ
-      console.log(nextBalance)
 
     if (nextBalance <= 0 && transactionType === 'spending' && category !== 'Выберите категорию') {
       alert({
