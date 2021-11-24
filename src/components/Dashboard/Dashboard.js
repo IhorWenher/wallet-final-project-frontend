@@ -3,18 +3,14 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchTransactions } from '../../redux/transactions';
 import { getTransactions } from '../../redux/transactions';
-// import { getLoading, isError } from '../../redux/transactions';
 import { balance } from '../../redux/balance/balance-selectors';
 
-// import Loader from '../Loader'
 import styles from './Dashboard.module.css';
 
 export default function Dashboard() {
-  // const loading = useSelector(getLoading);
   const dashboardData = useSelector(getTransactions);
   
   const currentBalance = useSelector(balance)
-  // const error = useSelector(isError);
   const dispatch = useDispatch();
 
   useEffect(() => {
