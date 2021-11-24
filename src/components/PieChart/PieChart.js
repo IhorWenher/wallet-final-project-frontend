@@ -20,7 +20,7 @@ const PieChartComponent = () => {
 
   const AllCategories = useSelector(getCategories)
 
-  let totalFields = {}
+  const totalFields = {}
   for (const item of AllCategories) {
     if (item.name === 'income' || item.name === 'spending') {
         totalFields[item.name] = item.summ
@@ -45,14 +45,6 @@ const PieChartComponent = () => {
   }));
 
 
-  // const formatBalance = balance =>
-  //   balance
-  //     ? balance
-  //         .toLocaleString('ru-RU', { minimumFractionDigits: 2 })
-  //         .replace(',', '.')
-  //     : 0;
-
-
   return (
     <Wrapper
       style={{ marginTop: '20px', marginLeft: 'auto', marginRight: 'auto' }}
@@ -60,7 +52,6 @@ const PieChartComponent = () => {
       <Title>Статистика</Title>
       <PieChartWrapper>
         {groupFields.length > 0 ? <CustomPieChart lineWidth={25} animate radius={50} data={categories} /> : null}
-        {/* <Total>₴ {formatBalance(currentBalance)}</Total> */}
         <Total>
           {totalFields.spending > 0 ? ('₴ ' + totalFields.spending) : null}
         </Total>
