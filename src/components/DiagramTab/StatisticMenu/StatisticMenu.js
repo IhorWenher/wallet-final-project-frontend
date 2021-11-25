@@ -25,8 +25,6 @@ const years = [
 ]
 
 export default function StatisticMenu({monthClicker, yearClicker}) {
-  // const monthNow = new Date().getMonth();
-  // const yearNow = new Date().getFullYear();
 
   return (
     <div className={styles.container}>

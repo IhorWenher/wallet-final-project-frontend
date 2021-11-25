@@ -1,50 +1,8 @@
 import React from 'react';
 import styles from './Table.module.css';
-// import fetchCaegories from '../../../redux/categories/index';
 import { useSelector } from 'react-redux';
-
 import { getCategories } from '../../../redux/categories';
 
-
-
-// const tableItem = [
-//   {
-//     title: 'Основные расходы',
-//     value: 8700,
-//   },
-//   {
-//     title: 'Продукты',
-//     value: 1300,
-//   },
-//   {
-//     title: 'Машина',
-//     value: 100,
-//   },
-//   {
-//     title: 'Забота о себе',
-//     value: 500,
-//   },
-//   {
-//     title: 'Забота о детях',
-//     value: 7500,
-//   },
-//   {
-//     title: 'Товары для дома',
-//     value: 1300,
-//   },
-//   {
-//     title: 'Образование',
-//     value: 20,
-//   },
-//   {
-//     title: 'Досуг',
-//     value: 7000,
-//   },
-//   {
-//     title: 'Другие расходы',
-//     value: 40,
-//   },
-// ];
 const colors = [
   '#FED057',
   '#FFD8D0',
@@ -83,7 +41,7 @@ export default function Table() {
         <b>Сумма</b>
       </p>
       <ul>
-        {groupFields.map((item, idx) => {
+        {groupFields && groupFields.map((item, idx) => {
           return (
             <li className={styles.listItem} key={idx + 1}>
               <span
